@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ruby on Rails: Welcome aboard</title>
+    <style type="text/css" media="screen">
+      .container {
+        width: 700px;
+        border: 1px dotted;
+        margin: auto;
+        padding: 20px;
+      }
+    </style>
+    <script type="text/javascript">
+      function about() {
+        info = document.getElementById('about-content');
+        if (window.XMLHttpRequest)
+          { xhr = new XMLHttpRequest(); }
+        else
+          { xhr = new ActiveXObject("Microsoft.XMLHTTP"); }
+        xhr.open("GET","rails/info/properties",false);
+        xhr.send("");
+        info.innerHTML = xhr.responseText;
+        info.style.display = 'block'
+      }
+    </script>
+  </head>
+  <body>
+    <div class='container'>
+      <h1>MizeCraft</h1> 
+      <h3>Search-Engine Optimization for the Everyman</h3>
+      <p>Hello! I'm a developer planning an application to help writers and editors who are not well-educated in SEO best practices to take their optimization into their own hands.</p>
+      <p>Please stay tuned to this space for updates--we hope to have big changes to this space in the very near future.</p>
+    </div>
+  </body>
+</html>
