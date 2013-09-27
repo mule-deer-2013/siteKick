@@ -3,6 +3,7 @@ require 'nokogiri'
 require 'open-uri'
 
 class Page < ActiveRecord::Base
+
   attr_accessible :content, :original_url
 
   def get_content
