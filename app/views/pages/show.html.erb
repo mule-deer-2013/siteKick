@@ -1,15 +1,16 @@
 <div class = "navbar navbar-fix">
   <div class = "navbar-inner-box">
-      <a class= "brand" href="#"> YOUR FEEDBACK WILL GO HERE </a>
+      <a class= "brand" href="#">Your url is: <%= @page.original_url %> </a><br> 
         <ul class= "nav">
-          <li>Here GOES TITLE</li>
-          <li>Here GOES FEEDBACK</li>
+          <li><h1>Our FEEDBACK WILL GO HERE:</h1></li><br>
+          <li>Title: <%= @page.title.html_safe  %></li>
+          <li> H1's:  <%= @page.h1.html_safe  %></li>
         </ul>
       </div>
     </div>
 </div>
 
-<h1><%= @page.original_url %></h1>
+
 <p>
   <%= @page.content.html_safe %>
 </p>
