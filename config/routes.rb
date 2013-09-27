@@ -1,4 +1,10 @@
 MizeCraft::Application.routes.draw do
+
+  root to: 'pages#new'
+  resources :pages, only: [:new, :show, :create, :index]
+  
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
