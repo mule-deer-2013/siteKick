@@ -40,14 +40,17 @@ class Page < ActiveRecord::Base
     array_words.length  #aprox based on p tags
   end
 
+   def number_of_h1
+    word = (nokogiri.css("h1").count)/2
+  end
+
+
   def number_of_h2
     word = (nokogiri.css("h2").count)/2
-    word
   end
 
   def number_of_h3
     word = (nokogiri.css("h3").count)/2
-    word
   end
 
 
