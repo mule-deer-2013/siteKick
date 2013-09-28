@@ -6,8 +6,7 @@ class PagesController < ApplicationController
 
   def create
     @page = Page.create(params[:page])
-    @page.get_content
-    @page.save
+
     redirect_to page_path(@page)
   end
 
