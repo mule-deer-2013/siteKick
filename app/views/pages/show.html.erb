@@ -1,27 +1,34 @@
-<div class = "navbar navbar-fix">
-  <div class = "navbar-inner-box">
+<h1>Pages#show</h1>
+<div class='feedback'>
+  <h2>FEEDBACK:</h2>
 
-      <a class= "brand" href="#">Your url is: <%= @page.original_url %> </a><br>
-        <button class="show_button">Hide Feedback</button>
-        <ul class= "nav">
-          <div id = "togglediv">
-          <li><h1>Our FEEDBACK WILL GO HERE:</h1></li><br>
+  <p>You submitted: <br>
+  <%= @page.original_url %><br>
+  
+  Title: <%= @page.title %><br>
+  h1 text:  <%= @page.h1_text  %><br>
+  h1's: <%= @page.number_of_h1  %><br>
+  h1 message: <%= @test.test_results[:h1_presence_output] %> <br>
 
-          <li>Title: <%= @page.title  %></li><br>
-          <li> H1 text:  <%= @page.h1_text  %></li><br><br>
-          <li> H1's: <%= @page.number_of_h1  %> </li><br>
-          <li> H2's: <%= @page.number_of_h2  %> </li><br> 
-          <li> H3's: <%= @page.number_of_h3  %> </li><br><br>         
-          <li> Aprox. number of words in content: <%= @page.word_count %> </li>
-        </div>
-        </ul>
-      </div>
-    </div>
+  h2's: <%= @page.number_of_h2  %>  <br>
+
+  h3's: <%= @page.number_of_h3  %>          <br>
+  
+  Aprox. number of words in content: <br>
+  <%= @page.word_count %> <br>
+</p>
+</div><br>
+
+<div class='article_content'>
+  <h2>ORIGINAL ARTICLE</h2>
+  <%= @page.content.html_safe %>
 </div>
 
 
-<p>
-  <%= @page.content.html_safe %>
-</p>
+
+
+
+  
+
 
 
