@@ -3,6 +3,7 @@ require 'nokogiri'
 require 'open-uri'
 
 class Page < ActiveRecord::Base
+
   attr_accessible :content, :original_url
 
   before_create :get_content
@@ -18,6 +19,11 @@ class Page < ActiveRecord::Base
     @nokogiri ||= Nokogiri::HTML( content ) # .tap do |obj|
       # Rails.logger.debug( "**** Nokogiri: #{obj.inspect}" )  # debug in rails (.tap...)
     # end
+
+  end
+
+  def remove_scripts(nokogiri_content)
+    nokogiri_content.xpath("//script").remove
   end
 
   def title
@@ -78,3 +84,4 @@ class Page < ActiveRecord::Base
 
 
 end
+

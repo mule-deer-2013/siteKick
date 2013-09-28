@@ -1,6 +1,6 @@
 MizeCraft
 
-Search-Engine Optimization for the Everyman
+Search-Engine Optimization for Everyone
 
 MizeCraft is an application to help writers and editors who are not well-educated in SEO best practices to take their optimization into their own hands.
 
