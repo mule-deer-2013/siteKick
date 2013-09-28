@@ -4,60 +4,63 @@ require 'open-uri'
 
 class Page < ActiveRecord::Base
 
-  attr_accessible :content, :original_url
+  attr_accessible :content, :original_url, :title
 
   before_create :get_content
 
 
   def get_content
     url = self.original_url
-    self.content = Nokogiri::HTML( open(url) ).css('article').inner_html
+    full_nokogiri = Nokogiri::HTML( open(url) )
+    self.content = full_nokogiri.css('article').inner_html
+    self.title = full_nokogiri.css('title').text
+    self.meta = full_nokogiri.css('meta').text
     save if !new_record?  #Temporal: Please keep it because it helps me when we call it in the console 
   end
 
-  def nokogiri
-    @nokogiri ||= Nokogiri::HTML( content ) # .tap do |obj|
+  def article_nokogiri
+    @article_nokogiri ||= Nokogiri::HTML( content ) # .tap do |obj|
       # Rails.logger.debug( "**** Nokogiri: #{obj.inspect}" )  # debug in rails (.tap...)
     # end
 
   end
 
   def remove_scripts(nokogiri_content)
-    nokogiri_content.xpath("//script").remove
+    article_nokogiri_content.xpath("//script").remove
   end
 
-  def title
-    nokogiri.css("title").text
-  end
+  # def title
+  #   article_nokogiri.css("title").text
+  # end
 
   def h1_text
-    nokogiri.css("h1").text
+    article_nokogiri.css("h1").text
   end
 
   def word_count #400-600?
-    word = nokogiri.css("p").text
+    word = article_nokogiri.css("p").text
     array_words = word.split
     array_words.length  #aprox based on p tags
   end
 
    def number_of_h1
 
-   nokogiri.css("h1").count
+   article_nokogiri.css("h1").count
 
   end
 
 
   def number_of_h2
-    nokogiri.css("h2").count
+    article_nokogiri.css("h2").count
   end
 
   def number_of_h3
-    nokogiri.css("h3").count
+    article_nokogiri.css("h3").count
   end
 
   def remove_stop_words
 
-    text = nokogiri.css("p").text.downcase!
+    text = article_nokogiri.css("p").text.downcase!
 
     array_text = text.scan(/\w+/)
 
