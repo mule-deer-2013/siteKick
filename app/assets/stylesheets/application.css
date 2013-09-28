@@ -20,6 +20,12 @@ body{
 
 /* base CSS element */
 .tooltip {
+
+}
+
+
+.ui-tooltip {
+  color: black;
   background: #eee;
   border: 1px solid #ccc;
   padding: 10px;
@@ -28,6 +34,7 @@ body{
   /*float:right;*/
   width: 200px;
 }
+
 
 #togglediv{
   background-color: blue;
