@@ -9,12 +9,42 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree 
+ *= require_tree
  */
 
 body{
   margin: 0;
   background-color: #33383d;
+
+}
+
+/* base CSS element */
+.tooltip {
+  background: #eee;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  /*float:right;*/
+  width: 200px;
+}
+
+#togglediv{
+  background-color: blue;
+}
+
+.show_button{
+  display:inline;
+  top: 3px;
+  right:8px;
+  position: absolute;
+  /*margin-right: 5px;*/
+  /*margin-left: 100px;*/
+  /*margin-top: 20%;*/
+  /*float:right;*/
+}
+
+.hide_button{
 
 }
 
@@ -26,7 +56,7 @@ body{
 }
 
 .navbar {
-  overflow: visible;  
+  overflow: visible;
   color:#ccc;
 }
 
@@ -42,7 +72,7 @@ body{
 
 .navbar-inner-box{
   width: 100%;
-  height: 150px;
+  height: 70px;
   background-color: #82b964;
   position: relative;
   -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.1), 0 1px 10px rgba(0, 0, 0, 0.1);
