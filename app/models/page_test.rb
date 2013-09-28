@@ -1,6 +1,9 @@
 class PageTest < ActiveRecord::Base
-  attr_accessible :page_id, :h1_presence_test, :h1_presence_output
+  attr_accessible :page_id
   belongs_to :page
+
+  serialize :test_results, Hash
+  after_create :run_test_suite
 
   def page
     @page ||= Page.find(self.page_id)
@@ -14,17 +17,17 @@ class PageTest < ActiveRecord::Base
   def h1_presence_test
     case page.number_of_h1
     when 0
-      output = "You don't have any h1 tags. They're important."
+      output = "You have too few h1 tags"
       result = false
     when 1
-      output = "You have the correct number of h1 tags."
+      output = "You have the right number of h1 tags"
       result = true
     else
-      output = "You have too many h1 tags."
+      output = "You have too many h1 tags"
       result = false
     end
-    self.h1_presence_result = result
-    self.h1_presence_output = output
+    self.test_results[:h1_presence_result] = result
+    self.test_results[:h1_presence_output] = output
   end
 
 end

@@ -15,8 +15,7 @@ ActiveRecord::Schema.define(:version => 20130928190808) do
 
   create_table "page_tests", :force => true do |t|
     t.integer "page_id"
-    t.string  "h1_presence_output"
-    t.boolean "h1_presence_result"
+    t.text    "test_results"
   end
 
   create_table "pages", :force => true do |t|
