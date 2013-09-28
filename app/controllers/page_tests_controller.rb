@@ -1,4 +1,4 @@
-class TestsController < ApplicationController
+class PageTestsController < ApplicationController
 
   def create
     @test = Test.new(page: @page)

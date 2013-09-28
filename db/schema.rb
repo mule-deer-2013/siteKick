@@ -13,15 +13,17 @@
 
 ActiveRecord::Schema.define(:version => 20130928190808) do
 
+  create_table "page_tests", :force => true do |t|
+    t.integer "page_id"
+    t.string  "h1_presence_output"
+    t.boolean "h1_presence_result"
+  end
+
   create_table "pages", :force => true do |t|
     t.text     "content"
     t.text     "original_url"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
-  end
-
-  create_table "tests", :force => true do |t|
-    t.integer "h1_presence_test"
   end
 
   create_table "users", :force => true do |t|

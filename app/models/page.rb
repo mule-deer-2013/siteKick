@@ -41,7 +41,7 @@ class Page < ActiveRecord::Base
   end
 
    def number_of_h1
-    word = (nokogiri.css("h1").count)/2
+    word = (nokogiri.css("h1").count)
   end
 
 

@@ -1,5 +1,5 @@
-class Test < ActiveRecord::Base
-
+class PageTest < ActiveRecord::Base
+  attr_accessible :page_id, :h1_presence_test, :h1_presence_output
   belongs_to :page
 
   def page
