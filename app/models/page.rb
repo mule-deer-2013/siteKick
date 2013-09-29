@@ -124,6 +124,7 @@ class Page < ActiveRecord::Base
         broken_syntax_links << link
       else
         return true
+      end
     end
     # - Check if href.match(/^https?:/)
     # - Check blog that talks about "same domain": http://blog.migrantstudios.com/2013/06/24/uptimetry-2-0-advanced-url-monitoring-with-nokogiri-and-httparty/
@@ -144,8 +145,9 @@ class Page < ActiveRecord::Base
     # else
     #   "Good Link"
     # end
-
   end
+
+end
 
 # ----------
 # Gaby's Notes => "testing for broken links"
@@ -176,5 +178,5 @@ class Page < ActiveRecord::Base
   #TO BE DISCUSSED:
   #   @keyword_variations
 
-end
+
 
