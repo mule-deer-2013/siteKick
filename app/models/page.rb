@@ -20,7 +20,7 @@ class Page < ActiveRecord::Base
 
   def article_nokogiri
     # Rails.logger.info "hi"*10
-    @article_nokogiri ||= Nokogiri::HTML( content ) 
+    @article_nokogiri ||= Nokogiri::HTML( content )
     # Rails.logger.debug(@article_nokogiri.inspect)  # debug in rails (.tap...)
     # end
   end
@@ -78,10 +78,10 @@ class Page < ActiveRecord::Base
     article_nokogiri.css("img").count
   end
 
-  def start_with_text  
+  def start_with_text
     content = article_nokogiri.css("body").text
     first_twenty_characters = content[1..20]
-    first_twenty_characters.include? "img" 
+    first_twenty_characters.include? "img"
     #output => true if an image is within the first 20 characters
   end
 
@@ -119,11 +119,11 @@ class Page < ActiveRecord::Base
     url = self.original_url
     links = article_nokogiri.css('a').map {|link| link['href']}
     link.include?(url)
-    #output => true if link include (self referring) url 
+    #output => true if link include (self referring) url
   end
 
   def broken_links_due_syntax
-    #NEXT - Pseudo Code: 
+    #NEXT - Pseudo Code:
     # - from the list of links, check for wrong format/syntax
     # - Check if href.match(/^https?:/)
     # - Check blog that talks about "same domain": http://blog.migrantstudios.com/2013/06/24/uptimetry-2-0-advanced-url-monitoring-with-nokogiri-and-httparty/
@@ -132,9 +132,10 @@ class Page < ActiveRecord::Base
     #
   end
 
+
   def broken_links
     links = article_nokogiri.css('a').map {|link| link['href']} # output => array with links
-    urls =  links.map { |l| URI.parse(l)} 
+    urls =  links.map { |l| URI.parse(l)}
 
     req = urls.each {|u| Net::HTTP::Get.new(u.path)}
 
@@ -150,15 +151,15 @@ class Page < ActiveRecord::Base
 
 # ----------
 # Gaby's Notes => "testing for broken links"
-# 
+#
 # url = URI.parse('http://www.example.com')
 # req = Net::HTTP::Get.new(url.path)
 # res = Net::HTTP.start(url.host, url.port) {|http|
 #   http.request(req)
 # }
 # puts res.body
-# PENDING ---> 
-#         - Debug it 
+# PENDING --->
+#         - Debug it
 #         - need to add call back: https://github.com/collectiveidea/delayed_job
 # ----------------
 
