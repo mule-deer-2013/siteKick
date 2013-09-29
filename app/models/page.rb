@@ -138,7 +138,7 @@ class Page < ActiveRecord::Base
     links = article_nokogiri.css('a').map {|link| link['href']} # output => array with links
     urls =  links.map { |l| URI.parse(l)}
     req = urls.each {|u| Net::HTTP::Get.new(u.path)}
-    res = urls.each { |u| Net::HTTP.start(u.host, u.port) {|http| http.request(req)}
+    res = urls.each { |u| Net::HTTP.start(u.host, u.port) {|http| http.request(req)}}
     res.code
     # if output_response_code == 400
     #   "broken link"
@@ -146,6 +146,7 @@ class Page < ActiveRecord::Base
     #   "Good Link"
     # end
   end
+
 
 end
 
