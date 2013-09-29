@@ -11,3 +11,10 @@
 .hidden {
   display: none;
 }
+
+.article_content img {
+  width: 150px;
+  height: auto;
+  float: left;
+  margin-right: 10px;
+}
