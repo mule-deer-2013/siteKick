@@ -2,6 +2,7 @@ require 'rubygems'
 require 'nokogiri'
 require 'open-uri'
 require 'net/http'
+require 'uri'
 
 class Page < ActiveRecord::Base
 
@@ -117,6 +118,13 @@ class Page < ActiveRecord::Base
   def broken_links_due_syntax
     #NEXT - Pseudo Code:
     # - from the list of links, check for wrong format/syntax
+    broken_syntax_links = []
+    list_of_outgoing_links.each do |link|
+      if link !=~ URI::regexp
+        broken_syntax_links << link
+      else
+        return true
+    end
     # - Check if href.match(/^https?:/)
     # - Check blog that talks about "same domain": http://blog.migrantstudios.com/2013/06/24/uptimetry-2-0-advanced-url-monitoring-with-nokogiri-and-httparty/
     #       Remove any URLs pointing to resources on the same domain:
@@ -128,9 +136,7 @@ class Page < ActiveRecord::Base
   def broken_links
     links = article_nokogiri.css('a').map {|link| link['href']} # output => array with links
     urls =  links.map { |l| URI.parse(l)}
-
     req = urls.each {|u| Net::HTTP::Get.new(u.path)}
-
     res = urls.each { |u| Net::HTTP.start(u.host, u.port) {|http| http.request(req)}
     res.code
     # if output_response_code == 400
