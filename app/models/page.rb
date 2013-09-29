@@ -5,9 +5,7 @@ require 'open-uri'
 class Page < ActiveRecord::Base
 
   attr_accessible :content, :original_url, :title
-
   before_create :get_content
-
 
   def get_content
     url = self.original_url
@@ -77,21 +75,21 @@ class Page < ActiveRecord::Base
     frequent_words_array[0...5]
   end
 
-  def self.title_length
-    self.title.length
+  def avg_para_length
+   paragraphs =
   end
+
   # def brainstorming_evaluate_words_on_page
   #   @self_referring_links
   #   @broken_links
   #   @outgoing_links
-  #   @font_size_for_p_tags
+
   #   @avg_paragraph_length
-  #   @keywords_in_url
-  #   @title_length
+
         #   @keywords_in_meta_description
         #   @meta_description_length
         #   @meta_title
-  #   @keyword_density #percentage of keywords on page
+
   #   @keyword_variations
   #   @starts_with_text?
   #   @keywords_in_headings
