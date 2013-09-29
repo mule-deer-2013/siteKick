@@ -19,10 +19,11 @@ class Page < ActiveRecord::Base
   end
 
   def article_nokogiri
-    @article_nokogiri ||= Nokogiri::HTML( content ) # .tap do |obj|
-      # Rails.logger.debug( "**** Nokogiri: #{obj.inspect}" )  # debug in rails (.tap...)
+    Rails.logger.info "hi"*10
+    @article_nokogiri ||= Nokogiri::HTML( content ) 
+    Rails.logger.debug(@article_nokogiri.inspect)  # debug in rails (.tap...)
     # end
-
+    @article_nokogiri
   end
 
   def remove_scripts(nokogiri_content)
@@ -80,19 +81,33 @@ class Page < ActiveRecord::Base
     article_nokogiri.css("img").count
   end
 
-  def start_with_text    
-    #output => true/false
+  def start_with_text  
+    content = article_nokogiri.css("body").text
+    first_twenty_characters = content[1..20]
+    first_twenty_characters.include? "img" 
+    #output => true if an image is within the first 20 characters
   end
 
   def alt_image
     article_nokogiri.css('img').map{ |i| i['alt'] }
   end
 
+  def outgoing_links
+    links = article_nokogiri.css('a').map {|link| link['href']}
+    links.count
+    #output => array with all the links
+  end
+
+  def self_referring_links
+    url = self.original_url
+    links = article_nokogiri.css('a').map {|link| link['href']}
+    link.include?(url)
+    #output => true if link include self referring url 
+  end
+
+
   # LUISA & GABY
-  #   @self_referring_links
   #   @broken_links
-  #   @outgoing_links
-  #   @avg_paragraph_length
   #   @text_versus_html #25-70% text
 
 
