@@ -15,7 +15,7 @@ class Page < ActiveRecord::Base
     self.content = full_nokogiri.css('article').inner_html
     self.title = full_nokogiri.css('title').text
     self.meta = full_nokogiri.css('meta').text
-    save if !new_record?  #Temporal: Please keep it because it helps me when we call it in the console
+    save if !new_record?  #Temporal: Please keep it because it helps me when we call it in the console 
   end
 
   def article_nokogiri
@@ -59,9 +59,13 @@ class Page < ActiveRecord::Base
   end
 
   def remove_stop_words
+
     text = article_nokogiri.css("p").text.downcase!
+
     array_text = text.scan(/\w+/)
-    stop_words = ["0", "a", "about", "above", "after", "again", "against", "all", "am", "an", "and", "any", "are", "aren't", "as", "at", "be", "because", "been", "before", "being", "below", "between", "both", "but", "by", "can't", "cannot", "could", "couldn't", "did", "didn't", "do", "does", "doesn't", "doing", "don't", "down", "during", "each", "few", "for", "from", "further", "had", "hadn't", "has", "hasn't", "have", "haven't", "having", "he", "he'd", "he'll", "he's", "her", "here", "here's", "hers", "herself", "him", "himself", "his", "how", "how's", "i", "i'd", "i'll", "i'm", "i've", "if", "in", "into", "is", "isn't", "it", "it's", "its", "itself", "let's", "me", "more", "most", "mustn't", "my", "myself", "no", "nor", "not", "of", "off", "on", "once", "only", "or", "other", "ought", "our", "ours", "ourselves", "out", "over", "own", "same", "shan't", "she", "she'd", "she'll", "she's", "should", "shouldn't", "so", "some", "such", "than", "that", "that's", "the", "their", "theirs", "them", "themselves", "then", "there", "there's", "these", "they", "they'd", "they'll", "they're", "they've", "this", "those", "through", "to", "too", "under", "until", "up", "very", "was", "wasn't", "we", "we'd", "we'll", "we're", "we've", "were", "weren't", "what", "what's", "when", "when's", "where", "where's", "which", "while", "who", "who's", "whom", "why", "why's", "with", "won't", "would", "wouldn't", "you", "you'd", "you'll", "you're", "you've", "your", "yours", "yourself", "yourselves", "re", 'd', 'll', 'm', 't', 's', 've', 'weren', 'haven', 'aren', 'don', 'shouldn', 'shan', 'mustn']
+
+    stop_words = ["0", "a", "about", "above", "after", "again", "against", "all", "am", "an", "and", "any", "are", "aren't", "as", "at", "be", "because", "been", "before", "being", "below", "between", "both", "but", "by", "can't", "cannot", "could", "couldn't", "did", "didn't", "do", "does", "doesn't", "doing", "don't", "down", "during", "each", "few", "for", "from", "further", "had", "hadn't", "has", "hasn't", "have", "haven't", "having", "he", "he'd", "he'll", "he's", "her", "here", "here's", "hers", "herself", "him", "himself", "his", "how", "how's", "i", "i'd", "i'll", "i'm", "i've", "if", "in", "into", "is", "isn't", "it", "it's", "its", "itself", "let's", "me", "more", "most", "mustn't", "my", "myself", "no", "nor", "not", "of", "off", "on", "once", "only", "or", "other", "ought", "our", "ours", "ourselves", "out", "over", "own", "same", "shan't", "she", "she'd", "she'll", "she's", "should", "shouldn't", "so", "some", "such", "than", "that", "that's", "the", "their", "theirs", "them", "themselves", "then", "there", "there's", "these", "they", "they'd", "they'll", "they're", "they've", "this", "those", "through", "to", "too", "under", "until", "up", "very", "was", "wasn't", "we", "we'd", "we'll", "we're", "we've", "were", "weren't", "what", "what's", "when", "when's", "where", "where's", "which", "while", "who", "who's", "whom", "why", "why's", "with", "won't", "would", "wouldn't", "you", "you'd", "you'll", "you're", "you've", "your", "yours", "yourself", "yourselves", "re", 'd', 'll', 'm', 't', 's', 've', 'weren', 'haven', 'aren', 'don', 'shouldn', 'shan', 'mustn'] 
+
     array_text.reject! { |word| word.to_i != 0 }
     array_text.reject! { |word| stop_words.include?(word) }
     array_text
@@ -77,35 +81,43 @@ class Page < ActiveRecord::Base
     frequent_words_array[0...5]
   end
 
-  def self.title_length
-    self.title.length
+
+  def number_of_images
+    article_nokogiri.css("img").count
   end
-  # def brainstorming_evaluate_words_on_page
+
+  def start_with_text
+    
+    #output => true/false
+  end
+
+  def alt_text_in_images?
+    article_nokogiri.css("alt").count
+  end
+
+
+  # LUISA & GABY
   #   @self_referring_links
   #   @broken_links
   #   @outgoing_links
-  #   @font_size_for_p_tags
   #   @avg_paragraph_length
-  #   @keywords_in_url
-  #   @title_length
-        #   @keywords_in_meta_description
-        #   @meta_description_length
-        #   @meta_title
-  #   @keyword_density #percentage of keywords on page
-  #   @keyword_variations
-  #   @starts_with_text?
-  #   @keywords_in_headings
-  #   @alt_text_in_images?
   #   @text_versus_html #25-70% text
+
+
+  #Dan (within test):
+  #   @keywords_in_url
+  #   @keywords_in_meta_description
+  #   @meta_description_length
+  #   @meta_title
+  #   @keyword_density #percentage of keywords on page
+  #   @keywords_in_headings
+
+  #Optional:
+  #   @font_size_for_p_tags
   #   @page_load_speed #?
 
-  # end
-
-
-
-
-
-
+  #TO BE DISCUSSED:
+  #   @keyword_variations
 
 end
 
