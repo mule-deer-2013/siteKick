@@ -19,19 +19,12 @@ class Page < ActiveRecord::Base
   end
 
   def article_nokogiri
-    # Rails.logger.info "hi"*10
     @article_nokogiri ||= Nokogiri::HTML( content )
-    # Rails.logger.debug(@article_nokogiri.inspect)  # debug in rails (.tap...)
-    # end
   end
 
   def remove_scripts(nokogiri_content)
     article_nokogiri_content.xpath("//script").remove
   end
-
-  # def title
-  #   article_nokogiri.css("title").text
-  # end
 
   def h1_text
     article_nokogiri.css("h1").text
@@ -97,7 +90,6 @@ class Page < ActiveRecord::Base
     para_length_sum / para_count
   end
 
-  # returns ratio of text_character_count vs. html_character_count
   def text_vs_html
     text_count = article_nokogiri.text.length
     html_count = article_nokogiri.css('html').inner_html.length
