@@ -41,7 +41,7 @@ class Page < ActiveRecord::Base
   end
 
   def number_of_h1
-    article_nokogiri.css("h1").count
+   article_nokogiri.css("h1").count
   end
 
   def number_of_h2
@@ -76,11 +76,11 @@ class Page < ActiveRecord::Base
   end
 
   def start_with_text
-      #output => true/false
+    #output => true/false
   end
 
-  def alt_text_in_images?
-    article_nokogiri.css("alt").count
+  def alt_image
+    article_nokogiri.css('img').map{ |i| i['alt'] }
   end
 
   def avg_para_length
