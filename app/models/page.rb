@@ -80,24 +80,30 @@ class Page < ActiveRecord::Base
     frequent_words_array =freqs.each { |word, freq| word+ ' '+freq.to_s}
     frequent_words_array[0...5]
   end
+
+
+  def number_of_images
+    article_nokogiri.css("img").count
+  end
+
+  def start_with_text
+    
+  end
+
+
+  
   # def brainstorming_evaluate_words_on_page
-  #   @number_of_header_tags
   #   @self_referring_links
   #   @broken_links
   #   @outgoing_links
   #   @font_size_for_p_tags
   #   @avg_paragraph_length
   #   @keywords_in_url
-  #   @title_length
   #   @keywords_in_meta_description
   #   @meta_description_length
   #   @meta_title
   #   @keyword_density #percentage of keywords on page
   #   @keyword_variations
-  #   @starts_with_text?
-  #   @number_of_images
-  #   @h1_and_h2_and_h3?
-  #   @number_of_h1s
   #   @keywords_in_headings
   #   @alt_text_in_images?
   #   @text_versus_html #25-70% text
