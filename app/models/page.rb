@@ -92,9 +92,13 @@ class Page < ActiveRecord::Base
     article_nokogiri.css('img').map{ |i| i['alt'] }
   end
 
-  def outgoing_links
+  def list_of_outgoing_links
     links = article_nokogiri.css('a').map {|link| link['href']}
     #output => array with the list of all links found in the content
+  end
+
+  def number_of_outgoing_links
+    links = article_nokogiri.css('a').map {|link| link['href']}
     links.count
     #output => number of links in the content
   end
