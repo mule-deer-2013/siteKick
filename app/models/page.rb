@@ -88,10 +88,15 @@ class Page < ActiveRecord::Base
 
   def start_with_text
     
+
+    #output => true/false
+  end
+
+  def alt_text_in_images?
+    article_nokogiri.css("alt").count
   end
 
 
-  
   # def brainstorming_evaluate_words_on_page
   #   @self_referring_links
   #   @broken_links
@@ -105,7 +110,7 @@ class Page < ActiveRecord::Base
   #   @keyword_density #percentage of keywords on page
   #   @keyword_variations
   #   @keywords_in_headings
-  #   @alt_text_in_images?
+
   #   @text_versus_html #25-70% text
   #   @page_load_speed #?
 
