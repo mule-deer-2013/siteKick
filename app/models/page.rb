@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'nokogiri'
 require 'open-uri'
+require 'net/http'
 
 class Page < ActiveRecord::Base
 
@@ -121,10 +122,7 @@ class Page < ActiveRecord::Base
     #output => true if link include (self referring) url 
   end
 
-  def broken_links
-    links = article_nokogiri.css('a').map {|link| link['href']}
-    #output => array with the list of all links found in the content
-
+  def broken_links_due_syntax
     #NEXT - Pseudo Code: 
     # - from the list of links, check for wrong format/syntax
     # - Check if href.match(/^https?:/)
@@ -134,8 +132,32 @@ class Page < ActiveRecord::Base
     #
   end
 
-  # LUISA & GABY
-  #   @broken_links
+  def broken_links
+    links = article_nokogiri.css('a').map {|link| link['href']} # output => array with links
+    urls =  links.map { |l| URI.parse(l)} 
+
+    req = urls.each {|u| Net::HTTP::Get.new(u.path)}
+
+    res = urls.each { |u| Net::HTTP.start(u.host, u.port) {|http| http.request(req)}
+    res.code
+    # if output_response_code == 400
+    #   "broken link"
+    # else
+    #   "Good Link"
+    # end
+
+  end
+
+# ----------
+# Gaby's Notes => "testing for broken links"
+#
+# url = URI.parse('http://www.example.com')
+# req = Net::HTTP::Get.new(url.path)
+# res = Net::HTTP.start(url.host, url.port) {|http|
+#   http.request(req)
+# }
+# puts res.body
+# ----------------
 
   #Dan (within test):
   #   @keywords_in_url
