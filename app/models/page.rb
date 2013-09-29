@@ -102,6 +102,7 @@ class Page < ActiveRecord::Base
     # return all hrefs that are not self_referring (see above)
   end
 
+  # returns ratio of text_character_count vs. html_character_count
   def text_vs_html
     text_count = article_nokogiri.text.length
     html_count = article_nokogiri.css('html').inner_html.length
