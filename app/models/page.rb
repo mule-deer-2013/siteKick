@@ -43,10 +43,8 @@ class Page < ActiveRecord::Base
     array_words.length  #aprox based on p tags
   end
 
-   def number_of_h1
-
+  def number_of_h1
    article_nokogiri.css("h1").count
-
   end
 
 
@@ -59,13 +57,9 @@ class Page < ActiveRecord::Base
   end
 
   def remove_stop_words
-
     text = article_nokogiri.css("p").text.downcase!
-
     array_text = text.scan(/\w+/)
-
     stop_words = ["0", "a", "about", "above", "after", "again", "against", "all", "am", "an", "and", "any", "are", "aren't", "as", "at", "be", "because", "been", "before", "being", "below", "between", "both", "but", "by", "can't", "cannot", "could", "couldn't", "did", "didn't", "do", "does", "doesn't", "doing", "don't", "down", "during", "each", "few", "for", "from", "further", "had", "hadn't", "has", "hasn't", "have", "haven't", "having", "he", "he'd", "he'll", "he's", "her", "here", "here's", "hers", "herself", "him", "himself", "his", "how", "how's", "i", "i'd", "i'll", "i'm", "i've", "if", "in", "into", "is", "isn't", "it", "it's", "its", "itself", "let's", "me", "more", "most", "mustn't", "my", "myself", "no", "nor", "not", "of", "off", "on", "once", "only", "or", "other", "ought", "our", "ours", "ourselves", "out", "over", "own", "same", "shan't", "she", "she'd", "she'll", "she's", "should", "shouldn't", "so", "some", "such", "than", "that", "that's", "the", "their", "theirs", "them", "themselves", "then", "there", "there's", "these", "they", "they'd", "they'll", "they're", "they've", "this", "those", "through", "to", "too", "under", "until", "up", "very", "was", "wasn't", "we", "we'd", "we'll", "we're", "we've", "were", "weren't", "what", "what's", "when", "when's", "where", "where's", "which", "while", "who", "who's", "whom", "why", "why's", "with", "won't", "would", "wouldn't", "you", "you'd", "you'll", "you're", "you've", "your", "yours", "yourself", "yourselves", "re", 'd', 'll', 'm', 't', 's', 've', 'weren', 'haven', 'aren', 'don', 'shouldn', 'shan', 'mustn'] 
-
     array_text.reject! { |word| word.to_i != 0 }
     array_text.reject! { |word| stop_words.include?(word) }
     array_text
@@ -86,15 +80,13 @@ class Page < ActiveRecord::Base
     article_nokogiri.css("img").count
   end
 
-  def start_with_text
-    
+  def start_with_text    
     #output => true/false
   end
 
-  def alt_text_in_images?
-    article_nokogiri.css("alt").count
+  def alt_image
+    article_nokogiri.css('img').map{ |i| i['alt'] }
   end
-
 
   # LUISA & GABY
   #   @self_referring_links
