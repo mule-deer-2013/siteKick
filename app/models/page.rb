@@ -77,7 +77,7 @@ class Page < ActiveRecord::Base
     frequent_words_array[0...5]
   end
 
-  def title_length
+  def self.title_length
     self.title.length
   end
   # def brainstorming_evaluate_words_on_page
