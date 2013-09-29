@@ -94,21 +94,21 @@ class Page < ActiveRecord::Base
 
   def outgoing_links
     links = article_nokogiri.css('a').map {|link| link['href']}
+    #output => array with the list of all links found in the content
     links.count
-    #output => array with all the links
+    #output => number of links in the content
   end
 
   def self_referring_links
     url = self.original_url
     links = article_nokogiri.css('a').map {|link| link['href']}
     link.include?(url)
-    #output => true if link include self referring url 
+    #output => true if link include (self referring) url 
   end
 
 
   # LUISA & GABY
   #   @broken_links
-  #   @text_versus_html #25-70% text
 
 
   #Dan (within test):
