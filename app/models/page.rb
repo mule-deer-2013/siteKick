@@ -84,7 +84,11 @@ class Page < ActiveRecord::Base
   end
 
   def avg_para_length
-
+    para_length_array = []
+    article_nokogiri.css("p").each {|para| para_length_array << para.text.length }
+    para_length_sum = para_length_array.inject(:+)
+    para_count = article_nokogiri.css("p").count
+    para_length_sum / para_count
   end
 
 
