@@ -116,22 +116,21 @@ class Page < ActiveRecord::Base
   end
 
   def broken_links_due_syntax
-    #NEXT - Pseudo Code:
-    # - from the list of links, check for wrong format/syntax
+    links = article_nokogiri.css('a').map {|link| link['href']} # output => array with links
+    urls =  links.map { |l| URI.parse(l)}
     broken_syntax_links = []
-    list_of_outgoing_links.each do |link|
+    urls.each do |link|
       if link !=~ URI::regexp
         broken_syntax_links << link
-      else
-        return true
       end
     end
+    broken_syntax_links
+  end
     # - Check if href.match(/^https?:/)
     # - Check blog that talks about "same domain": http://blog.migrantstudios.com/2013/06/24/uptimetry-2-0-advanced-url-monitoring-with-nokogiri-and-httparty/
     #       Remove any URLs pointing to resources on the same domain:
     #       select {|e| e.match(URI.parse(url).host).nil?}
     #
-  end
 
 
   def broken_links
@@ -145,6 +144,14 @@ class Page < ActiveRecord::Base
     # else
     #   "Good Link"
     # end
+
+    ###### Luisa's notes:  We should probably test all of the responses that
+    # are broken links. 400s and 500s are errors also. Maybe something like:
+
+    # if (200..307).to_a.include?(output_response_code)
+      # "Good link"
+    # else
+      #bad link
   end
 
 
