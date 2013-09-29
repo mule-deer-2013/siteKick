@@ -2,21 +2,23 @@
 <div class='feedback'>
   <h2>FEEDBACK:</h2>
 
-  <p>You submitted: <br>
-  <%= @page.original_url %><br>
-  
-  Title: <%= @page.title %><br>
-  h1 text:  <%= @page.h1_text  %><br>
-  h1's: <%= @page.number_of_h1  %><br>
-  h1 message: <%= @test.test_results[:h1_presence_output] %> <br>
+  <div class='feedback_text'>
+    <p>You submitted: <br>
+    <%= @page.original_url %><br>
+    
+    Title: <%= @page.title %><br>
+    h1 text:  <%= @page.h1_text  %><br>
+    h1's: <%= @page.number_of_h1  %><br>
+    h1 message: <%= @test.test_results[:h1_presence_output] %> <br>
 
-  h2's: <%= @page.number_of_h2  %>  <br>
+    h2's: <%= @page.number_of_h2  %>  <br>
 
-  h3's: <%= @page.number_of_h3  %>          <br>
-  
-  Aprox. number of words in content: <br>
-  <%= @page.word_count %> <br>
-</p>
+    h3's: <%= @page.number_of_h3  %>          <br>
+    
+    Aprox. number of words in content: <br>
+    <%= @page.word_count %> <br>
+    </p>
+  </div>
 </div><br>
 
 <div class='article_content'>
@@ -24,7 +26,14 @@
   <%= @page.content.html_safe %>
 </div>
 
-
+<div class='hidden'>
+  <span class='main_messages'><%= main_messages %></span>
+  <!-- title_messages, meta_messages -->
+  <span class='h1_messages'><%= h1_messages %></span>
+  <span class='image_messages'></span>
+  <span class='paragraph_messages'></span>
+  <span class='link_messages'></span>
+</div>
 
 
 

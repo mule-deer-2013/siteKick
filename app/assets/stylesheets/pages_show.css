@@ -7,3 +7,14 @@
   padding: 20px;
   border: 1px dotted;
 }
+
+.hidden {
+  display: none;
+}
+
+.article_content img {
+  width: 150px;
+  height: auto;
+  float: left;
+  margin-right: 10px;
+}

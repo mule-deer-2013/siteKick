@@ -18,9 +18,9 @@ class Page < ActiveRecord::Base
   end
 
   def article_nokogiri
-    Rails.logger.info "hi"*10
+    # Rails.logger.info "hi"*10
     @article_nokogiri ||= Nokogiri::HTML( content ) 
-    Rails.logger.debug(@article_nokogiri.inspect)  # debug in rails (.tap...)
+    # Rails.logger.debug(@article_nokogiri.inspect)  # debug in rails (.tap...)
     # end
   end
 

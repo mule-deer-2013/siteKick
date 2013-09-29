@@ -1,6 +1,6 @@
 MizeCraft::Application.routes.draw do
 
-  root to: 'users#new'
+  root to: 'pages#new'
   resources :pages, only: [:new, :show, :create, :index]
   
   get "log_out" => "sessions#destroy", :as => "log_out"
