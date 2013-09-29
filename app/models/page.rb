@@ -18,8 +18,9 @@ class Page < ActiveRecord::Base
   end
 
   def article_nokogiri
-    @article_nokogiri ||= Nokogiri::HTML( content ) # .tap do |obj|
-      # Rails.logger.debug( "**** Nokogiri: #{obj.inspect}" )  # debug in rails (.tap...)
+    Rails.logger.info "hi"*10
+    @article_nokogiri ||= Nokogiri::HTML( content ) 
+    Rails.logger.debug(@article_nokogiri.inspect)  # debug in rails (.tap...)
     # end
   end
 
@@ -76,8 +77,11 @@ class Page < ActiveRecord::Base
     article_nokogiri.css("img").count
   end
 
-  def start_with_text
-    #output => true/false
+  def start_with_text  
+    content = article_nokogiri.css("body").text
+    first_twenty_characters = content[1..20]
+    first_twenty_characters.include? "img" 
+    #output => true if an image is within the first 20 characters
   end
 
   def alt_image
@@ -92,16 +96,6 @@ class Page < ActiveRecord::Base
     para_length_sum / para_count
   end
 
-  def self_referring_links
-    # 1) grab first (20)?? characters of original_url
-    # 2) grab rest of hrefs and put into an array
-    # 3) count how many hrefs include 1)
-  end
-
-  def outgoing_links
-    # return all hrefs that are not self_referring (see above)
-  end
-
   # returns ratio of text_character_count vs. html_character_count
   def text_vs_html
     text_count = article_nokogiri.text.length
@@ -109,11 +103,27 @@ class Page < ActiveRecord::Base
     text_count.to_f / html_count.to_f
   end
 
+  def list_of_outgoing_links
+    links = article_nokogiri.css('a').map {|link| link['href']}
+    #output => array with the list of all links found in the content
+  end
+
+  def number_of_outgoing_links
+    links = article_nokogiri.css('a').map {|link| link['href']}
+    links.count
+    #output => number of links in the content
+  end
+
+  def self_referring_links
+    url = self.original_url
+    links = article_nokogiri.css('a').map {|link| link['href']}
+    link.include?(url)
+    #output => true if link include (self referring) url 
+  end
+
+
   # LUISA & GABY
-  #   @self_referring_links
   #   @broken_links
-  #   @outgoing_links
-  #   @text_versus_html #25-70% text
 
   #Dan (within test):
   #   @keywords_in_url
