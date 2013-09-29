@@ -20,7 +20,6 @@ class Page < ActiveRecord::Base
     @article_nokogiri ||= Nokogiri::HTML( content ) # .tap do |obj|
       # Rails.logger.debug( "**** Nokogiri: #{obj.inspect}" )  # debug in rails (.tap...)
     # end
-
   end
 
   def remove_scripts(nokogiri_content)
@@ -41,19 +40,16 @@ class Page < ActiveRecord::Base
     array_words.length  #aprox based on p tags
   end
 
-   def number_of_h1
-
-   article_nokogiri.css("h1").count
-
+  def number_of_h1
+    article_nokogiri.css("h1").count
   end
-
 
   def number_of_h2
     article_nokogiri.css("h2").count
   end
 
   def number_of_h3
-    article_nokogiri.css("h3").count
+   article_nokogiri.css("h3").count
   end
 
   def remove_stop_words
@@ -75,35 +71,45 @@ class Page < ActiveRecord::Base
     frequent_words_array[0...5]
   end
 
-  def avg_para_length
-   paragraphs =
+  def number_of_images
+    article_nokogiri.css("img").count
   end
 
-  # def brainstorming_evaluate_words_on_page
+  def start_with_text
+      #output => true/false
+  end
+
+  def alt_text_in_images?
+    article_nokogiri.css("alt").count
+  end
+
+  def avg_para_length
+
+  end
+
+
+  # LUISA & GABY
   #   @self_referring_links
   #   @broken_links
   #   @outgoing_links
-
   #   @avg_paragraph_length
-
-        #   @keywords_in_meta_description
-        #   @meta_description_length
-        #   @meta_title
-
-  #   @keyword_variations
-  #   @starts_with_text?
-  #   @keywords_in_headings
-  #   @alt_text_in_images?
   #   @text_versus_html #25-70% text
+
+
+  #Dan (within test):
+  #   @keywords_in_url
+  #   @keywords_in_meta_description
+  #   @meta_description_length
+  #   @meta_title
+  #   @keyword_density #percentage of keywords on page
+  #   @keywords_in_headings
+
+  #Optional:
+  #   @font_size_for_p_tags
   #   @page_load_speed #?
 
-  # end
-
-
-
-
-
-
+  #TO BE DISCUSSED:
+  #   @keyword_variations
 
 end
 
