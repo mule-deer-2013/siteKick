@@ -150,13 +150,16 @@ class Page < ActiveRecord::Base
 
 # ----------
 # Gaby's Notes => "testing for broken links"
-#
+# 
 # url = URI.parse('http://www.example.com')
 # req = Net::HTTP::Get.new(url.path)
 # res = Net::HTTP.start(url.host, url.port) {|http|
 #   http.request(req)
 # }
 # puts res.body
+# PENDING ---> 
+#         - Debug it 
+#         - need to add call back: https://github.com/collectiveidea/delayed_job
 # ----------------
 
   #Dan (within test):
