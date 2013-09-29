@@ -7,6 +7,7 @@ class Page < ActiveRecord::Base
   attr_accessible :content, :original_url, :title
   before_create :get_content
 
+
   def get_content
     url = self.original_url
     full_nokogiri = Nokogiri::HTML( open(url) )
@@ -91,14 +92,27 @@ class Page < ActiveRecord::Base
     para_length_sum / para_count
   end
 
+  def self_referring_links
+    # 1) grab first (20)?? characters of original_url
+    # 2) grab rest of hrefs and put into an array
+    # 3) count how many hrefs include 1)
+  end
+
+  def outgoing_links
+    # return all hrefs that are not self_referring (see above)
+  end
+
+  def text_vs_html
+    text_count = article_nokogiri.text.length
+    html_count = article_nokogiri.css('html').inner_html.length
+    text_count.to_f / html_count.to_f
+  end
 
   # LUISA & GABY
   #   @self_referring_links
   #   @broken_links
   #   @outgoing_links
-  #   @avg_paragraph_length
   #   @text_versus_html #25-70% text
-
 
   #Dan (within test):
   #   @keywords_in_url
