@@ -121,6 +121,18 @@ class Page < ActiveRecord::Base
     #output => true if link include (self referring) url 
   end
 
+  def broken_links
+    links = article_nokogiri.css('a').map {|link| link['href']}
+    #output => array with the list of all links found in the content
+
+    #NEXT - Pseudo Code: 
+    # - from the list of links, check for wrong format/syntax
+    # - Check if href.match(/^https?:/)
+    # - Check blog that talks about "same domain": http://blog.migrantstudios.com/2013/06/24/uptimetry-2-0-advanced-url-monitoring-with-nokogiri-and-httparty/
+    #       Remove any URLs pointing to resources on the same domain:
+    #       select {|e| e.match(URI.parse(url).host).nil?}
+    #
+  end
 
   # LUISA & GABY
   #   @broken_links
