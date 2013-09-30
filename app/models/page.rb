@@ -131,43 +131,28 @@ class Page < ActiveRecord::Base
 
 
 
-  def broken_links
+  def broken_links_code
     links = article_nokogiri.css('a').map {|link| link['href']} # output => array of string urls
-    urls =  links.map { |l| URI.parse(l)} # output => array of URI objects. Each element looks like: [#<URI::HTTP:0x007f9f641ca1c8 URL:http://literacybits.wordpress.com/>,
-    req = urls.each {|u| Net::HTTP::Get.new(u.path)}
-    res = urls.each { |u| Net::HTTP.start(u.host, u.port) {|http| http.request(req)}}
-    res.code
-    # if output_response_code == 400
-    #   "broken link"
-    # else
-    #   "Good Link"
-    # end
+    array_code = links.map do |link|
+      url = URI.parse(link)
+      req = Net::HTTP::Get.new(url.path)
+      res = Net::HTTP.start(url.host, url.port) {|http|http.request(req)}
+      res.code
+    end
+     #Output: array with code response for each link ex.200
 
-    ###### Luisa's notes:  We should probably test all of the responses that
-    # are broken links. 400s and 500s are errors also. Maybe something like:
-
-    # if (200..307).to_a.include?(output_response_code)
-      # "Good link"
-    # else
-      #bad link
+    # PENDING --->
+         # - Need to add call back: https://github.com/collectiveidea/delayed_job
   end
-
-
 end
 
-# ----------
-# Gaby's Notes => "testing for broken links"
-#
-# url = URI.parse('http://www.example.com')
-# req = Net::HTTP::Get.new(url.path)
-# res = Net::HTTP.start(url.host, url.port) {|http|
-#   http.request(req)
-# }
-# puts res.body
-# PENDING --->
-#         - Debug it
-#         - need to add call back: https://github.com/collectiveidea/delayed_job
-# ----------------
+    #Message for Testing (Dan): 
+      # if (200..307).to_a.include?(code)
+      #   "Good Link"
+      # else
+      #   "Broken Link due to unable to reach the website or server error" #(400's and 500's errors)
+      # end
+
 
   #Dan (within test):
   #   @keywords_in_url
