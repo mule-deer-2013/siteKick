@@ -1,11 +1,31 @@
+.display-container {
+  margin: 0, auto;
+  padding: 20px;
+  width: 100%;
+  border: 1px solid;
+  position: relative;
+}
+
 .feedback {
   padding: 20px;
   border: 1px dotted;
+  float: right;
+  width: 40%;
+  height: 768px;
+  position: absolute;
+  margin-left: 53%;
+  margin-top: 20px;
+  overflow:scroll;
 }
 
 .article_content {
   padding: 20px;
   border: 1px dotted;
+  float: left;
+  width: 50%;
+  height: 768px;
+  position: absolute;
+  overflow:scroll;
 }
 
 .hidden {
