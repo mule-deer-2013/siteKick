@@ -6,6 +6,7 @@ gem 'pg'
 gem 'nokogiri'
 gem 'css_parser'
 gem 'jquery-ui-rails'
+gem 'delayed_job_active_record'
 
 gem "bcrypt-ruby", :require => "bcrypt"
 
