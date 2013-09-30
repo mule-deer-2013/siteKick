@@ -13,19 +13,19 @@
  */
 
 body{
-  margin: 0, auto;
-  background-color: #ccc;
+  margin: 5px, auto;
+  background-color: #141617;
 }
 
 .container {
-  margin: 0, auto;
+  margin: 20px, auto;
   padding: 20px;
-  width: 100%;
+  width: 98%;
   height: 1000px;
   border: 1px solid;
   position: relative;
   padding:10px;
-  background-color: #fff;
+  background-color:#fff;
 
 
 }

@@ -1,9 +1,11 @@
 
 .feedback {
   padding: 20px;
-  color: #463D37;
-  background-color: #F1E9E3;
-  box-shadow: 8px 8px 5px #888888;
+  border-top: 25px;
+  border-color: #ccc;
+  color: #fff;
+  background-color: #252322;
+  box-shadow: 8px 8px 5px #1c1c1c;
   border-radius: 20px;
   font-family: "Trebuchet MS";
   float: right;
@@ -18,6 +20,7 @@
 .article_content {
   padding: 20px;
   color: #463D37;
+  margin-left: 10px;
   background-color: #F1E9E3;
   box-shadow: 8px 8px 5px #888888;
   border-radius: 20px;
