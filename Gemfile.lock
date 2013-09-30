@@ -194,7 +194,7 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 3.2.1)
   css_parser
-  factory_girl_rails (~> 4.0)
+  factory_girl_rails
   faker
   guard-rspec
   jquery-rails
