@@ -5,12 +5,12 @@ $(function() {
   // 'ORIGINAL ARTICLE' reveals the 'main_messages' display.
   $('.article_content h2').on('click', function(e) {
     e.preventDefault()
-    $('.feedback_text').text($('.main_messages').text())
+    $('.feedback_text').html($('.main_messages').html())
   })
 
   $('h1').on('click', function(e) {
     e.preventDefault()
-    $('.feedback_text').text($('.h1_messages').text())
+    $('.feedback_text').html($('.h1_messages').html())
   })
 
 

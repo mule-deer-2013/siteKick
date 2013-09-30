@@ -31,10 +31,9 @@ class Page < ActiveRecord::Base
     article_nokogiri.css("h1").text
   end
 
-  def word_count #400-600?
-    word = article_nokogiri.css("p").text
-    array_words = word.split
-    array_words.length  #aprox based on p tags
+  def word_count
+    words = article_nokogiri.text
+    words.split.length
   end
 
   def number_of_h1
