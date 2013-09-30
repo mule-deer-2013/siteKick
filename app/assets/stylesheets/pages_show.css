@@ -1,26 +1,27 @@
-.display-container {
-  margin: 0, auto;
-  padding: 20px;
-  width: 100%;
-  border: 1px solid;
-  position: relative;
-}
 
 .feedback {
   padding: 20px;
-  border: 1px dotted;
+  color: #463D37;
+  background-color: #F1E9E3;
+  box-shadow: 8px 8px 5px #888888;
+  border-radius: 20px;
+  font-family: "Trebuchet MS";
   float: right;
   width: 40%;
   height: 768px;
   position: absolute;
-  margin-left: 53%;
+  margin-left: 55%;
   margin-top: 20px;
   overflow:scroll;
 }
 
 .article_content {
   padding: 20px;
-  border: 1px dotted;
+  color: #463D37;
+  background-color: #F1E9E3;
+  box-shadow: 8px 8px 5px #888888;
+  border-radius: 20px;
+  font-family: "Trebuchet MS";
   float: left;
   width: 50%;
   height: 768px;
