@@ -12,11 +12,22 @@
  *= require_tree
  */
 
+body{
+  margin: 0, auto;
+  background-color: #ccc;
+}
+
 .container {
   margin: 0, auto;
   padding: 20px;
   width: 100%;
+  height: 1000px;
   border: 1px solid;
+  position: relative;
+  padding:10px;
+  background-color: #fff;
+
+
 }
 
 
