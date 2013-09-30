@@ -142,8 +142,12 @@ class Page < ActiveRecord::Base
      #Output: array with code response for each link ex.200
 
     # PENDING --->
-         # - Need to add call back: https://github.com/collectiveidea/delayed_job
+         # - Need to add Queuing Jobs(Call Back): https://github.com/collectiveidea/delayed_job
+    handle_asynchronously :delivery
   end
+
+
+
 end
 
     #Message for Testing (Dan): 
