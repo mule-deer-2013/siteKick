@@ -20,11 +20,17 @@ module PageTestsHelper
     messages << @test.test_results[:url_keyword_output]
     messages << word_count_observations
     messages << @test.test_results[:word_count_output]
-    join_messages(messages)
+    "<h2><u>General Observations</u></h2>" + join_messages(messages)
   end
 
   def h1_messages
-    @test.test_results[:h1_presence_output]
+    messages = []
+    messages << @test.test_results[:h1_presence_output]
+    if @page.number_of_h1 == 1
+      messages << keyword_observations
+      messages << @test.test_results[:h1_keyword_output]
+    end
+    "<h2><u>Header Observations</u></h2>" + join_messages(messages)
   end
   
   def h2_messages

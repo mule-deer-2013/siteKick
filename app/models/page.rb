@@ -13,7 +13,10 @@ class Page < ActiveRecord::Base
   def get_content
     url = self.original_url
     full_nokogiri = Nokogiri::HTML( open(url) )
-    self.content = full_nokogiri.css('article').inner_html
+    post_id = "#" + full_nokogiri.inner_html.match(/post-\d+/).to_s
+    self.content = full_nokogiri.css(post_id).inner_html
+    # self.content = full_nokogiri.css('article').inner_html
+    # Dan's note: Need to talk to group about problems with universal scraping
     self.title = full_nokogiri.css('title').text
     self.meta = full_nokogiri.css('meta').text
     save if !new_record?  #Temporal: Please keep it because it helps me when we call it in the console
@@ -63,7 +66,7 @@ class Page < ActiveRecord::Base
     clean_text.each { |word| freqs[word] +=1 }
     freqs = freqs.sort_by {|x,y| y }
     freqs.reverse!
-    frequent_words_array =freqs.each { |word, freq| word+ ' '+freq.to_s}
+    frequent_words_array = freqs.each { |word, freq| word+ ' '+freq.to_s}
     frequent_words_array[0...5]
   end
 
@@ -158,12 +161,12 @@ end
 
 
   #Dan (within test):
-  #   @keywords_in_url
+  #   @keywords_in_url                                  #DONE
   #   @keywords_in_meta_description
   #   @meta_description_length
   #   @meta_title
   #   @keyword_density #percentage of keywords on page
-  #   @keywords_in_headings
+  #   @keywords_in_headings                             #DONE
 
   #Optional:
   #   @font_size_for_p_tags

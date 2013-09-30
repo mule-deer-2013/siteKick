@@ -82,30 +82,58 @@ class PageTest < ActiveRecord::Base
   def h1_presence_test
     case page.number_of_h1
     when 0
-      output = "You have too few h1 tags"
+      output = "You don't have any h1 tags in your piece. We strongly advise that you provide a title for your post in an \<h1\> tag."
       result = false
     when 1
-      output = "You have the right number of h1 tags"
+      output = "You have one h1 tag, which is exactly what search engines want to see."
       result = true
     else
-      output = "You have too many h1 tags"
+      output = "You have more than one h1 tag in your post, which may cause search engines to penalize your content."
       result = false
     end
     self.test_results[:h1_presence_result] = result
     self.test_results[:h1_presence_output] = output
   end
 
+  def h1_keywords_test
+    if page.number_of_h1 == 1
+      keywords_in_h1 = keywords.select {|word| page.h1_text.downcase.match(word) }
+      case keywords_in_h1.length
+      when 0
+        output = "None of your keywords are present in your post's h1 tag. Customizing your h1 to include your keywords could help direct search traffic toward your content."
+        result = false
+      when 1    
+        output = "We found the word \"#{keywords_in_h1[0]}\" in your h1 tag. That's a good thing!"  
+        result = true
+      else
+        output = "We found several keywords in your h1 tag. Nice work!"
+        result = true
+      end
+
+      self.test_results[:h1_keyword_result] = result
+      self.test_results[:h1_keyword_output] = output
+    end
+  end
+
   ### P TESTS ###
+
+  def keyword_saturation_test
+    percentage = page.remove_stop_words.select { |word| self.keywords.include?(word) }.length / page.word_count.to_f
+    return percentage
+    # This isn't quite what keyword saturation is (yet). We'd need to include things like plurals, etc.
+    # I'm also not quite sure how to test keyword saturation for five words at a time. Sort of a weird metric.
+  end
 
   ### IMG TESTS ###
 
   ### LINK TESTS ###
 
   def run_test_suite
-    self.h1_presence_test
     self.title_includes_keywords_test
     self.url_includes_keywords_test
     self.word_count_test
+    self.h1_presence_test
+    self.h1_keywords_test
     self.save
   end
 
