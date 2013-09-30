@@ -115,14 +115,16 @@ class Page < ActiveRecord::Base
     #output => true if link include (self referring) url
   end
 
+
+# TO DO: Discuss negative tests with team. Wordpress and Tumblr
+# seem to have built-in redirects??
   def broken_links_due_syntax
-    links = article_nokogiri.css('a').map {|link| link['href']} # output => array with links
-    urls =  links.map { |l| URI.parse(l)}
+    links = article_nokogiri.css('a').map {|link| link['href']} # output => array of string urls
     broken_syntax_links = []
-    urls.each do |link|
-      if link !=~ URI::regexp
-        broken_syntax_links << link
-      end
+    links.each do |link|
+      url = URI.parse(link)
+      url.kind_of?(URI::HTTP) || url.kind_of?(URI::HTTPS)
+      broken_syntax_links << url if false
     end
     broken_syntax_links
   end
@@ -134,8 +136,8 @@ class Page < ActiveRecord::Base
 
 
   def broken_links
-    links = article_nokogiri.css('a').map {|link| link['href']} # output => array with links
-    urls =  links.map { |l| URI.parse(l)}
+    links = article_nokogiri.css('a').map {|link| link['href']} # output => array of string urls
+    urls =  links.map { |l| URI.parse(l)} # output => array of URI objects. Each element looks like: [#<URI::HTTP:0x007f9f641ca1c8 URL:http://literacybits.wordpress.com/>,
     req = urls.each {|u| Net::HTTP::Get.new(u.path)}
     res = urls.each { |u| Net::HTTP.start(u.host, u.port) {|http| http.request(req)}}
     res.code
