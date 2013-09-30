@@ -1,25 +1,26 @@
-<h1>Pages#show</h1>
-<div class='feedback'>
-  <div class='feedback_text'>
-    <%= main_messages.html_safe %>
+<!-- <div class = 'display-container'> -->
+  <h1>Pages#show</h1>
+  <div class='feedback'>
+    <div class='feedback_text'>
+      <%= main_messages.html_safe %>
+    </div>
+  </div><br>
+
+  <div class='article_content'>
+    <h2>ORIGINAL ARTICLE</h2>
+    <%= @page.content.html_safe %>
   </div>
-</div><br>
 
-<div class='article_content'>
-  <h2>ORIGINAL ARTICLE</h2>
-  <%= @page.content.html_safe %>
-</div>
-
-<div class='hidden'>
-  <span class='main_messages'><%= main_messages.html_safe %></span>
-  <span class='h1_messages'><%= h1_messages.html_safe %></span>
-  <span class='h2_messages'><%= h2_messages %></span>
-  <span class='h3_messages'><%= h3_messages %></span>
-  <span class='image_messages'><%= image_messages %></span>
-  <span class='paragraph_messages'><%= paragraph_messages %></span>
-  <span class='link_messages'><%= link_messages %></span>
-</div>
-
+  <div class='hidden'>
+    <span class='main_messages'><%= main_messages.html_safe %></span>
+    <span class='h1_messages'><%= h1_messages.html_safe %></span>
+    <span class='h2_messages'><%= h2_messages %></span>
+    <span class='h3_messages'><%= h3_messages %></span>
+    <span class='image_messages'><%= image_messages %></span>
+    <span class='paragraph_messages'><%= paragraph_messages %></span>
+    <span class='link_messages'><%= link_messages %></span>
+  </div>
+<!-- </div> -->
 
 
   
