@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Page do 
+describe Page do
 
   let(:page) { FactoryGirl.create(:page) }
 
