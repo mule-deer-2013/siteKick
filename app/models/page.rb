@@ -128,11 +128,7 @@ class Page < ActiveRecord::Base
     end
     broken_syntax_links
   end
-    # - Check if href.match(/^https?:/)
-    # - Check blog that talks about "same domain": http://blog.migrantstudios.com/2013/06/24/uptimetry-2-0-advanced-url-monitoring-with-nokogiri-and-httparty/
-    #       Remove any URLs pointing to resources on the same domain:
-    #       select {|e| e.match(URI.parse(url).host).nil?}
-    #
+
 
 
   def broken_links
