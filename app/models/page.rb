@@ -7,7 +7,6 @@ class Page < ActiveRecord::Base
   attr_accessible :content, :original_url, :title
   before_create :get_content
 
-
   def get_content
     url = self.original_url
     full_nokogiri = Nokogiri::HTML( open(url) )
@@ -18,28 +17,21 @@ class Page < ActiveRecord::Base
   end
 
   def article_nokogiri
-    # Rails.logger.info "hi"*10
-    @article_nokogiri ||= Nokogiri::HTML( content ) 
-    # Rails.logger.debug(@article_nokogiri.inspect)  # debug in rails (.tap...)
-    # end
+    article_nokogiri ||= Nokogiri::HTML( content ) 
   end
 
   def remove_scripts(nokogiri_content)
     article_nokogiri_content.xpath("//script").remove
   end
 
-  # def title
-  #   article_nokogiri.css("title").text
-  # end
-
   def h1_text
     article_nokogiri.css("h1").text
   end
 
-  def word_count #400-600?
+  def word_count 
     word = article_nokogiri.css("p").text
     array_words = word.split
-    array_words.length  #aprox based on p tags
+    array_words.length 
   end
 
   def number_of_h1
