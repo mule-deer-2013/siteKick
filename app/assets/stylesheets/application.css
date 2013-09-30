@@ -15,7 +15,7 @@
 .container {
   margin: 0, auto;
   padding: 20px;
-  width: 700px;
+  width: 100%;
   border: 1px solid;
 }
 
