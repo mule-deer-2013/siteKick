@@ -15,17 +15,17 @@ RSpec.configure do |config|
   config.include AuthenticationHelper
   config.include FactoryGirl::Syntax::Methods
 
-  config.before(:suite) do
-    DatabaseCleaner.strategy = :truncation
-  end
+  # config.before(:suite) do
+  #   DatabaseCleaner.strategy = :truncation
+  # end
 
-  config.before(:each) do
-    DatabaseCleaner.start
-  end
+  # config.before(:each) do
+  #   DatabaseCleaner.start
+  # end
 
-  config.after(:each) do
-    DatabaseCleaner.clean
-  end
+  # config.after(:each) do
+  #   DatabaseCleaner.clean
+  # end
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
