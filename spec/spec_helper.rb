@@ -10,10 +10,26 @@ require "capybara/rspec"
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 RSpec.configure do |config|
+  config.include Capybara::DSL
+  config.mock_with :rspec
+  config.include AuthenticationHelper
+  config.include FactoryGirl::Syntax::Methods
+
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :truncation
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
-  #
+
   # config.mock_with :mocha
   # config.mock_with :flexmock
   # config.mock_with :rr

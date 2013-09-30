@@ -11,5 +11,14 @@ describe User do
   it { should validate_presence_of :email }
   it { should validate_uniqueness_of :email }
 
+  let(:user) { build(:user) }
+
+  context "create new" do
+    it "can be created" do
+      expect(user).to be_an_instance_of User
+    end
+  end
+
+
 
 end

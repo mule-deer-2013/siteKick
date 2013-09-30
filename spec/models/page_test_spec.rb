@@ -7,7 +7,6 @@ describe PageTest do
   it { should callback(:run_test_suite).after(:create)}
   it { should serialize(:test_results).as(Hash)}
 
-
 end
 
 
