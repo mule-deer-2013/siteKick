@@ -24,7 +24,6 @@ group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'shoulda'
-  gem 'factory_girl_rails'
 end
 
 group :test do
@@ -32,4 +31,5 @@ group :test do
   gem 'capybara'
   gem 'guard-rspec'
   gem 'launchy'
+  gem 'shoulda-callback-matchers', "=0.2.0"
 end

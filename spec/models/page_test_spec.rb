@@ -3,8 +3,8 @@ require 'spec_helper'
 describe PageTest do
 
   it { should belong_to :page}
-  it { should_validate_presence_of :page_id, :test_results}
-  it { should_allows_mass_assignment_of :page_id }
+  it { should allow_mass_assignment_of :page_id }
+  it { should callback(:run_test_suite).after(:create)}
 
 
 end
