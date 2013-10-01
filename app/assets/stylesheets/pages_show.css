@@ -45,3 +45,10 @@
   margin-right: 10px;
 }
 
+.ui-accordion-header{
+  font-size:150%;
+  background-color:#5F5958;
+  border-style:solid;
+  border-color: white;
+  border-width: 1px;
+}
