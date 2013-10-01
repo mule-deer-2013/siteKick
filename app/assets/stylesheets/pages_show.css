@@ -19,6 +19,7 @@
   color: #463D37;
   margin-left: 10px;
   background-color: #F1E9E3;
+  border: 5px solid #ccc;
   box-shadow: 8px 8px 5px #888888;
   border-radius: 20px;
   font-family: "Trebuchet MS";
@@ -60,5 +61,9 @@
 
 img {
   display: block;
+}
+
+.feedback-box {
+  display: inline;
 }
 
