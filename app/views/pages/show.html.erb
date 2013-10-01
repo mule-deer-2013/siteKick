@@ -1,30 +1,53 @@
   <div id = "image-clipboard">
     <%= image_tag "vector-clipboard.png" %>
   </div>
-  <div class='feedback'>
+
+<h1>Welcome!</h1>
+
+  <!-- div class='feedback'>
     <div class='feedback_text'>
       <%= main_messages.html_safe %>
     </div>
-  </div>
+  </div><br> -->
+
+  <div class='feedback'>
+    <div class='feedback_text'>
+      <div id ='accordion'>
+        <!-- <div class='hidden'> -->
+        <h3> General Feedback </h3>
+        <div>
+          <span class='main_messages'><%= main_messages.html_safe %>
+          </span>
+        </div>
+        <h3> Header Messages </h3>
+        <div>
+          <span class='h1_messages'><%= h1_messages.html_safe %>
+          </span>
+          <span class='h2_messages'><%= h2_messages %>
+          </span>
+          <span class='h3_messages'><%= h3_messages %>
+          </span>
+        </div>
+        <h3> Image Messages </h3>
+        <div>
+          <span class='image_messages'><%= image_messages %>
+          </span>
+          <span class='paragraph_messages'><%= paragraph_messages %>
+          </span>
+          <span class='link_messages'><%= link_messages %>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div><br>
 
   <div class='article_content'>
     <h2>ORIGINAL ARTICLE</h2>
     <%= @page.content.html_safe %>
   </div>
 
-  <div class='hidden'>
-    <span class='main_messages'><%= main_messages.html_safe %></span>
-    <span class='h1_messages'><%= h1_messages.html_safe %></span>
-    <span class='h2_messages'><%= h2_messages %></span>
-    <span class='h3_messages'><%= h3_messages %></span>
-    <span class='image_messages'><%= image_messages %></span>
-    <span class='paragraph_messages'><%= paragraph_messages %></span>
-    <span class='link_messages'><%= link_messages %></span>
-  </div>
 
 
-
-  
 
 
 
