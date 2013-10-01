@@ -13,22 +13,33 @@ module PageTestsHelper
     "<p>" + messages.join("</p><p>") + "</p>"
   end
 
-  def main_messages
+  def title_keywords_messages
     messages = []
     messages << keyword_observations
-    messages << @test.test_results[:title_keyword_output]
-    messages << @test.test_results[:url_keyword_output]
+    messages << @test.title_includes_keywords_test
+    join_messages(messages)
+  end
+
+  def url_keywords_messages
+    messages = []
+    messages << keyword_observations
+    messages << @test.url_includes_keywords_test
+    join_messages(messages)
+  end
+
+  def word_count_messages
+    messages = []
     messages << word_count_observations
-    messages << @test.test_results[:word_count_output]
+    messages << @test.word_count_test
     join_messages(messages)
   end
 
   def h1_messages
     messages = []
-    messages << @test.test_results[:h1_presence_output]
+    messages << @test.h1_presence_test
     if @page.number_of_h1 == 1
       messages << keyword_observations
-      messages << @test.test_results[:h1_keyword_output]
+      messages << @test.h1_keywords_test
     end
     join_messages(messages)
   end
