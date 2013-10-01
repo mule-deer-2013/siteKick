@@ -5,10 +5,6 @@ class PageTest < ActiveRecord::Base
   serialize :test_results, Hash
   after_create :run_test_suite
 
-  def page
-    @page ||= Page.find(self.page_id)
-  end
-
   def keywords
     @keywords ||= page.keyword_frequency.map { |word_and_freq| word_and_freq[0] }
   end

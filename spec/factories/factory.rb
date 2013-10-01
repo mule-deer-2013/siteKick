@@ -1,8 +1,11 @@
 FactoryGirl.define do
 
   factory :page do
-    content 'content'
-    original_url 'Google.html'
+    original_url 'spec/factories/dummy_html/dummy_post.html'
+  end
+
+  factory :page_test do
+    page
   end
 
 end

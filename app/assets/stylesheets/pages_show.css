@@ -1,20 +1,16 @@
-
-
 .feedback {
   padding: 20px;
-  border-top: 25px;
-  border-color: #ccc;
   color: #fff;
   background-color: #252322;
-  box-shadow: 8px 8px 5px #1c1c1c;
+  border: 20px solid #6C1F06;
   border-radius: 20px;
   font-family: "Trebuchet MS";
   float: left;
-  width: 45%;
+  width: 40%;
   height: 768px;
   position: absolute;
   margin-left: 1%;
-  margin-top: 20px;
+  margin-top: 0px;
   overflow:scroll;
 }
 
@@ -28,7 +24,7 @@
   font-family: "Trebuchet MS";
   float: right;
   width:45%;
-  height: 768px;
+  height: 800px;
   margin-left: 50%;
   position: absolute;
   overflow:scroll;
@@ -52,3 +48,15 @@
   border-color: white;
   border-width: 1px;
 }
+
+#image-clipboard {
+  margin-left: 15%;
+  position: relative;
+  display: block;
+  width: 132px;
+}
+
+img {
+  display: block;
+}
+

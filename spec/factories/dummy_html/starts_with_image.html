@@ -1,0 +1,299 @@
+
+<!DOCTYPE html>
+<script>var __pbpa = true;</script><script>var translated_warning_string = 'Warning: Never enter your Tumblr password unless \u201chttps://www.tumblr.com/login\u201d\x0ais the address in your web browser.\x0a\x0aYou should also see a green \u201cTumblr, Inc.\u201d identification in the address bar.\x0a\x0aSpammers and other bad guys use fake forms to steal passwords.\x0a\x0aTumblr will never ask you to log in from a user\u2019s blog.\x0a\x0aAre you absolutely sure you want to continue?';</script><script type="text/javascript" language="javascript" src="http://assets.tumblr.com/assets/scripts/pre_tumblelog.js?_v=90496f22ffd4b193ff4f3aa39d43d2af"></script>
+<!DOCTYPE HTML>
+<html>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# blog: http://ogp.me/ns/blog#">
+  <meta charset="utf-8" />
+  
+  <title>The Power of Equality</title>
+    <meta name="color:Background" content="#E2E1DE" />
+  <meta name="image:Header" content="" />
+  <meta name="if:Show About" content="1" />
+  <meta name="if:Show Blog Tools" content="1" />
+  <meta name="if:Show Group Post Author" content="0" />
+  <meta name="if:Show Latest Tweet" content="0" />
+  <meta name="if:Show Likes" content="0" />
+  <meta name="if:Show Search" content="1" />
+  <meta name="text:Tagline" content="Your awesome Tagline" />
+  <meta name="text:About Description" content="About the author" />
+  <meta name="text:Pages Description" content="My Pages" />
+  <meta name="text:Tools Description" content="Blog Tools" />
+  <meta name="text:Google Analytics ID" content="" />
+  <meta name="text:Typekit Kit ID" content="" />
+  <meta name="text:Disqus Shortname" content="" />
+  <meta name="text:Facebook Page ID" content="" />
+  <link rel="shortcut icon" href="http://25.media.tumblr.com/avatar_7feb486a17da_128.png" /> 
+  <link rel="alternate" type="application/rss+xml" href="http://editorreverse.tumblr.com/rss" />
+  <link rel="stylesheet" type="text/css" href="http://static.tumblr.com/j8lh0bq/BGcl3oapq/stat-reset.css" />
+  <link rel="stylesheet" type="text/css" href="http://static.tumblr.com/j8lh0bq/2sel3s13n/stat-super.css" />
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script> 
+  <script type="text/javascript" src="http://static.tumblr.com/j8lh0bq/Emdl3qcku/stat-modernizr-1.1.min.js"></script>
+  <script type="text/javascript" src="http://static.tumblr.com/j8lh0bq/oYal3slyu/stat-hacks.js"></script>
+  
+  
+  
+  <style type="text/css" media="screen">
+    body 
+        <!-->
+        { background-color: #f0f0f0; }
+        </!-->
+    .tag, .search_query { font-weight: bold; }
+    html {background-image:url('http://media-2.web.britannica.com/eb-media/15/9915-004-61A043DF.jpg');}
+
+img.small-right {
+margin-top: 0;
+margin-left: 1em;
+margin-bottom: 1em;
+padding: 1px;
+float: right;
+border: solid 1px gray;
+}
+
+img.main {
+padding: 1px;
+border: solid 1px gray;
+}
+  </style>
+
+<!-- BEGIN TUMBLR FACEBOOK OPENGRAPH TAGS -->
+<!-- If you'd like to specify your own Open Graph tags, define the og:url and og:title tags in your theme's HTML. -->
+<!-- Read more: http://ogp.me/ -->
+<meta property="fb:app_id" content="48119224995" />
+<meta property="og:site_name" content="editor.reverse" />
+<meta property="og:title" content="The Power of Equality" />
+<meta property="og:url" content="http://editorreverse.tumblr.com/post/58401824401/the-power-of-equality" />
+<meta property="og:description" content="An interesting thing came up while working on my Sudoku solution. Part of what I had to do to get my desired result was take my @board variable (which, you guessed it, was the instance variable that I..." />
+<meta property="og:determiner" content="a" />
+<meta property="og:type" content="tumblr-feed:entry" />
+<meta property="og:image" content="http://media.tumblr.com/5fa41f9463faf6d35aca896b8a958ce8/tumblr_inline_mrm20tbZyk1qz4rgp.jpg" />
+<!-- END TUMBLR FACEBOOK OPENGRAPH TAGS -->
+
+
+<!-- TWITTER TAGS -->
+<meta charset="utf-8">
+            <meta name="twitter:card" content="summary" />
+            <meta name="twitter:description" content="
+
+ An interesting thing came up while working on my Sudoku solution. Part of what I had to do to get my desired result was take my @board variable (which, you guessed it, was the instance variable that I used to change and refer to my Sudoku board) and make a copy of it. In the first part of the Sudoku challenge, since we weren&amp;#8217;t making any changes to the Sudoku puzzle unless we were absolutely certain that we had the correct answer, one persistent variable for the board was all that was necessary.
+ However, when guessing became involved, I decided it would be a good idea to duplicate the board, creating a &amp;#8220;tempboard&amp;#8221; variable that I could change, test, and discard or keep as necessary. Pretty straightforward, right? I figured it should look something like this:
+tempboard = @board.dup
+ But then a Bad Thing happened. When I changed values in tempboard, things started breaking in @board&mdash;the exact thing I didn&amp;#8217;t want to happen. Both boards featured triple-nested arrays; the board itself was an array, and each row was itself an array. Within each row, any unsolved cell was an array of remaining possibilities that weren&amp;#8217;t ruled out by the column, row, or cell. With that in mind, I tried running some tests to debug my problem.
+@board.object_id == tempboard.object_id   =&amp;gt; false @board[0].object_id == tempboard[0].object_id   =&amp;gt; true
+ Weird! It turns out that the .dup method creates a copy of the original object, but that the internal objects that the original refers to (the nested arrays, as well as the items contained therein) remained the same. Kind of boggles the mind.
+ This got me going on some other interesting equality tests (and a little bit of experimentation with the .equal? and .eql? methods):
+a = &quot;a&quot;   =&amp;gt; &quot;a&quot; b = &quot;a&quot;   =&amp;gt; &quot;a&quot; a == b   =&amp;gt; true a.eql?(b)   =&amp;gt; true a.equal?(b)   =&amp;gt; false
+ I actually remember encountering some (all?) of this in Well-Grounded Rubyist, but I&amp;#8217;m in a much better position now to see what&amp;#8217;s actually happening here. Both the == operator and .eql? method test for equality at the value level&mdash;if two items have the same return value, comparing them with either of these options returns true. The .equal? method works differently&mdash;instead of testing for return values, it tests for equality at the object level.
+&quot;a&quot; == &quot;a&quot;   =&amp;gt; true        # obviously &quot;a&quot;.equal?(&quot;a&quot;)   =&amp;gt; false       # okay, sure 1 == 1   =&amp;gt; true        # totally 1.equal?(1)   =&amp;gt; true        # huh?
+ Forgive my commentary. It&amp;#8217;s interesting to see what&amp;#8217;s happening here. In the first and third examples, we&amp;#8217;re once again comparing value equality. These examples are so clearly true that they&amp;#8217;re ringers. The second example is a little less obvious, but it makes plenty of sense&mdash;we&amp;#8217;re testing a pair of string literals, just like if we called this:
+String.new.equal?(String.new)
+ Makes sense! The last example is kind of a head-scratcher, but not impossible to wrap your mind around. Ruby treats integers as unique instances of the Integer class, so every 1 is the same as every other 1. On that note, instances of the Integer class cannot be&nbsp;changed. You can increment or replace a number, but either way you end up with a totally different object_id value&mdash;it&amp;#8217;s the&nbsp;fix in Fixnum.
+ Okay, that&amp;#8217;s enough equality for now. Going to get some sleep for a change." />
+            <meta name="twitter:title" content="The Power of Equality" />
+            <meta name="twitter:url" content="http://editorreverse.tumblr.com/post/58401824401/the-power-of-equality" />
+            <meta name="twitter:site" content="tumblr" />
+            <meta name="twitter:app:name:iphone" content="Tumblr" />
+            <meta name="twitter:app:name:ipad" content="Tumblr" />
+            <meta name="twitter:app:name:googleplay" content="Tumblr" />
+            <meta name="twitter:app:id:iphone" content="305343404" />
+            <meta name="twitter:app:id:ipad" content="305343404" />
+            <meta name="twitter:app:id:googleplay" content="com.tumblr" />
+            <meta name="twitter:app:url:iphone" content="tumblr://x-callback-url/blog?blogName=editorreverse&amp;postID=58401824401&amp;referrer=twitter-cards" />
+            <meta name="twitter:app:url:ipad" content="tumblr://x-callback-url/blog?blogName=editorreverse&amp;postID=58401824401&amp;referrer=twitter-cards" />
+            <meta name="twitter:app:url:googleplay" content="tumblr://x-callback-url/blog?blogName=editorreverse&amp;postID=58401824401&amp;referrer=twitter-cards" />
+    
+
+<script type="text/javascript" src="http://assets.tumblr.com/assets/scripts/tumblelog.js?_v=cf7aeb03e820314a6cb2890dfa192802"></script>
+<meta http-equiv="x-dns-prefetch-control" content="off"/>
+
+<meta name="keywords" content="equality,ruby,dev bootcamp" />
+
+</head>
+<body>
+
+<div id="stat-wrapper-1"></div>
+<div id="stat-wrapper-2"></div>
+
+<div id="stat-wrapper">
+
+<header id="stat-header">
+  <hgroup>
+    
+    <h1><a href="/" title="Home" rel="prefetch">editor.reverse</a></h1>
+    <h2>One man's quest to leave the publishing industry behind</h2>
+  </hgroup>
+</header><!-- END#stat-header -->
+
+<aside id="stat-sidebar">
+  
+  <section id="stat-about">
+    <img class="stat-tumblr-avatar" src="http://24.media.tumblr.com/avatar_7feb486a17da_64.png" alt="editor.reverse" />
+    <h2>About the author</h2>
+    <div class="stat-about-content">Syntax obsessive, recovering wordsmith, proto-Rubyist, new dad, mule deer, and Bob Seger enthusiast.</div>
+    <div class="stat-about-extras">
+      
+      
+    </div>
+    <div class="stat-clear"></div>
+  </section>
+  
+  
+  
+  <section id="stat-search" class="stat-boxed">
+    <form action="/search" method="get">
+      <input id="stat-search-input" type="text" name="q" value="" />
+      <button id="stat-search-button" type="submit">Search</button>
+    </form>
+  </section>
+  
+  <section id="stat-more">
+    
+    
+    <nav class="stat-blog-tools">
+      <h2>Blog Stuff</h2>
+      <ul>
+        <li><a rel="archives" href="/archive">Archive</a></li>
+        <li><a rel="alternate" type="application/rss+xml" href="http://editorreverse.tumblr.com/rss">RSS</a></li>
+      </ul>
+    </nav>
+    
+  </section>
+  
+</aside><!-- END#stat-sidebar -->
+
+<section id="stat-articles">
+  
+  
+  
+    
+  <article class="stat-text" id="post-58401824401">
+    <header>
+        <img alt="image" class="main" src="http://media.tumblr.com/5fa41f9463faf6d35aca896b8a958ce8/tumblr_inline_mrm20tbZyk1qz4rgp.jpg"/>
+        
+        <p class="stat-notes"><a class="stat-bubble" href="http://editorreverse.tumblr.com/post/58401824401/the-power-of-equality#notes"><span class="stat-point"></span><em>4 notes</em></a></p>
+        <time datetime="2013-08-16" pubdate><a rel="bookmark" href="http://editorreverse.tumblr.com/post/58401824401/the-power-of-equality">August 16, 2013</a></time>
+
+      
+      <h1><a rel="bookmark" href="http://editorreverse.tumblr.com/post/58401824401/the-power-of-equality">The Power of Equality</a></h1>
+    </header>
+    <section>
+      <p></p>
+
+<p>An interesting thing came up while working on my Sudoku solution. Part of what I had to do to get my desired result was take my @board variable (which, you guessed it, was the instance variable that I used to change and refer to my Sudoku board) and make a copy of it. In the first part of the Sudoku challenge, since we weren&#8217;t making any changes to the Sudoku puzzle unless we were absolutely <em>certain</em> that we had the correct answer, one persistent variable for the board was all that was necessary.</p>
+<h2>Hey!</h2>
+<h3>Seriously, hey!</h3>
+<p>However, when guessing became involved, I decided it would be a good idea to duplicate the board, creating a &#8220;tempboard&#8221; variable that I could change, test, and discard or keep as necessary. Pretty straightforward, right? I figured it should look something like this:</p>
+<pre>tempboard = @board.dup</pre>
+<p>But then a Bad Thing happened. When I changed values in tempboard, things started breaking in @board—the exact thing I <em>didn&#8217;t</em> want to happen. Both boards featured triple-nested arrays; the board itself was an array, and each row was itself an array. Within each row, any unsolved cell was an array of remaining possibilities that weren&#8217;t ruled out by the column, row, or cell. With that in mind, I tried running some tests to debug my problem.</p>
+<pre>@board.object_id == tempboard.object_id <br/>  =&gt; false<br/>@board[0].object_id == tempboard[0].object_id<br/>  =&gt; true</pre>
+<p><span>Weird! It turns out that the <code>.dup</code> method creates a copy of the original object, but that the internal objects that the original refers to (the nested arrays, as well as the items contained therein) remained the same. Kind of boggles the mind.</span></p>
+<p><span>This got me going on some other interesting equality tests (and a little bit of experimentation with the <code>.equal?</code> and <code>.eql?</code> methods):</span></p>
+<pre>a = "a"<br/>  =&gt; "a"<br/>b = "a"<br/>  =&gt; "a"<br/>a == b<br/>  =&gt; true<br/>a.eql?(b)<br/>  =&gt; true<br/>a.equal?(b)<br/>  =&gt; false</pre>
+<p>I actually remember encountering some (all?) of this in <em>Well-Grounded Rubyist</em>, but I&#8217;m in a much better position now to see what&#8217;s actually happening here. Both the <code>==</code> operator and <code>.eql?</code> method test for equality at the value level—if two items have the same return value, comparing them with either of these options returns true. The <code>.equal?</code> method works differently—instead of testing for return values, it tests for equality at the <em>object</em> level.</p>
+<pre>"a" == "a"<br/>  =&gt; true        # obviously<br/>"a".equal?("a")<br/>  =&gt; false       # okay, sure<br/>1 == 1<br/>  =&gt; true        # totally<br/>1.equal?(1)<br/>  =&gt; true        # huh?</pre>
+<p>Forgive my commentary. It&#8217;s interesting to see what&#8217;s happening here. In the first and third examples, we&#8217;re once again comparing value equality. These examples are so clearly true that they&#8217;re ringers. The second example is a little less obvious, but it makes plenty of sense—we&#8217;re testing a pair of string literals, just like if we called this:</p>
+<pre>String.new.equal?(String.new)</pre>
+<p>Makes sense! The last example is kind of a head-scratcher, but not impossible to wrap your mind around. Ruby treats integers as unique instances of the <code>Integer</code> class, so every 1 is the same as every other 1. On that note, instances of the <code>Integer</code> class cannot be <em>changed</em>. You can increment or replace a number, but either way you end up with a totally different object_id value—it&#8217;s the <em>fix</em> in <code>Fixnum</code>.</p>
+<p>Okay, that&#8217;s enough equality for now. Going to get some sleep for a change.</p>
+      
+    </section>
+    <div class="stat-clear"></div>
+    
+        <p class="stat-tumblr-tags">Filed under <a href="http://editorreverse.tumblr.com/tagged/dev-bootcamp">dev bootcamp</a><span></span> <a href="http://editorreverse.tumblr.com/tagged/ruby">ruby</a><span></span> <a href="http://editorreverse.tumblr.com/tagged/equality">equality</a><span></span> </p> 
+    
+  </article>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+   
+  <section id="notes">
+</section>
+  
+</section><!-- END#stat-articles -->
+
+
+
+</div><!-- END#stat-wrapper -->
+
+<footer id="stat-footer">
+  <p>We love <a href="http://www.tumblr.com/" rel="external">Tumblr</a> <span>&amp;</span> <a href="http://www.tumblr.com/theme/3292" rel="external">Stationery</a> by <a href="http://thijsjacobs.com/" rel="external">Thijs</a></p>
+</footer>
+
+
+
+
+
+<!-- BEGIN TUMBLR CODE -->
+        
+    
+        <iframe id="tumblr_controls" width="1" height="1" frameborder="0" scrolling="no" style="position:absolute; z-index:2147483647; top:0; right:0; border:0; background-color:transparent; overflow:hidden; " src="http://assets.tumblr.com/assets/html/iframe/o.html?_v=03e46de2c31f616e91612be5ae062acd#src=http%3A%2F%2Feditorreverse.tumblr.com%2Fpost%2F58401824401%2Fthe-power-of-equality&amp;pid=58401824401&amp;rk=9tU1mx8q&amp;lang=en_US&amp;name=editorreverse&amp;avatar=http%3A%2F%2F24.media.tumblr.com%2Favatar_7feb486a17da_64.png&amp;title=editor.reverse&amp;url=http%3A%2F%2Feditorreverse.tumblr.com%2F&amp;page_slide=slide"></iframe>    <div id="teaser_iframe_container" style="display:none;"><iframe scrolling="no" frameborder="0" src="http://www.tumblr.com/assets/html/iframe/teaser.html#src=http%3A%2F%2Feditorreverse.tumblr.com%2Fpost%2F58401824401%2Fthe-power-of-equality&amp;pid=58401824401&amp;rk=9tU1mx8q&amp;lang=en_US&amp;name=editorreverse&amp;avatar=http%3A%2F%2F24.media.tumblr.com%2Favatar_7feb486a17da_64.png&amp;title=editor.reverse&amp;url=http%3A%2F%2Feditorreverse.tumblr.com%2F&amp;page_slide=slide" id="teaser_iframe" width="1" height="1"></iframe></div>
+
+<script type="text/javascript">
+    (function(Tumblr){
+        var follow_iframe_initialized = false;
+        if (Tumblr.FollowTeaser && Tumblr.PostMessageListener) {
+            // Don't do anything until the first initialize event
+            Tumblr.PostMessageListener.initialize(function(message, origin) {
+                if (follow_iframe_initialized || message.length < 2) return;
+
+                if (message[0] === 'follow_iframe' && message[1] === 'enable') {
+                    Tumblr.FollowTeaser.current_page = 1;
+                    Tumblr.FollowTeaser.infer_infinite_scroll = true;
+                    Tumblr.FollowTeaser.create_from_tumblr_controls('http://assets.tumblr.com/assets/html/iframe/follow.html?_v=1c38ddb221b64d02021cc5cc3fb77b98');
+                    Tumblr.FollowTeaser.scroll_listener(true);
+                    follow_iframe_initialized = true;
+                }
+            });
+        }
+    })(this.Tumblr || (this.Tumblr = {}));
+</script>
+    
+    <!--[if IE]><script type="text/javascript">document.getElementById('tumblr_controls').allowTransparency=true;</script><![endif]-->
+    
+        
+<iframe src="http://assets.tumblr.com/analytics.html?63fae489732da54993e4a941e42dcf5e" scrolling="no" width="1" height="1" frameborder="0" style="background-color:transparent; overflow:hidden; position:absolute; top:0; left:0 z-index:9999;" id="ga_target"></iframe>
+
+    <script>
+        var COMSCORE = true;
+        window.setTimeout(function() {
+            var analytics_frame = document.getElementById('ga_target');
+            analytics_frame.contentWindow.postMessage('enable_comscore;' + window.location, analytics_frame.src.split('/analytics.html')[0]);
+        }, 1000);
+    </script>
+
+
+
+    <script type="text/javascript">
+      var _qevents = _qevents || [];
+
+      (function() {
+       var elem = document.createElement('script');
+
+       elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
+       elem.async = true;
+       elem.type = "text/javascript";
+       var scpt = document.getElementsByTagName('script')[0];
+       scpt.parentNode.insertBefore(elem, scpt);
+      })();
+    </script>
+    <script type="text/javascript">
+        _qevents.push( { qacct: 'p-19UtqE8ngoZbM' } );
+    </script>
+    <noscript>
+        <div style="display: none;"><img src="//pixel.quantserve.com/pixel/'p-19UtqE8ngoZbM'.gif" height="1" width="1" alt="Quantcast"/></div>
+    </noscript>
+
+
+    <script type="text/javascript">!function(s){s.src='http://www.tumblr.com/impixu?T=1380564666&J=eyJ0eXBlIjoidXJsIiwidXJsIjoiaHR0cDpcL1wvZWRpdG9ycmV2ZXJzZS50dW1ibHIuY29tXC9wb3N0XC81ODQwMTgyNDQwMVwvdGhlLXBvd2VyLW9mLWVxdWFsaXR5IiwicmVxdHlwZSI6MCwicm91dGUiOiJcL3Bvc3RcLzppZFwvOnN1bW1hcnkifQ==&U=DNJCAAJOFK&K=7909e476c6171af0f66b7564a3a544ed3e9e1427c8eb6e359dd230574e6e98fd&R=http%3A%2F%2Feditorreverse.tumblr.com%2F'.replace(/&R=[^&$]*/,'').concat('&R='+escape(document.referrer)).slice(0,2000).replace(/%.?.?$/,'');}(new Image());</script><noscript><img style="position:absolute;z-index:-3334;top:0px;left:0px;visibility:hidden;" src="http://www.tumblr.com/impixu?T=1380564666&J=eyJ0eXBlIjoidXJsIiwidXJsIjoiaHR0cDpcL1wvZWRpdG9ycmV2ZXJzZS50dW1ibHIuY29tXC9wb3N0XC81ODQwMTgyNDQwMVwvdGhlLXBvd2VyLW9mLWVxdWFsaXR5IiwicmVxdHlwZSI6MCwicm91dGUiOiJcL3Bvc3RcLzppZFwvOnN1bW1hcnkiLCJub3NjcmlwdCI6MX0=&U=DNJCAAJOFK&K=449b060f44ba906a9708c0e3a5e1cc0fb93cbca482c2fa1efd70ab2cd7deba4a&R=http%3A%2F%2Feditorreverse.tumblr.com%2F"></noscript><script type="text/javascript">!function(s){s.src='http://www.tumblr.com/impixu?T=1380564666&J=eyJ0eXBlIjoicG9zdCIsInVybCI6Imh0dHA6XC9cL2VkaXRvcnJldmVyc2UudHVtYmxyLmNvbVwvcG9zdFwvNTg0MDE4MjQ0MDFcL3RoZS1wb3dlci1vZi1lcXVhbGl0eSIsInJlcXR5cGUiOjAsInJvdXRlIjoiXC9wb3N0XC86aWRcLzpzdW1tYXJ5IiwicG9zdHMiOlt7InBvc3RpZCI6IjU4NDAxODI0NDAxIiwiYmxvZ2lkIjoiMTEyODQwNDI3Iiwic291cmNlIjozM31dfQ==&U=HCPGPFMGEE&K=9f7fe2cdeb0f558f49088e325e4ce0bdd6d8dd6ecd083ba8cdeee22ab1a64757&R=http%3A%2F%2Feditorreverse.tumblr.com%2F'.replace(/&R=[^&$]*/,'').concat('&R='+escape(document.referrer)).slice(0,2000).replace(/%.?.?$/,'');}(new Image());</script><noscript><img style="position:absolute;z-index:-3334;top:0px;left:0px;visibility:hidden;" src="http://www.tumblr.com/impixu?T=1380564666&J=eyJ0eXBlIjoicG9zdCIsInVybCI6Imh0dHA6XC9cL2VkaXRvcnJldmVyc2UudHVtYmxyLmNvbVwvcG9zdFwvNTg0MDE4MjQ0MDFcL3RoZS1wb3dlci1vZi1lcXVhbGl0eSIsInJlcXR5cGUiOjAsInJvdXRlIjoiXC9wb3N0XC86aWRcLzpzdW1tYXJ5IiwicG9zdHMiOlt7InBvc3RpZCI6IjU4NDAxODI0NDAxIiwiYmxvZ2lkIjoiMTEyODQwNDI3Iiwic291cmNlIjozM31dLCJub3NjcmlwdCI6MX0=&U=HCPGPFMGEE&K=b1cc763668dc0177c3a40ce05c8af948030becd353ca46616e777796fd349fd0&R=http%3A%2F%2Feditorreverse.tumblr.com%2F"></noscript><!-- END TUMBLR CODE -->
+</body>
+</html>
