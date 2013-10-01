@@ -5,39 +5,40 @@
   <div class='feedback'>
     <div class='feedback_text'>
       <div id ='accordion'>
-        <h3> Title <%= image_tag "check1.png" %></h3>
+      
+        <h3> Title <%= image_tag "check1.png", :class => 'title_check' %></h3>
         <div>
-          <span class='main_messages'><%= title_keywords_messages.html_safe %>
-          </span>
+          <p class='main_messages'><%= title_keywords_messages.html_safe %>
+          </p>
         </div>
-        <h3> URL <%= image_tag "check1.png" %></h3>
+        <h3> URL <%= image_tag "check1.png",:class => 'title_check' %></h3>
         <div>
-          <span class='url_messages'><%= url_keywords_messages.html_safe %>
-          </span>
+          <p class='url_messages'><%= url_keywords_messages.html_safe %>
+          </p>
         </div>
-        <h3> Word Count <%= image_tag "check1.png" %></h3>
+        <h3> Word Count <%= image_tag "check1.png", :class => 'title_check' %></h3>
         <div>
-          <span class='word_count_messages'><%= word_count_messages.html_safe %>
-          </span>
+          <p class='word_count_messages'><%= word_count_messages.html_safe %>
+          </p>
         </div>
-        <h3> Header Tags  <%= image_tag "check1.png" %></h3>
+        <h3> Header Tags  <%= image_tag "check1.png", :class => 'title_check' %></h3>
         <div>
-          <span class='h1_messages'><%= h1_messages.html_safe %>
-          </span>
-          <span class='h2_messages'><%= h2_messages %>
-          </span>
-          <span class='h3_messages'><%= h3_messages %>
-          </span>
+          <p class='h1_messages'><%= h1_messages.html_safe %>
+          </p>
+          <p class='h2_messages'><%= h2_messages %>
+          </p>
+          <p class='h3_messages'><%= h3_messages %>
+          </p>
         </div>
-        <h3> Images <%= image_tag "check1.png" %></h3>
+        <h3> Images <%= image_tag "check1.png", :class => 'title_check' %></h3>
         <div>
-          <span class='image_messages'><%= image_messages %>
-          </span>
+          <p class='image_messages'><%= image_messages %>
+          </p>
         </div>
-        <h3> Links <%= image_tag "check1.png" %></h3>
+        <h3> Links <%= image_tag "check1.png", :class => 'title_check' %></h3>
         <div>
-          <span class='link_messages'><%= link_messages %>
-          </span>
+          <p class='link_messages'><%= link_messages %>
+          </p>
         </div>
       </div>
     </div>
