@@ -6,7 +6,7 @@ class Page < ActiveRecord::Base
 
 end
 
-    #Message for Testing (Dan): 
+    #Message for Testing (Dan):
       # if (200..307).to_a.include?(code)
       #   "Good Link"
       # else
