@@ -1,5 +1,5 @@
 .feedback {
-  padding: 20px;
+  padding: 0px;
   color: #fff;
   background-color: #252322;
   border: 20px solid #6C1F06;
@@ -26,6 +26,7 @@
   width:45%;
   height: 800px;
   margin-left: 50%;
+  margin-top: -15px;
   position: absolute;
   overflow:scroll;
 }
@@ -43,7 +44,8 @@
 
 .ui-accordion-header{
   font-size:150%;
-  background-color:#5F5958;
+  background-color:#252322;
+  width: 100%;
   border-style:solid;
   border-color: white;
   border-width: 1px;
