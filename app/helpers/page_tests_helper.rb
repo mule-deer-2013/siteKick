@@ -20,7 +20,7 @@ module PageTestsHelper
     messages << @test.test_results[:url_keyword_output]
     messages << word_count_observations
     messages << @test.test_results[:word_count_output]
-    "<h2><u>General Observations</u></h2>" + join_messages(messages)
+    join_messages(messages)
   end
 
   def h1_messages
@@ -30,9 +30,9 @@ module PageTestsHelper
       messages << keyword_observations
       messages << @test.test_results[:h1_keyword_output]
     end
-    "<h2><u>Header Observations</u></h2>" + join_messages(messages)
+    join_messages(messages)
   end
-  
+
   def h2_messages
   end
 
