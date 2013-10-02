@@ -8,13 +8,7 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-  <div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container">
-        <a class="brand" href="#">Project name</a>
-      </div>
-    </div>
-  </div>
+ <%= render 'layouts/navbar' %>
   <div class="container">
     <%= yield %>
   </div>

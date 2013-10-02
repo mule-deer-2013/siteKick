@@ -1,3 +1,5 @@
+<%= render 'layouts/navbar' %>
+
 <% if current_user %> 
   <% posts = current_user.tumblr_client.posts("#{current_user.uid}.tumblr.com")['posts'] %>
   <% img_src = current_user.tumblr_client.avatar("#{current_user.uid}.tumblr.com") %>
