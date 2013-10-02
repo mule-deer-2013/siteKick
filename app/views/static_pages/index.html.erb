@@ -1,57 +1,28 @@
-<html>
-  <head>
-    <title>SiteKick</title>
-    <link rel="stylesheet" href= "//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-    <%= javascript_include_tag :application %>
-    <%= stylesheet_link_tag :bootstrap_overwriting %>
-    <%= csrf_meta_tag %>
-  </head>
-  <body>
+<!-- Main hero unit for a primary marketing message or call to action -->
+<div class="hero-unit">
+  <a class="btn btn-large btn-success" href="javascript:void(0);" onclick="javascript:introJs().start();">Show me how</a>
+  <h1>Welcome to SiteKick!</h1>
+  <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+  <p><%= link_to "Sign in with Tumblr!", "/auth/tumblr" %></p>
+</div>
 
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          
-          <a class="brand" href="#">Project name</a>
-          
-        </div>
-      </div>
-    </div>
+<!-- Example row of columns -->
+<div class="row">
+  <div class="span4">
+    <h2 data-step="1" data-intro="Hello step one!" data-position="right">Heading</h2>
+    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+    <p><a class="btn" href="#">View details »</a></p>
+  </div>
+  <div class="span4">
+    <h2>Heading</h2>
+    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+    <p><a class="btn" href="#">View details »</a></p>
+ </div>
 
+</div>
 
+<hr>
 
-
-    <div class="container">
-
-      <!-- Main hero unit for a primary marketing message or call to action -->
-      <div class="hero-unit">
-        <h1>Welcome to SiteKick!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><%= link_to "Sign in with Tumblr!", "/auth/tumblr" %></p>
-      </div>
-
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="span4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn" href="#">View details »</a></p>
-        </div>
-        <div class="span4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn" href="#">View details »</a></p>
-       </div>
-      
-      </div>
-
-      <hr>
-
-      <footer>
-       <center> <p>© SiteKick 2013</p></center>
-      </footer>
-
-    </div>
-
-  </body>
-</html>
+<footer>
+ <center> <p>© SiteKick 2013</p></center>
+</footer>

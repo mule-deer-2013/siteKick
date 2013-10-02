@@ -2,7 +2,6 @@ class PagesController < ApplicationController
 
   def new
     @page = Page.new
-    render 'pages/new', layout: false
   end
 
   def create

@@ -9,7 +9,7 @@ gem 'jquery-ui-rails'
 gem 'delayed_job_active_record'
 
 gem "bcrypt-ruby", :require => "bcrypt"
-gem 'omniauth' 
+gem 'omniauth'
 gem 'omniauth-tumblr'
 gem 'tumblr_client'
 gem 'dotenv-rails', :groups => [:development, :test]

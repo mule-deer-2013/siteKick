@@ -94,7 +94,7 @@
           element: currentElement,
           intro: currentElement.getAttribute('data-intro'),
           step: parseInt(currentElement.getAttribute('data-step'), 10),
-	  tooltipClass: currentElement.getAttribute('data-tooltipClass'),
+    tooltipClass: currentElement.getAttribute('data-tooltipClass'),
           position: currentElement.getAttribute('data-position') || this._options.tooltipPosition
         });
       }
@@ -131,7 +131,7 @@
           //right arrow or enter
           _nextStep.call(self);
           //prevent default behaviour on hitting Enter, to prevent steps being skipped in some browsers
-          if(e.preventDefault) { 
+          if(e.preventDefault) {
             e.preventDefault();
           } else {
             e.returnValue = false;
@@ -177,6 +177,10 @@
    * @method _nextStep
    */
   function _nextStep() {
+    if (typeof (this._introBeforeChangeCallback) !== 'undefined') {
+      this._introBeforeChangeCallback.call(this, this._targetElement.element);
+    }
+
     if (typeof (this._currentStep) === 'undefined') {
       this._currentStep = 0;
     } else {
@@ -193,12 +197,7 @@
       return;
     }
 
-    var nextStep = this._introItems[this._currentStep];
-    if (typeof (this._introBeforeChangeCallback) !== 'undefined') {
-      this._introBeforeChangeCallback.call(this, nextStep.element);
-    }
-
-    _showElement.call(this, nextStep);
+    _showElement.call(this, this._introItems[this._currentStep]);
   }
 
   /**
@@ -212,12 +211,11 @@
       return false;
     }
 
-    var nextStep = this._introItems[--this._currentStep];
     if (typeof (this._introBeforeChangeCallback) !== 'undefined') {
-      this._introBeforeChangeCallback.call(this, nextStep.element);
+      this._introBeforeChangeCallback.call(this, this._targetElement.element);
     }
 
-    _showElement.call(this, nextStep);
+    _showElement.call(this, this._introItems[--this._currentStep]);
   }
 
   /**
@@ -601,7 +599,7 @@
       rect.top >= 0 &&
       rect.left >= 0 &&
       (rect.bottom+80) <= window.innerHeight && // add 80 to get the text right
-      rect.right <= window.innerWidth 
+      rect.right <= window.innerWidth
     );
   }
 
