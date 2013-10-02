@@ -1,7 +1,5 @@
-MizeCraft
+SiteKick
 
 Search-Engine Optimization for Everyone
 
-MizeCraft is an application to help writers and editors who are not well-educated in SEO best practices to take their optimization into their own hands.
-
-Please stay tuned to this space for updates--we hope to have big changes to this space in the very near future.
+SiteKick is an application to help writers and editors who are not well-educated in SEO best practices to take their optimization into their own hands. Sign in with your Tumblr account and see what SiteKick can do for you.

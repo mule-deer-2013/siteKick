@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+ class UsersController < ApplicationController
 
   before_filter :check_user, only: [:new]
 
