@@ -1,0 +1,19 @@
+body {
+  background-color: #fff;
+}
+
+.hero-unit {
+  background-image: url(/assets/Splash_kick.jpg);
+  height: 400px;
+  margin-top: 70px;
+  padding: 20px;
+}
+
+.span4 {
+  display: inline-block;
+  width: 500px;
+  margin: 20px;
+  padding: 20px;
+  margin-left: 30px;
+}
+
