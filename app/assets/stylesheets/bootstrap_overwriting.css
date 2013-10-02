@@ -24,7 +24,7 @@ body {
 .logo:hover {
   text-decoration: none;
   color: white;
-  font-family: "Trebuchet MS";
+  font-family: "Courier", "Trebuchet MS";
   font-size: 40px;
 }
 
@@ -34,7 +34,7 @@ body {
 
 .container-links{
   max-width: 1000px;
-  height: 500px;
+  height: 100%;
   padding: 50px;
   border: 1px solid #ccc;
   margin-right: auto;
@@ -45,12 +45,15 @@ body {
   background-color: #fff;
 }
 
+.big-text {
+  font-family: "Courier", "Trebuchet MS";
+  font-weight: bold;
+  font-size: 20px;
+}
 
-.title{
-  display: inline-block;
-  margin-left: 25%;
-  font-family: Calibri,Arial,Helvetica,Sans-Serif;
-  font-size: 180%;
+.small-text {
+  font-family: "Courier", "Trebuchet MS";
+  font-size: 18px;
 }
 
 .avatar {
@@ -59,8 +62,7 @@ body {
 }
 
 .links {
-  margin: 12%;
-  padding: 20px;
+  padding: 50px;
 }
 
 footer {

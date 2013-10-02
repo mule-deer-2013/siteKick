@@ -1,25 +1,57 @@
 <%= render 'layouts/navbar' %>
 
 <div class="container-links">
-  <% if current_user %> 
+  <div class='well'>
+    <% if current_user %> 
+    
     <% posts = current_user.tumblr_client.posts("#{current_user.uid}.tumblr.com")['posts'] %>
+    
     <% img_src = current_user.tumblr_client.avatar("#{current_user.uid}.tumblr.com") %>
+  
+  <div class='row'>
 
-    <%= image_tag(img_src, :size => "90x90", :class => 'avatar')%>
-    <div class ='title'>
-
-      <center><%= current_user.tumblr_client.blog_info("#{current_user.uid}.tumblr.com")['blog']['name'] %></center>
+    <div class='col-xs-6 col-sm-4 col-md-4'>
+      <center><%= image_tag(img_src, :size => "90x90", :class => 'img-circle')%></center>
     </div>
+
+    <div class='col-xs-6 col-sm-4 col-md-4'>
+      <div class="big-text">
+     Hey, <%= current_user.tumblr_client.blog_info("#{current_user.uid}.tumblr.com")['blog']['name'] %>!
+   </div>
+    </div>
+
+    <div class='col-xs-6 col-sm-4 col-md-4'>
+    </div>
+
+  </div>
+
+</div>
+
+  <div class='well'>
+    <center>
+    <div class="small-text">
+      Please select one of your posts below to retain feedback for optimization:
+    </div>
+    </center>
+
     <div class = 'links'>
+      
       <% posts.each do |post| %>
-        <% if post['type'] == 'text' %>
-        <%= link_to post['title'], pages_path(@page, original_url: post['post_url']), :action => "create", :method => "post", :class => 'links_a' %><br>
-        <% end %>
+      
+      <% if post['type'] == 'text' %>
+      
+      <%= button_to post['title'], pages_path(@page, original_url: post['post_url']), :action => "create", :method => "post", :class => 'btn btn-primary btn-lg btn-block' %><br>
+      
+      <% end %>
+      
       <%end %>
+    
     </div>
-  <% end %>
+    
+    <% end %>
+  </div>
 </div>
 
 <footer>
-    <center> <p>© SiteKick 2013</p></center>
+  <center> <p>© SiteKick 2013</p></center>
 </footer>
