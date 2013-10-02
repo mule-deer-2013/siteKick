@@ -7,15 +7,14 @@
     <%= csrf_meta_tag %>
   </head>
   <body>
-
-    <% posts = current_user.tumblr_client.posts("#{current_user.uid}.tumblr.com")['posts'] %>
-    
-    <% posts.each do |post| %>
-      <% if post['type'] == 'text' %>
-        <%= link_to post['title'], pages_path(@page, original_url: post['post_url']), :action => "create", :method => "post" %><br>
+    <% if current_user %> 
+      <% posts = current_user.tumblr_client.posts("#{current_user.uid}.tumblr.com")['posts'] %>
+      
+      <% posts.each do |post| %>
+        <% if post['type'] == 'text' %>
+          <%= link_to post['title'], pages_path(@page, original_url: post['post_url']), :action => "create", :method => "post" %><br>
+        <% end %>
       <% end %>
     <% end %>
-
-
   </body>
 </html>
