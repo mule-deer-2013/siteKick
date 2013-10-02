@@ -31,3 +31,44 @@ body {
 .navbar-fixed-top {
   background-color: #5B4D41;
 }
+
+.container-links{
+  max-width: 1000px;
+  height: 500px;
+  padding: 50px;
+  border: 1px solid #ccc;
+  margin-right: auto;
+  margin-top: 100px;
+  margin-left: auto;
+  display: block;
+  box-shadow: 10px 10px 5px #888888;
+  background-color: #fff;
+}
+
+
+.title{
+  display: inline-block;
+  margin-left: 25%;
+  font-family: Calibri,Arial,Helvetica,Sans-Serif;
+  font-size: 180%;
+}
+
+.avatar {
+  display: inline-block;
+  margin-left: 25px;
+}
+
+.links {
+  margin: 12%;
+  padding: 20px;
+}
+
+footer {
+  border-top: 1px solid #ccc;
+  margin-top: 20%;
+  clear: both;
+}
+
+.navbar-fixed-top {
+  background-color: #5B4D41;
+}
