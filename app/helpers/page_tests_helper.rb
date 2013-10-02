@@ -49,6 +49,12 @@ module PageTestsHelper
   end
 
   def image_messages
+    messages = []
+    messages << @test.number_of_images_test
+    messages << @test.image_alt_tags_presence_test
+    messages << keyword_observations
+    messages << @test.image_alt_tags_keywords_test
+    join_messages(messages)
   end
 
   def content_body_messages

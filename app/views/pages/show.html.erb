@@ -28,7 +28,7 @@
         </div>
         <h3> Images <%= image_tag "check1.png", :class => 'title_check' %></h3>
         <div>
-          <p class='image_messages'><%= image_messages %>
+          <p class='image_messages'><%= image_messages.html_safe %>
           </p>
         </div>
         <h3> Links <%= image_tag "check1.png", :class => 'title_check' %></h3>
