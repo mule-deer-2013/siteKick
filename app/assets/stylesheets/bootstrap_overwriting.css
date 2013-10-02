@@ -3,26 +3,60 @@ body {
 }
 
 .hero-unit {
-  background-image: url(/assets/coffee.jpg);
+  background-image: url(/assets/Splash_kick.jpg);
   height: 400px;
-  margin-top: 80px;
+  margin-top: 70px;
   padding: 20px;
+}
+
+.span4 {
+  display: inline-block;
+  width: 500px;
+  margin: 20px;
+  padding: 20px;
+  margin-left: 30px;
+}
+
+.container-links{
+  max-width: 1000px;
+  height: 500px;
+  padding: 50px;
+  border: 1px solid #ccc;
+  margin-right: auto;
+  margin-top: 100px;
+  margin-left: auto;
+  display: block;
   box-shadow: 10px 10px 5px #888888;
+  background-color: #fff;
+}
+
+img {
+  
+}
+
+.title{
+  display: inline-block;
+  margin-left: 25%;
+  font-family: Calibri,Arial,Helvetica,Sans-Serif;
+  font-size: 180%;
+}
+
+.avatar {
+  display: inline-block;
+  margin-left: 25px;
+}
+
+.links {
+  margin: 12%;
+  padding: 20px;
+}
+
+ .links_a {
 
 }
 
-.text-hero-unit {
-  height: 400px;
-  margin-top: 90px;
-  margin-left: 70px;
-  padding: 60px;
+footer {
+  border-top: 1px solid #ccc;
+  margin-top: 20%;
+  clear: both;
 }
-
-.logo,
-.logo:hover {
-  text-decoration: none;
-  color: white;
-  font-family: "Trebuchet MS";
-  font-size: 40px;
-}
-
