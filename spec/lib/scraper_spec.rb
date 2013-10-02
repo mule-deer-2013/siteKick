@@ -83,9 +83,9 @@ describe Scraper::Result do
     end 
   end
 
-  context "#keyword_frequency" do
+  context "#keyword_with_frequency" do
     it "returns a nested array of words and their frequencies" do
-      expect(page.keyword_frequency.first).to eq ['board', 6]
+      expect(page.keyword_with_frequency.first).to eq ['board', 6]
     end
   end
 

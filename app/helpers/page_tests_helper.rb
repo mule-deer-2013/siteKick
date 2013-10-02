@@ -37,10 +37,8 @@ module PageTestsHelper
   def h1_messages
     messages = []
     messages << @test.h1_presence_test
-    if @page.number_of_h1 == 1
-      messages << keyword_observations
-      messages << @test.h1_keywords_test
-    end
+    messages << keyword_observations
+    messages << @test.h1_keywords_test
     join_messages(messages)
   end
 
@@ -53,7 +51,11 @@ module PageTestsHelper
   def image_messages
   end
 
-  def paragraph_messages
+  def content_body_messages
+    messages = []
+    messages << @test.keyword_saturation_test
+    messages << @test.keywords_in_the_first_150_words_test
+    join_messages(messages)
   end
 
   def link_messages
