@@ -1,7 +1,23 @@
+require 'ruby-debug'
+
 module Analyzer
 
   def keywords
     @keywords ||= page.keyword_with_frequency.map { |word_and_freq| word_and_freq[0] }
+  end
+
+  def run_test_suite
+    self.title_includes_keywords_test
+    self.url_includes_keywords_test
+    self.word_count_test
+    self.h1_presence_test
+    self.h1_keywords_test
+    self.keyword_saturation_test
+    self.keywords_in_the_first_150_words_test
+    self.number_of_images_test
+    self.image_alt_tags_presence_test
+    self.image_alt_tags_keywords_test
+    self.save
   end
 
   ### "MAIN_MESSAGES" TESTS ###
@@ -142,7 +158,7 @@ module Analyzer
       output = "Several of your keywords are making up 4% or more of your total html content, which might lead search engines to believe that you're trying to game the system. Consider editing yourself."
     end
 
-    self.test_results[:keyword_saturation_test] = result
+    self.test_results[:keyword_saturation_result] = result
     output
   end
 
@@ -166,9 +182,86 @@ module Analyzer
       result = true
       output = "You have a ton of keywords in the first 150 words of your piece, which is fantastic and should help search engines to know exactly what you're talking about."
     end
+
+    self.test_results[:keywords_in_the_first_150_words_result] = result
+    output
   end
 
   ### IMG TESTS ###
+
+  def number_of_images_test
+    case page.number_of_images
+    when 0
+      result = true
+      output = "Your content body doesn't contain any images."
+    when 1
+      result = true
+      output = "One image"
+    when 2..4
+      result = true
+      output = "2-4 images"
+    else
+      result = false
+      output = "Five or more images"
+    end
+
+    self.test_results[:number_of_images_result] = result
+    output
+  end
+
+  def image_alt_tags_presence_test
+    if page.number_of_images == 0
+      result = true
+      output = "Images offer you an opportunity to share more information with search engines about what your content is about (and hopefully help to make your page look cool) but if you don't want them in your content, don't worry about it!"
+    else
+      if page.image_alt_tags.include?(nil)
+        if page.image_alt_tags.reject { |tag| tag.nil? }.empty?
+          result = false
+          output = "Your image tags don't currently include 'alt' descriptions. When used responsibly, these descriptions are an excellent way to tell search engines what your page is about."
+        else
+          result = false
+          output = "At least one of your image tags doesn't include an 'alt' description. When used responsibly, these descriptions are an excellent way to tell search engines what your page is about."
+        end
+      else
+        result = true
+        output = "Your image tags have 'alt' descriptions."
+      end
+    end
+
+    self.test_results[:alt_tags_presence_result] = result
+    output
+  end
+
+  def image_alt_tags_keywords_test
+    if page.number_of_images > 0 && self.test_results[:alt_tags_presence_result] == true
+      keywords_in_alt_tags = []
+
+      page.image_alt_tags.each do |tag|
+        tag.split.each do |word|
+          if keywords.include?(word.downcase)
+            keywords_in_alt_tags << word
+          end
+        end
+      end
+
+      if keywords_in_alt_tags.count > (3 * page.number_of_images)
+        result = false
+        output = "Your keywords occur so commonly in your 'alt' descriptions that search engines might think that you're attempting to cheat the system. In order to avoid being penalized, examine your 'alt' descriptions and consider dialing back on your keyword usage."
+      elsif keywords_in_alt_tags.count == 0
+        result = false
+        output = "You are not currently using any of your keywords in your 'alt' descriptions, which is a missed opportunity to help tell search engines what your page is about."
+      elsif keywords_in_alt_tags.count < (1 * page.number_of_images)
+        result = false
+        output = "You are not currently using many of your keywords in your 'alt' descriptions, which is a missed opportunity to help tell search engines what your page is about."
+      else
+        result = true
+        output = "Without overdoing it, you're averaging at least one keyword for each of your 'alt' descriptions. That's right where you want your images to be."
+      end
+    end
+
+    self.test_results[:alt_tags_keyword_result] = result
+    output
+  end
 
   ### LINK TESTS ###
 
