@@ -1,5 +1,9 @@
-<%= form_for @page do |f| %>
-  <%= f.label :original_url %>
-  <%= f.text_field :original_url %>
-  <%= f.submit "Get Feedback" %>
+<% if current_user %>
+
+  <% posts = current_user.tumblr_client.posts("#{current_user.uid}.tumblr.com")['posts'] %>
+  
+  <% posts.each do |post| %>
+    <%= button_to post['title'], pages_path(@page, original_url: post['post_url']) %><br>
+  <% end %>
+
 <% end %>
