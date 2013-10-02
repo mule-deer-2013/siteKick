@@ -146,6 +146,28 @@ module Analyzer
     output
   end
 
+  def keywords_in_the_first_150_words_test
+    first_150 = page.content.split.shift(150)
+    first_keys = first_150.select {|word| keywords.include?(word) }
+    case first_keys.length
+    when 0
+      result = false
+      output = "We didn't find a single keyword in the first 150 words of your piece. Placing important words toward the beginning of your piece helps search engines know what your post is about."
+    when 1
+      result = false
+      output = "We only found one keyword in the first 150 words of your piece. Placing important words toward the beginning of your piece helps search engines know what your post is about."
+    when 2
+      result = false
+      output = "We only found two keywords in the first 150 words of your piece. Placing important words toward the beginning of your piece helps search engines know what your post is about."
+    when 3..10
+      result = true
+      output = "We found a handful of keywords in the first 150 words of your piece, which is great. Search engines often place greater emphasis on this area when trying to figure out what sites are about."
+    else
+      result = true
+      output = "You have a ton of keywords in the first 150 words of your piece, which is fantastic and should help search engines to know exactly what you're talking about."
+    end
+  end
+
   ### IMG TESTS ###
 
   ### LINK TESTS ###
