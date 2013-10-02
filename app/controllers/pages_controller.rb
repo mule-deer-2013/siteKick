@@ -6,11 +6,8 @@ class PagesController < ApplicationController
   end
 
   def create
-    p params
-    @page = Page.create(params[:page])
-    p params
+    @page = Page.create(original_url: params[:original_url])
     PageTest.create(page_id: @page.id)
-    p 'something'
     redirect_to page_path(@page)
   end
 
