@@ -17,7 +17,4 @@ class PagesController < ApplicationController
     @page.title
   end
 
-  def index
-  end
-
 end
