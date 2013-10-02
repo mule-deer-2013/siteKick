@@ -1,7 +1,7 @@
 module Analyzer
 
   def keywords
-    @keywords ||= page.keyword_frequency.map { |word_and_freq| word_and_freq[0] }
+    @keywords ||= page.keyword_with_frequency.map { |word_and_freq| word_and_freq[0] }
   end
 
   ### "MAIN_MESSAGES" TESTS ###
@@ -110,6 +110,41 @@ module Analyzer
   end
 
   ### P TESTS ###
+
+  def keyword_saturation_test
+    oversaturated = []
+    underrepresented = []
+    page.keywords.each do |keyword|
+      percent = page.keyword_saturation(keyword)
+      case percent
+      when 0
+        underrepresented << keyword
+      when 4..100
+        oversaturated = []
+      end
+    end 
+    if oversaturated.length == 0
+      if underrepresented.length == 0
+        result = true
+        output = "Each of your keywords occupies between 1 and 3% of your body text, which is perfect."
+      elsif underrepresented.length > 0 && underrepresented.length < 3
+        result = true
+        output = "Most of your keywords occupy between 1 and 3% of your body text, which is really strong."
+      else
+        result = false
+        output = "Most of your keywords occupy less than 1% of your body text, which is less than ideal. Consider ways that you might build additional mentions of those words into your headers, meta tags, links, and image tags."
+      end
+    elsif oversaturated.length == 1
+      result = false
+      output = "You've mentioned the word #{oversaturated.first} so many times that it now makes up #{percent}% of your piece. Search engines may penalize sites if they feel they're using keywords to game the system."
+    else
+      result = false
+      output = "Several of your keywords are making up 4% or more of your total html content, which might lead search engines to believe that you're trying to game the system. Consider editing yourself."
+    end
+
+    self.test_results[:keyword_saturation_test] = result
+    output
+  end
 
   ### IMG TESTS ###
 
