@@ -3,8 +3,6 @@ require 'spec_helper'
 class MyPage
   attr_accessor :content, :title, :meta
   include Analyzer
-  # include Scraper
-  # include Scraper::Result
 end
 
 describe Analyzer do
@@ -235,5 +233,95 @@ describe Analyzer do
         expect(page_test.test_results[:h1_keyword_result]).to be false
       end
     end
-  end  
+  end 
+
+  describe 'alt_tag presence test' do
+    context 'when all images have "alt" descriptions' do
+
+      it "returns the appropriate message" do
+        expect(page_test.image_alt_tags_presence_test).to eq "Your image tags have 'alt' descriptions."
+      end
+
+      it "passes" do
+        expect(page_test.test_results[:alt_tags_presence_result]).to be true
+      end
+    end
+
+    context 'when only some images have "alt" descriptions' do
+      let(:page) { FactoryGirl.create(:page, original_url: 'spec/factories/dummy_html/images_with_selective_alts.html') }
+      let(:page_test) { FactoryGirl.create(:page_test, page_id: page.id) }
+
+      it "returns the appropriate message" do
+        expect(page_test.image_alt_tags_presence_test).to eq "At least one of your image tags doesn't include an 'alt' description. When used responsibly, these descriptions are an excellent way to tell search engines what your page is about."
+      end
+
+      it "fails" do
+        expect(page_test.test_results[:alt_tags_presence_result]).to be false
+      end
+    end
+
+    context 'when no images have "alt" descriptions' do
+      let(:page) { FactoryGirl.create(:page, original_url: 'spec/factories/dummy_html/images_with_no_alts.html') }
+      let(:page_test) { FactoryGirl.create(:page_test, page_id: page.id) }
+
+      it "returns the appropriate message" do
+        expect(page_test.image_alt_tags_presence_test).to eq "Your image tags don't currently include 'alt' descriptions. When used responsibly, these descriptions are an excellent way to tell search engines what your page is about."
+      end
+
+      it "fails" do
+        expect(page_test.test_results[:alt_tags_presence_result]).to be false
+      end
+    end
+
+    context 'when page has no images' do
+      let(:page) { FactoryGirl.create(:page, original_url: 'spec/factories/dummy_html/zero_images.html') }
+      let(:page_test) { FactoryGirl.create(:page_test, page_id: page.id) }
+
+      it "returns the appropriate message" do
+        expect(page_test.image_alt_tags_presence_test).to eq "Images offer you an opportunity to share more information with search engines about what your content is about (and hopefully help to make your page look cool) but if you don't want them in your content, don't worry about it!"
+      end
+
+      it "passes" do
+        expect(page_test.test_results[:alt_tags_presence_result]).to be true
+      end
+    end
+  end 
+
+  describe "image alt tags keywords test" do
+    context "when the page doesn't have any keywords in its alt descriptions" do
+      it "returns the appropriate message" do
+        expect(page_test.image_alt_tags_keywords_test).to eq "You are not currently using any of your keywords in your 'alt' descriptions, which is a missed opportunity to help tell search engines what your page is about."
+      end
+
+      it "fails" do
+        expect(page_test.test_results[:alt_tags_keyword_result]).to be false
+      end
+    end
+
+    context "when the page has too many keywords in its alt descriptions" do
+      let(:page) { FactoryGirl.create(:page, original_url: 'spec/factories/dummy_html/alt_tag_keyword_stuffing.html') }
+      let(:page_test) { FactoryGirl.create(:page_test, page_id: page.id) }
+
+      it "returns the appropriate message" do
+        expect(page_test.image_alt_tags_keywords_test).to eq "Your keywords occur so commonly in your 'alt' descriptions that search engines might think that you're attempting to cheat the system. In order to avoid being penalized, examine your 'alt' descriptions and consider dialing back on your keyword usage."
+      end
+
+      it "fails" do
+        expect(page_test.test_results[:alt_tags_keyword_result]).to be false
+      end
+    end
+
+    context "when the page has a reasonable number of keywords in its alt descriptions" do
+      let(:page) { FactoryGirl.create(:page, original_url: 'spec/factories/dummy_html/alt_tag_keyword_on_target.html') }
+      let(:page_test) { FactoryGirl.create(:page_test, page_id: page.id) }
+
+      it "returns the appropriate message" do
+        expect(page_test.image_alt_tags_keywords_test).to eq "Without overdoing it, you're averaging at least one keyword for each of your 'alt' descriptions. That's right where you want your images to be."
+      end
+
+      it "passes" do
+        expect(page_test.test_results[:alt_tags_keyword_result]).to be true
+      end
+    end
+  end
 end

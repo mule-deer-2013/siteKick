@@ -118,9 +118,16 @@ describe Scraper::Result do
       end
     end
 
-    context "when the page contains a singler image" do
+    context "when the page contains a single image" do
       it "should return a single-item array" do
         expect(page.image_alt_tags).to eq ["image"]
+      end
+    end
+
+    context "when images don't have alt tags" do
+      let (:page) { FactoryGirl.create(:page, original_url: 'spec/factories/dummy_html/images_with_selective_alts.html')}
+      it "should return nil for images that don't have them" do
+        expect(page.image_alt_tags).to eq [nil, "image2", nil]
       end
     end
   end
