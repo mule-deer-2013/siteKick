@@ -1,18 +1,25 @@
 <%= render 'layouts/navbar' %>
 
-<% if current_user %> 
-  <% posts = current_user.tumblr_client.posts("#{current_user.uid}.tumblr.com")['posts'] %>
-  <% img_src = current_user.tumblr_client.avatar("#{current_user.uid}.tumblr.com") %>
-  <%= image_tag(img_src, :size => "80x80") %><br>
-  <%= current_user.tumblr_client.blog_info("#{current_user.uid}.tumblr.com")['blog']['name'] %>
-  
-  <br>
-  <br>
+<div class="container-links">
+  <% if current_user %> 
+    <% posts = current_user.tumblr_client.posts("#{current_user.uid}.tumblr.com")['posts'] %>
+    <% img_src = current_user.tumblr_client.avatar("#{current_user.uid}.tumblr.com") %>
 
-  <% posts.each do |post| %>
-    <% if post['type'] == 'text' %>
-    <%= link_to post['title'], pages_path(@page, original_url: post['post_url']), :action => "create", :method => "post" %><br>
-    <% end %>
+    <%= image_tag(img_src, :size => "90x90", :class => 'avatar')%>
+    <div class ='title'>
+
+      <center><%= current_user.tumblr_client.blog_info("#{current_user.uid}.tumblr.com")['blog']['name'] %></center>
+    </div>
+    <div class = 'links'>
+      <% posts.each do |post| %>
+        <% if post['type'] == 'text' %>
+        <%= link_to post['title'], pages_path(@page, original_url: post['post_url']), :action => "create", :method => "post", :class => 'links_a' %><br>
+        <% end %>
+      <%end %>
+    </div>
   <% end %>
-<% end %>
+</div>
 
+<footer>
+    <center> <p>© SiteKick 2013</p></center>
+</footer>
