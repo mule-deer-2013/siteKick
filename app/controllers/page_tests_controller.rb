@@ -1,5 +1,0 @@
-class PageTestsController < ApplicationController
-
-
-
-end
