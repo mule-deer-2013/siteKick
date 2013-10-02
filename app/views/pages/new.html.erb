@@ -1,5 +1,19 @@
-<%= form_for @page do |f| %>
-  <%= f.label :original_url %>
-  <%= f.text_field :original_url %>
-  <%= f.submit "Get Feedback" %>
-<% end %>
+<html>
+  <head>
+    <title>SiteKick</title>
+    <link rel="stylesheet" href= "//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <%= stylesheet_link_tag :application %>
+    <%= javascript_include_tag :application %>
+    <%= csrf_meta_tag %>
+  </head>
+  <body>
+
+
+  <%= form_for @page do |f| %>
+    <%= f.label :original_url %>
+    <%= f.text_field :original_url %>
+    <%= f.submit "Get Feedback" %>
+  <% end %>
+
+  </body>
+</html>
