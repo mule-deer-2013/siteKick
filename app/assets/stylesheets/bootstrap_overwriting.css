@@ -1,5 +1,7 @@
 body {
   background-color: #fff;
+  background-image: url(/assets/grad.png);
+  background-size: 90px;
 }
 
 .hero-unit {
@@ -26,3 +28,6 @@ body {
   font-size: 40px;
 }
 
+.navbar-fixed-top {
+  background-color: #5B4D41;
+}
