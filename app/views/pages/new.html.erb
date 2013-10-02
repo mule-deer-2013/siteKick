@@ -3,7 +3,7 @@
   <% posts = current_user.tumblr_client.posts("#{current_user.uid}.tumblr.com")['posts'] %>
   
   <% posts.each do |post| %>
-    <%= button_to post['title'], pages_path(@page, original_url: post['post_url']) %><br>
+    <%= link_to post['title'], pages_path(@page, original_url: post['post_url']), :action => "create", :method => "post" %><br>
   <% end %>
 
 <% end %>
