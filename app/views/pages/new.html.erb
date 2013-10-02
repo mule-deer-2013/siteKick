@@ -1,9 +1,16 @@
-<% if current_user %>
+<% if current_user %> 
   <% posts = current_user.tumblr_client.posts("#{current_user.uid}.tumblr.com")['posts'] %>
+  <% img_src = current_user.tumblr_client.avatar("#{current_user.uid}.tumblr.com") %>
+  <%= image_tag(img_src, :size => "80x80") %><br>
+  <%= current_user.tumblr_client.blog_info("#{current_user.uid}.tumblr.com")['blog']['name'] %>
+  
+  <br>
+  <br>
 
   <% posts.each do |post| %>
     <% if post['type'] == 'text' %>
-      <%= link_to post['title'], pages_path(@page, original_url: post['post_url']), :action => "create", :method => "post" %><br>
+    <%= link_to post['title'], pages_path(@page, original_url: post['post_url']), :action => "create", :method => "post" %><br>
     <% end %>
   <% end %>
 <% end %>
+

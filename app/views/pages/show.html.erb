@@ -36,9 +36,9 @@
           <p class='link_messages'><%= link_messages %>
           </p>
         </div>
-        <h3> Content Body <%= image_tag "check1.png" %></h3>
+        <h3> Content Body <%= image_tag "check1.png", :class => 'title_check'  %></h3>
         <div>
-          <span class='content_body_messages'><%= content_body_messages %>
+          <span class='content_body_messages'><%= content_body_messages.html_safe %>
           </span>
         </div>
       </div>
