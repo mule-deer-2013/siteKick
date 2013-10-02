@@ -3,17 +3,26 @@ body {
 }
 
 .hero-unit {
-  background-image: url(/assets/Splash_kick.jpg);
+  background-image: url(/assets/coffee.jpg);
   height: 400px;
-  margin-top: 70px;
+  margin-top: 80px;
   padding: 20px;
+  box-shadow: 10px 10px 5px #888888;
+
 }
 
-.span4 {
-  display: inline-block;
-  width: 500px;
-  margin: 20px;
-  padding: 20px;
-  margin-left: 30px;
+.text-hero-unit {
+  height: 400px;
+  margin-top: 90px;
+  margin-left: 70px;
+  padding: 60px;
+}
+
+.logo,
+.logo:hover {
+  text-decoration: none;
+  color: white;
+  font-family: "Trebuchet MS";
+  font-size: 40px;
 }
 
