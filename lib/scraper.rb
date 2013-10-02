@@ -2,7 +2,6 @@ require 'nokogiri'
 require 'open-uri'
 require 'net/http'
 require 'uri'
-require 'ruby-debug'
 
 module Scraper    
 

@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'ruby-debug'
+
 class MyPageTest
   include Analyzer
 end
