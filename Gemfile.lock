@@ -67,6 +67,9 @@ GEM
       activerecord (>= 3.0, < 4.1)
       delayed_job (>= 3.0, < 4.1)
     diff-lcs (1.2.4)
+    dotenv (0.9.0)
+    dotenv-rails (0.9.0)
+      dotenv (= 0.9.0)
     erubis (2.7.0)
     execjs (2.0.1)
     factory_girl (4.2.0)
@@ -76,6 +79,10 @@ GEM
       railties (>= 3.0.0)
     faker (1.2.0)
       i18n (~> 0.5)
+    faraday (0.8.8)
+      multipart-post (~> 1.2.0)
+    faraday_middleware (0.9.0)
+      faraday (>= 0.7.4, < 0.9)
     ffi (1.9.0)
     formatador (0.2.4)
     guard (1.8.3)
@@ -87,6 +94,7 @@ GEM
     guard-rspec (3.1.0)
       guard (>= 1.8)
       rspec (~> 2.13)
+    hashie (2.0.5)
     hike (1.2.3)
     i18n (0.6.5)
     journey (1.0.4)
@@ -112,8 +120,18 @@ GEM
     mime-types (1.25)
     mini_portile (0.5.1)
     multi_json (1.8.0)
+    multipart-post (1.2.0)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
+    oauth (0.4.7)
+    omniauth (1.1.4)
+      hashie (>= 1.2, < 3)
+      rack
+    omniauth-oauth (1.0.1)
+      oauth
+      omniauth (~> 1.0)
+    omniauth-tumblr (1.1)
+      omniauth-oauth (~> 1.0)
     pg (0.17.0)
     polyglot (0.3.3)
     pry (0.9.12.2)
@@ -178,6 +196,7 @@ GEM
     shoulda-context (1.1.5)
     shoulda-matchers (2.3.0)
       activesupport (>= 3.0.0)
+    simple_oauth (0.2.0)
     slop (3.4.6)
     sprockets (2.2.2)
       hike (~> 1.2)
@@ -189,6 +208,13 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
+    tumblr_client (0.8.2)
+      faraday (>= 0.8)
+      faraday_middleware (>= 0.8)
+      json
+      mime-types
+      oauth
+      simple_oauth
     tzinfo (0.3.37)
     uglifier (2.2.1)
       execjs (>= 0.3.0)
@@ -208,6 +234,7 @@ DEPENDENCIES
   css_parser
   debugger
   delayed_job_active_record
+  dotenv-rails
   factory_girl_rails
   faker
   guard-rspec
@@ -215,10 +242,13 @@ DEPENDENCIES
   jquery-ui-rails
   launchy
   nokogiri
+  omniauth
+  omniauth-tumblr
   pg
   rails (= 3.2.11)
   rspec-rails
   sass-rails (~> 3.2.3)
   shoulda
   shoulda-callback-matchers (= 0.2.0)
+  tumblr_client
   uglifier (>= 1.0.3)
