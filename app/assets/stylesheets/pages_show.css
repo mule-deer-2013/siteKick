@@ -26,7 +26,7 @@
   float: right;
   width:45%;
   height: 800px;
-  margin-left: 50%;
+  margin-left: 47%;
   margin-top: -15px;
   position: absolute;
   overflow:scroll;
@@ -40,20 +40,35 @@
   width: 150px;
   height: auto;
   float: left;
-  margin-right: 10px;
+  
 }
 
 .ui-accordion-header{
   font-size:150%;
   background-color:#252322;
   width: 100%;
-  border-style:solid;
+  border-top: solid;
+  border-bottom: solid;
   border-color: white;
   border-width: 1px;
 }
 
+.iconOpen {
+    background:url('check1.png') no-repeat !important;
+    background-size:20px !important;
+    width:50px;
+    height:50px;
+}
+.iconClosed {
+    background:url('fail1.png') no-repeat -5px!important;
+    background-size:30px !important;
+    width:20px;
+    height:20px;
+}
+
+
 #image-clipboard {
-  margin-left: 15%;
+  margin-left: 14%;
   position: relative;
   display: block;
   width: 132px;
@@ -61,6 +76,13 @@
 
 img {
   display: block;
+
+}
+
+.title_check{
+  display: inline-block;
+  float: left;
+  width: 30px;
 }
 
 .feedback-box {
