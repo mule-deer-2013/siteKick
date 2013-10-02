@@ -23,12 +23,8 @@
         </div>
         <h3> Header Tags  <%= image_tag "check1.png", :class => 'title_check' %></h3>
         <div>
-          <p class='h1_messages'><%= h1_messages.html_safe %>
-          </p>
-          <p class='h2_messages'><%= h2_messages %>
-          </p>
-          <p class='h3_messages'><%= h3_messages %>
-          </p>
+          <span class='h1_messages'><%= h1_messages.html_safe %>
+          </span>
         </div>
         <h3> Images <%= image_tag "check1.png", :class => 'title_check' %></h3>
         <div>
@@ -39,6 +35,11 @@
         <div>
           <p class='link_messages'><%= link_messages %>
           </p>
+        </div>
+        <h3> Content Body <%= image_tag "check1.png" %></h3>
+        <div>
+          <span class='content_body_messages'><%= content_body_messages %>
+          </span>
         </div>
       </div>
     </div>

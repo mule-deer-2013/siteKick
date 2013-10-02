@@ -1,7 +1,7 @@
 module Analyzer
 
   def keywords
-    @keywords ||= page.keyword_frequency.map { |word_and_freq| word_and_freq[0] }
+    @keywords ||= page.keyword_with_frequency.map { |word_and_freq| word_and_freq[0] }
   end
 
   ### "MAIN_MESSAGES" TESTS ###
@@ -110,6 +110,63 @@ module Analyzer
   end
 
   ### P TESTS ###
+
+  def keyword_saturation_test
+    oversaturated = []
+    underrepresented = []
+    page.keywords.each do |keyword|
+      percent = page.keyword_saturation(keyword)
+      case percent
+      when 0
+        underrepresented << keyword
+      when 4..100
+        oversaturated = []
+      end
+    end 
+    if oversaturated.length == 0
+      if underrepresented.length == 0
+        result = true
+        output = "Each of your keywords occupies between 1 and 3% of your body text, which is perfect."
+      elsif underrepresented.length > 0 && underrepresented.length < 3
+        result = true
+        output = "Most of your keywords occupy between 1 and 3% of your body text, which is really strong."
+      else
+        result = false
+        output = "Most of your keywords occupy less than 1% of your body text, which is less than ideal. Consider ways that you might build additional mentions of those words into your headers, meta tags, links, and image tags."
+      end
+    elsif oversaturated.length == 1
+      result = false
+      output = "You've mentioned the word #{oversaturated.first} so many times that it now makes up #{percent}% of your piece. Search engines may penalize sites if they feel they're using keywords to game the system."
+    else
+      result = false
+      output = "Several of your keywords are making up 4% or more of your total html content, which might lead search engines to believe that you're trying to game the system. Consider editing yourself."
+    end
+
+    self.test_results[:keyword_saturation_test] = result
+    output
+  end
+
+  def keywords_in_the_first_150_words_test
+    first_150 = page.content.split.shift(150)
+    first_keys = first_150.select {|word| keywords.include?(word) }
+    case first_keys.length
+    when 0
+      result = false
+      output = "We didn't find a single keyword in the first 150 words of your piece. Placing important words toward the beginning of your piece helps search engines know what your post is about."
+    when 1
+      result = false
+      output = "We only found one keyword in the first 150 words of your piece. Placing important words toward the beginning of your piece helps search engines know what your post is about."
+    when 2
+      result = false
+      output = "We only found two keywords in the first 150 words of your piece. Placing important words toward the beginning of your piece helps search engines know what your post is about."
+    when 3..10
+      result = true
+      output = "We found a handful of keywords in the first 150 words of your piece, which is great. Search engines often place greater emphasis on this area when trying to figure out what sites are about."
+    else
+      result = true
+      output = "You have a ton of keywords in the first 150 words of your piece, which is fantastic and should help search engines to know exactly what you're talking about."
+    end
+  end
 
   ### IMG TESTS ###
 
