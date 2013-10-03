@@ -41,7 +41,7 @@
         </div>
         <p> Links <%= image_tag "check1.png", :class => 'links_check check' %></p>
         <div>
-          <p class='link_messages'><%= link_messages %>
+          <p class='link_messages'><%= link_messages.html_safe %>
           </p>
         </div>
         <p> Content Body <%= image_tag "check1.png", :class => 'content_body_check check'  %></p>
