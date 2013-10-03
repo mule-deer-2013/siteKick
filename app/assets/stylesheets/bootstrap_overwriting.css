@@ -10,6 +10,8 @@ body {
   margin-top: 80px;
   padding: 20px;
   box-shadow: 10px 10px 5px #888888;
+  border-radius:10px;
+
 }
 
 .big-text {
@@ -35,11 +37,17 @@ body {
 }
 
 .btn-primary,
-.btn-primary:hover {
+.btn-primary:hover,
+.btn-danger,
+.btn-danger:hover,
+.btn-info,
+.btn-info:hover {
   font-family: "Courier";
+  font-weight: bold;
   border-radius: 10px;
   border-color: transparent;
-  padding: 10px;
+  padding: 15px;
+  text-decoration: none;
 }
 
 .text-hero-unit {
@@ -160,62 +168,93 @@ footer {
 }
 
 .well{
-background-color: rgba(255,255,255,0.2); 
+background-color: rgba(255,255,255,0.3); 
+border-radius:10px;
 }
 
 /* Smartphones (portrait and landscape) ----------- */
 
 @media only screen and (min-width : 1px) and (max-width : 319px) {
 
-  .btn-primary {
+  .btn-primary,
+  .btn-danger,
+  .btn-info {
     font-family: "Courier";
     font-size: 0.2em;
     padding: 1px;
+    border-color: transparent;
   }
 
 }
 
 @media only screen and (min-width : 320px) and (max-width : 480px) {
 
-  .btn-primary {
+  .btn-primary,
+  .btn-danger,
+  .btn-info {
     font-family: "Courier";
     font-size: 0.5em;
     padding: 7px;
+    border-color: transparent;
   }
 
 }
 
 @media only screen and (min-width : 481px) and (max-width : 767px) {
 
-  .btn-primary {
+  .btn-primary,
+  .btn-danger,
+  .btn-info {
     font-family: "Courier";
     font-size: 0.8em;
+    border-color: transparent;
   }
 
 }
 
 /* iPads (portrait and landscape) ----------- */
 @media only screen and (min-width : 768px) and (max-width : 1223px) {
-.btn-primary {
+.btn-primary,
+.btn-danger,
+.btn-primary:hover,
+.btn-danger:hover,
+.btn-info,
+.btn-info:hover {
     font-family: "Courier";
-    font-size: 1.1em;
+    font-size: 1.2em;
+    padding: 10px; 
+    border-color: transparent;
   }
 }
 
 /* Desktops and laptops ----------- */
 @media only screen and (min-width : 1224px) and (max-width : 1823px) {
-.btn-primary {
+.btn-primary,
+.btn-danger,
+.btn-primary:hover,
+.btn-danger:hover,
+.btn-info,
+.btn-info:hover {
     font-family: "Courier";
-    font-size: 1.1em;
+    font-size: 1.2em;
+    padding: 10px; 
+    border-color: transparent;
   }
 
 }
 
 /* Large screens ----------- */
 @media only screen and (min-width : 1824px) {
-.btn-primary {
+.btn-primary,
+.btn-danger,
+.btn-primary:hover,
+.btn-danger:hover,
+.btn-info,
+.btn-info:hover {
     font-family: "Courier";
-    font-size: 1.1em;
+    font-size: 1.2em;
+    padding: 10px; 
+    border-color: transparent;
   }
 
 }

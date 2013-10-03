@@ -2,13 +2,58 @@
 
 <div id = 'page_show_container'>
 
-  <div class = 'row'>
-    <div class = 'overview col-md-12'>
-      <h2>Overview</h2>
-      <p><strong>Score:</strong> Your post passed <%= @test.number_of_tests_passed %> out of <%= @test.number_of_tests_evaluated %> SEO-optimization tests.</p>
-      <p>Click any of the headers in the left-hand box for detailed feedback.</p>
-    </div>
-  </div>
+  <div class='well' style='border-radius:10px; background-color:rgba(255,255,255,0.4)'>
+
+      <center>
+      <% if @test.number_of_tests_passed == 1 %>
+
+        <div class="progress progress-striped active"><div class="progress-bar progress-bar-danger"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 13%"></div></div>
+     
+        <% elsif @test.number_of_tests_passed == 2 %>
+
+        <div class="progress progress-striped active"><div class="progress-bar progress-bar-danger"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 25%"></div></div>
+     
+
+        <% elsif @test.number_of_tests_passed == 3 %>
+
+
+        <div class="progress progress-striped active"><div class="progress-bar progress-bar-danger"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 38%"></div></div>
+     
+
+        <% elsif @test.number_of_tests_passed == 4 %>
+
+
+        <div class="progress progress-striped active"><div class="progress-bar progress-bar-warning"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 50%"></div></div>
+     
+        <% elsif @test.number_of_tests_passed == 5 %>
+
+
+        <div class="progress progress-striped active"><div class="progress-bar progress-bar-warning"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 63%"></div></div>
+     
+        <% elsif @test.number_of_tests_passed == 6 %>
+
+
+        <div class="progress progress-striped active"><div class="progress-bar progress-bar-warning"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div></div>
+     
+        <% elsif @test.number_of_tests_passed == 7 %>
+
+
+        <div class="progress progress-striped active"><div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 89%"></div></div>
+     
+        <% elsif @test.number_of_tests_passed == 8 %>
+
+
+        <div class="progress progress-striped active"><div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div></div>
+     
+
+      <% else %>
+      <% end %>
+
+<h2>Your site rated<div style='color:red'> <%= @test.number_of_tests_passed %></div> out of a possible <%= @test.number_of_tests_evaluated %>.</h2>
+
+
+</center>
+</div>
 
   <div class = 'row'>
     <div class='feedback col-md-6'>
@@ -72,6 +117,10 @@
 </div>
 
 <%= render 'checkbox' %>
+
+<footer>
+  <center>© siteKick 2013</center>
+</footer>
 
 
 
