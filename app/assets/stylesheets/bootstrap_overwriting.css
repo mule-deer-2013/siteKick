@@ -46,6 +46,10 @@ body {
   background-color: #5B4D41;
 }
 
+.row {
+  margin-top: 5%;
+}
+
 .container-links{
   max-width: 1000px;
   height: 100%;
@@ -81,7 +85,8 @@ body {
 
 footer {
   border-top: 1px solid #ccc;
-  margin-top: 20%;
+  margin-top: 5%;
+  padding: 10px;
   clear: both;
 }
 
