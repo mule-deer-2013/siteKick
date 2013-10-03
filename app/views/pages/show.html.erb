@@ -35,16 +35,20 @@
           </span>
         </div>
         <p class="image-tag"> Images <%= image_tag "check1.png", :class => 'image_check check' %></p>
+
         <div>
-          <p class='image_messages'><%= image_messages %>
+          <p class='image_messages'><%= image_messages.html_safe %>
           </p>
         </div>
+
         <p class = "link-tag"> Links <%= image_tag "check1.png", :class => 'link_check check' %></p>
+       
         <div>
-          <p class='link_messages'><%= link_messages %>
+          <p class='link_messages'><%= link_messages.html_safe %>
           </p>
         </div>
-        <p class="content-tag"> Content Body <%= image_tag "check1.png", :class => 'content_check check'  %></p>
+        <p class="content-tag"> Content Body <%= image_tag "check1.png", :class => 'content_body_check check'  %></p>
+
         <div>
           <span class='content_body_messages'><%= content_body_messages.html_safe %>
           </span>
@@ -67,6 +71,7 @@
 
 </div>
 
+<%= render 'checkbox' %>
 
 
 
