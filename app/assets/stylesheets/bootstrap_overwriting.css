@@ -1,5 +1,5 @@
 body {
-  background-color: #fff;
+  background-color: #E5E2D1;
   background-image: url(/assets/grad.png);
   background-size: 90px;
 }
@@ -10,13 +10,50 @@ body {
   margin-top: 80px;
   padding: 20px;
   box-shadow: 10px 10px 5px #888888;
+  border-radius:10px;
 
+}
+
+.big-text {
+  font-family: "Courier", "Trebuchet MS";
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.small-text {
+  font-family: "Courier", "Trebuchet MS";
+  font-size: 1em;
+}
+
+.push {
+  margin-left: 90%;
+  margin-top: 0%;
+  padding-top: 0%;
+}
+
+.welcome_message {
+  -webkit-transform: rotate(-12deg); 
+  font-family: "Courier";
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-danger,
+.btn-danger:hover,
+.btn-info,
+.btn-info:hover {
+  font-family: "Courier";
+  font-weight: bold;
+  border-radius: 10px;
+  border-color: transparent;
+  padding: 15px;
+  text-decoration: none;
 }
 
 .text-hero-unit {
   height: 400px;
-  margin-top: 90px;
-  margin-left: 70px;
+  margin-top: 110px;
+  margin-left: 90px;
   padding: 60px;
 }
 
@@ -49,17 +86,6 @@ body {
   background-color: #fff;
 }
 
-.big-text {
-  font-family: "Courier", "Trebuchet MS";
-  font-weight: bold;
-  font-size: 20px;
-}
-
-.small-text {
-  font-family: "Courier", "Trebuchet MS";
-  font-size: 18px;
-}
-
 .avatar {
   display: inline-block;
   margin-left: 25px;
@@ -78,4 +104,157 @@ footer {
 
 .navbar-fixed-top {
   background-color: #5B4D41;
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+
+@media only screen and (min-width : 1px) and (max-width : 319px) {
+
+  .welcome_message {
+    -webkit-transform: rotate(-12deg); 
+    font-family: "Courier";
+    font-size: 0.3em;
+  }
+
+}
+
+@media only screen and (min-width : 320px) and (max-width : 480px) {
+
+  .welcome_message {
+    -webkit-transform: rotate(-12deg); 
+    font-family: "Courier";
+    font-size: 0.7em;
+  }
+
+}
+
+@media only screen and (min-width : 481px) and (max-width : 767px) {
+
+  .welcome_message {
+    -webkit-transform: rotate(-12deg); 
+    font-family: "Courier";
+    font-size: 0.9em;
+  }
+
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-width : 768px) and (max-width : 1223px) {
+.welcome_message {
+    -webkit-transform: rotate(-12deg); 
+    font-family: "Courier";
+    font-size: 1.4em;
+  }
+}
+
+/* Desktops and laptops ----------- */
+@media only screen and (min-width : 1224px) and (max-width : 1823px) {
+.welcome_message {
+    -webkit-transform: rotate(-12deg); 
+    font-family: "Courier";
+    font-size: 1.4em;
+  }
+
+}
+
+/* Large screens ----------- */
+@media only screen and (min-width : 1824px) {
+.welcome_message {
+    -webkit-transform: rotate(-12deg); 
+    font-family: "Courier";
+    font-size: 1.4em;
+  }
+
+}
+
+.well{
+background-color: rgba(255,255,255,0.3); 
+border-radius:10px;
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+
+@media only screen and (min-width : 1px) and (max-width : 319px) {
+
+  .btn-primary,
+  .btn-danger,
+  .btn-info {
+    font-family: "Courier";
+    font-size: 0.2em;
+    padding: 1px;
+    border-color: transparent;
+  }
+
+}
+
+@media only screen and (min-width : 320px) and (max-width : 480px) {
+
+  .btn-primary,
+  .btn-danger,
+  .btn-info {
+    font-family: "Courier";
+    font-size: 0.5em;
+    padding: 7px;
+    border-color: transparent;
+  }
+
+}
+
+@media only screen and (min-width : 481px) and (max-width : 767px) {
+
+  .btn-primary,
+  .btn-danger,
+  .btn-info {
+    font-family: "Courier";
+    font-size: 0.8em;
+    border-color: transparent;
+  }
+
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-width : 768px) and (max-width : 1223px) {
+.btn-primary,
+.btn-danger,
+.btn-primary:hover,
+.btn-danger:hover,
+.btn-info,
+.btn-info:hover {
+    font-family: "Courier";
+    font-size: 1.2em;
+    padding: 10px; 
+    border-color: transparent;
+  }
+}
+
+/* Desktops and laptops ----------- */
+@media only screen and (min-width : 1224px) and (max-width : 1823px) {
+.btn-primary,
+.btn-danger,
+.btn-primary:hover,
+.btn-danger:hover,
+.btn-info,
+.btn-info:hover {
+    font-family: "Courier";
+    font-size: 1.2em;
+    padding: 10px; 
+    border-color: transparent;
+  }
+
+}
+
+/* Large screens ----------- */
+@media only screen and (min-width : 1824px) {
+.btn-primary,
+.btn-danger,
+.btn-primary:hover,
+.btn-danger:hover,
+.btn-info,
+.btn-info:hover {
+    font-family: "Courier";
+    font-size: 1.2em;
+    padding: 10px; 
+    border-color: transparent;
+  }
+
 }

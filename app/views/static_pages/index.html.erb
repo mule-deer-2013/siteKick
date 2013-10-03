@@ -1,48 +1,61 @@
-<html>
-  <head>
-    <title>SiteKick</title>
-    <link rel="stylesheet" href= "//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-    <%= javascript_include_tag :application %>
-    <%= stylesheet_link_tag :bootstrap_overwriting %>
-    <%= csrf_meta_tag %>
-  </head>
-  <body>
-
+  <title>siteKick</title>
+  <link rel="stylesheet" href= "//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
   
+  <%= javascript_include_tag :application %>
+  <%= stylesheet_link_tag :bootstrap_overwriting %>
+  <%= csrf_meta_tag %>
 
-<%= render 'layouts/navbar' %>
 
+  <%= render 'layouts/navbar' %>
 
+  <div class="container">
 
-    <div class="container">
-
-      <div class="hero-unit">
-        <div class="text-hero-unit">
-          <br><br>
-          <h4>Put a little kick in your site with our optimization tools.</h4><br>
-          <p><%= button_to "Start now by signing in with Tumblr!", "/auth/tumblr", class: "btn-primary" %></p>
+    <div class="hero-unit">
+      <div class="text-hero-unit">
+        
+        <p class='welcome_message'>
+        Kick your site up in search<br> results with siteKick!</p>
+        
+       
+        <div class="push">
         </div>
       </div>
+    </div>
 
-      <div class="row">
-        <div class="col-md-6">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn" href="#">View details »</a></p>
-        </div>
-        <div class="col-md-6">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn" href="#">View details »</a></p>
-       </div>
-      
+    <div class="row"><center>
+      <div class="col-md-6">
+
+        <div class='well'><p class='glyphicon glyphicon-cloud-download' style='font-size:32px'></p><br><p class='big-text'>siteKick grabs your Tumblr blog.</p></div>
+        <div class='well'><p class='glyphicon glyphicon-check' style='font-size:32px'></p><br><p class='big-text'>Suggests improvements.</p></div>
+
+        
       </div>
 
-      <footer>
-       <center> <p>© SiteKick 2013</p></center>
-      </footer>
+      <div class="col-md-6">
+        <div class='well'><p class='glyphicon glyphicon-search' style='font-size:32px'></p><br><p class='big-text'>Analyzes its web searchability.</p></div>
+        <div class='well'><p class='glyphicon glyphicon-eye-open' style='font-size:32px'></p><br><p class='big-text'>Gets you more views.</p></div>
+      </div></center>
 
     </div>
 
-  </body>
-</html>
+<footer>
+  <center>© siteKick 2013</center>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
