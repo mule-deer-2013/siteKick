@@ -39,7 +39,7 @@ module Analyzer
 
     case @keywords_in_title.length
     when 0
-      output = "None of the words that occur most often in your post occur in your title tag."
+      output = "None of your keywords occur in your title tag."
       result = false
     when 1
       output = "Of these words, we found the word \"#{@keywords_in_title[0]}\" in your title tag. That's a good thing!"
