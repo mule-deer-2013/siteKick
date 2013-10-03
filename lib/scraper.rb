@@ -129,8 +129,10 @@ module Scraper
       links = article_nokogiri.css('a').map {|link| link['href']} # output => array of string urls
       array_code = links.map do |link|
         url = URI.parse(link)
-        req = Net::HTTP::Get.new(url.path)
-        res = Net::HTTP.start(url.host, url.port) {|http|http.request(req)}
+        res = Net::HTTP.get_response(url)
+        until !([301, 302, 303].include?(res.code))
+          res = Net::HTTP.get_response(res['location'])
+        end
         res.code
       end
     end

@@ -282,8 +282,8 @@ module Analyzer
   ### LINK TESTS ###
 
   def broken_links_test
-    page.link_status_messages.each do |link|
-      if link.include?('4')
+    page.link_status_messages.each do |status|
+      if (400..499).include?(status.to_i)
         self.test_results[:broken_links_result] = false
         return "Your page has broken links."
       end
