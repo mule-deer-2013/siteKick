@@ -109,7 +109,7 @@ module PageTestsHelper
 
   def image_alt_messages
     messages = []
-    messages << @test.image_alt_tags_keywords_test
+    messages << @test.image_alt_tags_presence_test
     join_messages(messages) + image_why_matters
   end
 
