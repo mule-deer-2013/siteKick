@@ -7,50 +7,68 @@
     <% posts = current_user.tumblr_client.posts("#{current_user.uid}.tumblr.com")['posts'] %>
     
     <% img_src = current_user.tumblr_client.avatar("#{current_user.uid}.tumblr.com") %>
-  
+
+    <div class='row'>
+
+      <div class='col-xs-6 col-sm-4 col-md-2'>
+        <center><%= image_tag(img_src, :size => "90x90", :class => 'img-circle')%></center>
+      </div>
+
+      <div class='col-xs-6 col-sm-4 col-md-2'><center>
+        <div class="big-text" style='font-size:32px'>
+         <em>Hey, <%= current_user.tumblr_client.blog_info("#{current_user.uid}.tumblr.com")['blog']['name'] %>!</em>
+       </div></center>
+     </div>
+
+     <div class='col-xs-6 col-sm-4 col-md-4'>
+     </div>
+
+     <div class='col-xs-6 col-sm-4 col-md-2'>
+        <div class='big-text' style='font-size:20px; text-align:right'><div class='label label-success'><%= followers = current_user.tumblr_client.followers("#{current_user.uid}.tumblr.com")['total_users'] %></div><br>
+        <div class='label label-warning'><%= likes = current_user.tumblr_client.likes['liked_count'] %></div> </div>
+     </div>
+
+    <div class='col-xs-6 col-sm-4 col-md-2'>
+     <div class='big-text' style='font-size:20px'>Followers<br>Likes</div>
+    </div>
+   </div>
+
   <div class='row'>
 
     <div class='col-xs-6 col-sm-4 col-md-4'>
-      <center><%= image_tag(img_src, :size => "90x90", :class => 'img-circle')%></center>
     </div>
 
     <div class='col-xs-6 col-sm-4 col-md-4'>
-      <div class="big-text">
-     Hey, <%= current_user.tumblr_client.blog_info("#{current_user.uid}.tumblr.com")['blog']['name'] %>!
-   </div>
+      <div class='glyphicon glyphicon-chevron-down'></div>
+
     </div>
 
     <div class='col-xs-6 col-sm-4 col-md-4'>
+      <div class='glyphicon glyphicon-chevron-down'></div>
     </div>
 
   </div>
 
-</div>
+ <div class='well'>
+  
 
-  <div class='well'>
-    <center>
-    <div class="small-text">
-      Please select one of your posts below to retain feedback for optimization:
-    </div>
-    </center>
+  <div class = 'links'>
 
-    <div class = 'links'>
-      
-      <% posts.each do |post| %>
-      
-      <% if post['type'] == 'text' %>
-      
-      <%= button_to post['title'], pages_path(@page, original_url: post['post_url']), :action => "create", :method => "post", :class => 'btn btn-primary btn-lg btn-block' %><br>
-      
-      <% end %>
-      
-      <%end %>
-    
-    </div>    
+    <% posts.each do |post| %>
+
+    <% if post['type'] == 'text' %>
+
+    <%= button_to post['title'], pages_path(@page, original_url: post['post_url']), :action => "create", :method => "post", :class => 'btn btn-primary btn-lg btn-block' %><br>
+
     <% end %>
-  </div>
-</div>
 
+    <%end %>
+    
+  </div>    
+  <% end %>
+</div>
+</div>
+</div>
 <footer>
-  <center> <p>© SiteKick 2013</p></center>
+  <center> <p>© siteKick 2013</p></center>
 </footer>
