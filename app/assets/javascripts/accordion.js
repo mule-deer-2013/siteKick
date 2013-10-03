@@ -6,7 +6,8 @@
      $("#accordion").accordion({
          icons: icons,
          collapsible: true,
-         active: false
+         active: false, 
+         heightStyle: "content"
      });
  });
 
