@@ -1,5 +1,5 @@
 body {
-  background-color: #fff;
+  background-color: #E5E2D1;
   background-image: url(/assets/grad.png);
   background-size: 90px;
 }
@@ -13,10 +13,24 @@ body {
 
 }
 
+.welcome_message {
+  font-family: "Courier";
+  font-size: 20px;
+}
+
+.btn-primary,
+.btn-primary:hover {
+  font-family: "Courier";
+  font-size: 20px;
+  border-radius: 10px;
+  border-color: transparent;
+}
+
 .text-hero-unit {
+  font-family: "Courier";
   height: 400px;
-  margin-top: 90px;
-  margin-left: 70px;
+  margin-top: 110px;
+  margin-left: 90px;
   padding: 60px;
 }
 
