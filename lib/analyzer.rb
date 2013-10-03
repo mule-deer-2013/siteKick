@@ -27,7 +27,11 @@ module Analyzer
   end
 
   def number_of_tests_evaluated
-    self.test_results.length
+    evaluated = []
+    self.test_results.each_value do |value|
+      evaluated << value if value == true || value == false
+    end
+    evaluated.length
   end
 
   ### "MAIN_MESSAGES" TESTS ###
@@ -124,7 +128,7 @@ module Analyzer
       end
     else
       output = "You don't currently have any &lt;h1&gt; tags in your post, so this test did not evaluate. Consider adding an &lt;h1&gt; tag to help search engines and users quickly recognize what your content is about."
-      result = nil
+      result = :not_evaluated
     end
 
     self.test_results[:h1_keyword_result] = result
@@ -230,7 +234,7 @@ module Analyzer
         output = "Your image tags have 'alt' descriptions."
       end
     else
-      result = nil
+      result = :not_evaluated
       output = "Your post doesn't have any images, so we could not test them for the presence of 'alt' descriptions."
     end
     self.test_results[:alt_tags_presence_result] = result
@@ -264,12 +268,12 @@ module Analyzer
           output = "Without overdoing it, you're averaging at least one keyword for each of your 'alt' descriptions."
         end
       else
-        result = nil
+        result = :not_evaluated
         output = "At least some of the images in your post are missing 'alt' descriptions, so we did not evaluate them for the presence of keywords."
       end
     else
-      result = nil
-      output = "Your post does not have any images, so we could not test them for the presence of 'alt' descriptions."
+      result = :not_evaluated
+      output = "Your post does not have any images, so we could not test the content of their 'alt' descriptions."
     end
     self.test_results[:alt_tags_keyword_result] = result
     output
@@ -277,4 +281,14 @@ module Analyzer
 
   ### LINK TESTS ###
 
+  def broken_links_test
+    page.link_status_messages.each do |link|
+      if link.include?('4')
+        self.test_results[:broken_links_result] = false
+        return "Your page has broken links."
+      end
+    end
+    self.test_results[:broken_links_result] = true
+    "Your page does not have any broken links."
+  end
 end

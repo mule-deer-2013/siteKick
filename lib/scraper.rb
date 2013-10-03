@@ -36,7 +36,12 @@ module Scraper
       else
         article_nokogiri.css("h1").first.text
       end
-    end 
+    end
+
+    def domain
+      uri = URI.parse(self.original_url)
+      uri.host
+    end
 
     def word_count
       words = article_nokogiri.text
@@ -117,25 +122,10 @@ module Scraper
     # 'Self-referring links' refers to other pages within the blog—not the same page.
     def self_referring_links
       links = article_nokogiri.css('a').map {|link| link['href']}
-      links.select { |link| link.include?(original_url) }
+      links.select { |link| link.include?(domain) }
     end
 
-  # TO DO: Discuss negative tests with team. Wordpress and Tumblr
-  # seem to have built-in redirects??
-    def broken_links_due_syntax
-      links = article_nokogiri.css('a').map {|link| link['href']} # output => array of string urls
-      broken_syntax_links = []
-      links.each do |link|
-        url = URI.parse(link)
-        url.kind_of?(URI::HTTP) || url.kind_of?(URI::HTTPS)
-        broken_syntax_links << url if false
-      end
-      broken_syntax_links
-    end
-
-
-
-    def broken_links_code
+    def link_status_messages
       links = article_nokogiri.css('a').map {|link| link['href']} # output => array of string urls
       array_code = links.map do |link|
         url = URI.parse(link)
@@ -143,11 +133,6 @@ module Scraper
         res = Net::HTTP.start(url.host, url.port) {|http|http.request(req)}
         res.code
       end
-       #Output: array with code response for each link ex.200
-
-      # PENDING --->
-           # - Need to add Queuing Jobs(Call Back): https://github.com/collectiveidea/delayed_job
-      handle_asynchronously :delivery
     end
 
 

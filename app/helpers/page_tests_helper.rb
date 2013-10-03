@@ -68,7 +68,11 @@ module PageTestsHelper
   end
 
   def header_results
-    @test.test_results[:h1_presence_result] && @test.test_results[:h1_keyword_result]
+    @test.test_results[:h1_presence_result]
+  end
+
+  def header_keyword_results
+    @test.test_results[:h1_keyword_result]
   end
 
   def h1_keyword_messages
@@ -88,16 +92,15 @@ module PageTestsHelper
   end
 
   def image_results
-    if @page.number_of_images == 0
-      @test.test_results[:number_of_images_result]
-    elsif @test.test_results[:alt_tags_keyword_result].nil?
-      @test.test_results[:number_of_images_result] &&
-      @test.test_results[:alt_tags_presence_result]
-    else
-      @test.test_results[:number_of_images_result] &&
-      @test.test_results[:alt_tags_presence_result] &&
-      @test.test_results[:alt_tags_keyword_result]
-    end
+    @test.test_results[:number_of_images_result]
+  end
+
+  def image_alt_results
+    @test.test_results[:alt_tags_presence_result]
+  end
+
+  def image_alt_keyword_results
+    @test.test_results[:alt_tags_keyword_result]
   end
 
   def image_why_matters
@@ -116,14 +119,14 @@ module PageTestsHelper
     join_messages(messages) + image_why_matters
   end
 
-  def link_messages
+  def broken_links_messages
     messages = []
-    messages << "Link info TK TK TK"
+    messages << @test.broken_links_test
     join_messages(messages) + link_why_matters
   end
 
-  def link_results
-    true
+  def broken_links_results
+    @test.test_results[:broken_links_result]
   end
 
   def link_why_matters
