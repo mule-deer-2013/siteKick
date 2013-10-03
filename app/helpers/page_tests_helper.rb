@@ -2,7 +2,7 @@ module PageTestsHelper
 
   def keyword_observations
     keywords = @test.keywords
-    "The five most common keywords found in your piece were #{keywords[0]}, #{keywords[1]}, #{keywords[2]}, #{keywords[3]}, and #{keywords[4]}."
+    "#{keywords[0].capitalize}, #{keywords[1]}, #{keywords[2]}, #{keywords[3]}, and #{keywords[4]}."
   end
 
   def word_count_observations
