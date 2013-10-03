@@ -42,10 +42,10 @@ module Analyzer
       output = "None of your keywords occur in your title tag."
       result = false
     when 1
-      output = "Of these words, we found the word \"#{@keywords_in_title[0]}\" in your title tag. That's a good thing!"
+      output = "The keyword \"#{@keywords_in_title[0]}\" appears in your title tag."
       result = true
     else
-      output = "We found several of these words in your title tag. Way to go!"
+      output = "Several of your keywords appear in your title tag."
       result = true
     end
 
@@ -58,17 +58,13 @@ module Analyzer
 
     case @keywords_in_url.length
     when 0
-      output = "None of your keywords are present in your post's URL. Customizing your URL to include your keywords could help direct search traffic toward your content."
+      output = "None of your keywords were found in your post's URL."
       result = false
     when 1
-      if @keywords_in_url[0] == @keywords_in_title[0]
-        output = "We also found \"#{@keywords_in_url[0]}\" in your page's URL."
-      else
-        output = "We found the word \"#{@keywords_in_url[0]}\" in your URL. That's a good thing!"
-      end
+      output = "The word \"#{@keywords_in_url[0]}\" appears in your URL."
       result = true
     else
-      output = "We found several keywords in your post's URL. Nice work!"
+      output = "Several of your keywords were found in your post's URL."
       result = true
     end
 
@@ -79,16 +75,16 @@ module Analyzer
   def word_count_test
     case page.word_count
     when 0..300
-      output = "Your piece is so short that search engines may not consider it very important. Consider trying to add additional content."
+      output = "Your piece is so short that search engines may not consider it very important."
       result = false
     when 301..600
-      output = "In terms of length, this piece is right in the pocket of what search engines are looking for."
+      output = "In terms of length, this piece falls into what search engines consider to be the optimal length."
       result = true
     when 601..1000
-      output = "Your piece is a bit longer than what is considered optimal for search (~600 words). You're still within a reasonable length, but it might be worth keeping an eye on your word count."
+      output = "Your piece is a bit longer than what is considered optimal for search, although you're still within a reasonable length."
       result = true
     else
-      output = "Your piece is quite a bit longer than the recommended maximum of 600 words. Consider refocusing on your chosen topic and eliminating unnecessary content."
+      output = "Your piece is longer than the recommended maximum of 600 words."
       result = false
     end
 
@@ -101,13 +97,13 @@ module Analyzer
   def h1_presence_test
     case page.number_of_h1
     when 0
-      output = "You don't have any h1 tags in your piece. We strongly advise that you provide a title for your post in an \<h1\> tag."
+      output = "You don't have any &lt;h1&gt; tags in your piece."
       result = false
     when 1
-      output = "You have one h1 tag, which is exactly what search engines want to see."
+      output = "You have one &lt;h1&gt; tag, which is exactly what search engines want to see."
       result = true
     else
-      output = "You have more than one h1 tag in your post, which may cause search engines to penalize your content."
+      output = "You have more than one &lt;h1&gt; tag in your post, which may cause search engines to penalize your content."
       result = false
     end
     self.test_results[:h1_presence_result] = result
@@ -119,22 +115,19 @@ module Analyzer
       keywords_in_h1 = keywords.select {|word| page.h1_text.downcase.match(word) }
       case keywords_in_h1.length
       when 0
-        output = "None of your keywords are present in your post's h1 tag. Customizing your h1 to include your keywords could help direct search traffic toward your content."
+        output = "None of your keywords are present in your post's &lt;h1&gt; tag."
         result = false
       when 1    
-        output = "We found the word \"#{keywords_in_h1[0]}\" in your h1 tag. That's a good thing!"  
+        output = "We found the word \"#{keywords_in_h1[0]}\" in your &lt;h1&gt; tag."  
         result = true
       else
-        output = "We found several keywords in your h1 tag. Nice work!"
+        output = "We found several keywords in your &lt;h1&gt; tag."
         result = true
       end
-    else
-      output = "An h1 tag is an excellent opportunity to show search engines what your piece is about. Add one to the top of your piece and use one or more keywords to send a strong message about your content."
-      result = false
-    end
 
-    self.test_results[:h1_keyword_result] = result
-    output
+      self.test_results[:h1_keyword_result] = result
+      output
+    end
   end
 
   ### P TESTS ###
@@ -154,20 +147,20 @@ module Analyzer
     if oversaturated.length == 0
       if underrepresented.length == 0
         result = true
-        output = "Each of your keywords occupies between 1 and 3% of your body text, which is perfect."
+        output = "Each of your keywords occupies between 1 and 3% of your content, which is considered optimal by most search engines."
       elsif underrepresented.length > 0 && underrepresented.length < 3
         result = true
-        output = "Most of your keywords occupy between 1 and 3% of your body text, which is really strong."
+        output = "Most of your keywords occupy between 1 and 3% of your content, which is considered optimal by most search engines."
       else
         result = false
-        output = "Most of your keywords occupy less than 1% of your body text, which is less than ideal. Consider ways that you might build additional mentions of those words into your headers, meta tags, links, and image tags."
+        output = "Most of your keywords occupy less than 1% of your content. Consider ways that you might build additional mentions of those words into your headers, meta tags, links, and image tags."
       end
     elsif oversaturated.length == 1
       result = false
       output = "You've mentioned the word #{oversaturated.first} so many times that it now makes up #{percent}% of your piece. Search engines may penalize sites if they feel they're using keywords to game the system."
     else
       result = false
-      output = "Several of your keywords are making up 4% or more of your total html content, which might lead search engines to believe that you're trying to game the system. Consider editing yourself."
+      output = "Several of your keywords are making up 4% or more of your total html content, which might lead search engines to believe that you're trying to game the system."
     end
 
     self.test_results[:keyword_saturation_result] = result
@@ -180,19 +173,19 @@ module Analyzer
     case first_keys.length
     when 0
       result = false
-      output = "We didn't find a single keyword in the first 150 words of your piece. Placing important words toward the beginning of your piece helps search engines know what your post is about."
+      output = "We didn't find a single keyword in the first 150 words of your piece."
     when 1
       result = false
-      output = "We only found one keyword in the first 150 words of your piece. Placing important words toward the beginning of your piece helps search engines know what your post is about."
+      output = "We only found one keyword in the first 150 words of your piece."
     when 2
       result = false
-      output = "We only found two keywords in the first 150 words of your piece. Placing important words toward the beginning of your piece helps search engines know what your post is about."
+      output = "We only found two keywords in the first 150 words of your piece."
     when 3..10
       result = true
-      output = "We found a handful of keywords in the first 150 words of your piece, which is great. Search engines often place greater emphasis on this area when trying to figure out what sites are about."
+      output = "We found a handful of keywords in the first 150 words of your piece."
     else
       result = true
-      output = "You have a ton of keywords in the first 150 words of your piece, which is fantastic and should help search engines to know exactly what you're talking about."
+      output = "You have plenty of keywords in the first 150 words of your piece."
     end
 
     self.test_results[:keywords_in_the_first_150_words_result] = result
@@ -205,16 +198,16 @@ module Analyzer
     case page.number_of_images
     when 0
       result = true
-      output = "Your content body doesn't contain any images."
+      output = "Your content body doesn't contain any images. This shouldn't affect what search engines think about your content."
     when 1
       result = true
-      output = "One image"
+      output = "Your post contains one image. This shouldn't affect what search engines think about your content."
     when 2..4
       result = true
-      output = "2-4 images"
+      output = "Your post contains #{page.number_of_images} images. This shouldn't affect what search engines think about your content."
     else
       result = false
-      output = "Five or more images"
+      output = "Your post has more than four images, which might lead some search engines to believe that your content is of low quality."
     end
 
     self.test_results[:number_of_images_result] = result
@@ -222,26 +215,22 @@ module Analyzer
   end
 
   def image_alt_tags_presence_test
-    if page.number_of_images == 0
-      result = true
-      output = "Images offer you an opportunity to share more information with search engines about what your content is about (and hopefully help to make your page look cool) but if you don't want them in your content, don't worry about it!"
-    else
+    if page.number_of_images > 0
       if page.image_alt_tags.include?(nil)
         if page.image_alt_tags.reject { |tag| tag.nil? }.empty?
           result = false
-          output = "Your image tags don't currently include 'alt' descriptions. When used responsibly, these descriptions are an excellent way to tell search engines what your page is about."
+          output = "Your image tags don't currently include 'alt' descriptions."
         else
           result = false
-          output = "At least one of your image tags doesn't include an 'alt' description. When used responsibly, these descriptions are an excellent way to tell search engines what your page is about."
+          output = "At least one of your image tags doesn't include an 'alt' description."
         end
       else
         result = true
         output = "Your image tags have 'alt' descriptions."
       end
+      self.test_results[:alt_tags_presence_result] = result
+      output
     end
-
-    self.test_results[:alt_tags_presence_result] = result
-    output
   end
 
   def image_alt_tags_keywords_test
@@ -258,16 +247,16 @@ module Analyzer
 
       if keywords_in_alt_tags.count > (3 * page.number_of_images)
         result = false
-        output = "Your keywords occur so commonly in your 'alt' descriptions that search engines might think that you're attempting to cheat the system. In order to avoid being penalized, examine your 'alt' descriptions and consider dialing back on your keyword usage."
+        output = "Your keywords occur so commonly in your 'alt' descriptions that search engines might think that you're attempting to cheat the system."
       elsif keywords_in_alt_tags.count == 0
         result = false
-        output = "You are not currently using any of your keywords in your 'alt' descriptions, which is a missed opportunity to help tell search engines what your page is about."
+        output = "You are not currently using any of keywords in your 'alt' descriptions."
       elsif keywords_in_alt_tags.count < (1 * page.number_of_images)
         result = false
-        output = "You are not currently using many of your keywords in your 'alt' descriptions, which is a missed opportunity to help tell search engines what your page is about."
+        output = "You are not using many of your keywords in your 'alt' descriptions."
       else
         result = true
-        output = "Without overdoing it, you're averaging at least one keyword for each of your 'alt' descriptions. That's right where you want your images to be."
+        output = "Without overdoing it, you're averaging at least one keyword for each of your 'alt' descriptions."
       end
     end
 
