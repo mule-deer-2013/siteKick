@@ -122,10 +122,13 @@ module Analyzer
         output = "We found several keywords in your &lt;h1&gt; tag."
         result = true
       end
-
-      self.test_results[:h1_keyword_result] = result
-      output
+    else
+      output = "You don't currently have any &lt;h1&gt; tags in your post, so this test did not evaluate. Consider adding an &lt;h1&gt; tag to help search engines and users quickly recognize what your content is about."
+      result = nil
     end
+
+    self.test_results[:h1_keyword_result] = result
+    output
   end
 
   ### P TESTS ###
@@ -226,38 +229,48 @@ module Analyzer
         result = true
         output = "Your image tags have 'alt' descriptions."
       end
-      self.test_results[:alt_tags_presence_result] = result
-      output
+    else
+      result = nil
+      output = "Your post doesn't have any images, so we could not test them for the presence of 'alt' descriptions."
     end
+    self.test_results[:alt_tags_presence_result] = result
+    output
   end
 
   def image_alt_tags_keywords_test
-    if page.number_of_images > 0 && self.test_results[:alt_tags_presence_result] == true
-      keywords_in_alt_tags = []
+    if page.number_of_images > 0 
+      if self.test_results[:alt_tags_presence_result] == true
+        keywords_in_alt_tags = []
 
-      page.image_alt_tags.each do |tag|
-        tag.split.each do |word|
-          if keywords.include?(word.downcase)
-            keywords_in_alt_tags << word
+        page.image_alt_tags.each do |tag|
+          tag.split.each do |word|
+            if keywords.include?(word.downcase)
+              keywords_in_alt_tags << word
+            end
           end
         end
-      end
 
-      if keywords_in_alt_tags.count > (3 * page.number_of_images)
-        result = false
-        output = "Your keywords occur so commonly in your 'alt' descriptions that search engines might think that you're attempting to cheat the system."
-      elsif keywords_in_alt_tags.count == 0
-        result = false
-        output = "You are not currently using any of keywords in your 'alt' descriptions."
-      elsif keywords_in_alt_tags.count < (1 * page.number_of_images)
-        result = false
-        output = "You are not using many of your keywords in your 'alt' descriptions."
+        if keywords_in_alt_tags.count > (3 * page.number_of_images)
+          result = false
+          output = "Your keywords occur so commonly in your 'alt' descriptions that search engines might think that you're attempting to cheat the system."
+        elsif keywords_in_alt_tags.count == 0
+          result = false
+          output = "You are not currently using any of keywords in your 'alt' descriptions."
+        elsif keywords_in_alt_tags.count < (1 * page.number_of_images)
+          result = false
+          output = "You are not using many of your keywords in your 'alt' descriptions."
+        else
+          result = true
+          output = "Without overdoing it, you're averaging at least one keyword for each of your 'alt' descriptions."
+        end
       else
-        result = true
-        output = "Without overdoing it, you're averaging at least one keyword for each of your 'alt' descriptions."
+        result = nil
+        output = "At least some of the images in your post are missing 'alt' descriptions, so we did not evaluate them for the presence of keywords."
       end
+    else
+      result = nil
+      output = "Your post does not have any images, so we could not test them for the presence of 'alt' descriptions."
     end
-
     self.test_results[:alt_tags_keyword_result] = result
     output
   end

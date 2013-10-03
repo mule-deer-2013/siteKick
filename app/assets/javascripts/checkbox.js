@@ -25,3 +25,7 @@ var replace_failing_image_icons = function(){
     $('.content_body_check').attr('src', '/assets/fail1.png')
   }
 }
+
+
+// $('.title_check').remove()
+// $('.title-tag').css('margin-left', '30px')
