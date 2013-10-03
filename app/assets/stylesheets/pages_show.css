@@ -9,6 +9,15 @@
   padding-top: 2px;
 }
 
+.feedback ul {
+  color: white;
+}
+
+.why {
+  display: block;
+  margin-left: 40px;
+}
+
 .post_data {
   border: 1px solid;
   padding: 5px;
