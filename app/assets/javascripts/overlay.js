@@ -1,92 +1,51 @@
 $(function() {
 
-  function toggleOverlay(element) {
-    var highlighted = element.hasClass("highlighted");
-    var previouslySelected = $(".highlighted");
-    if (previouslySelected.length === 0){
-        $('.highlighted').css({
-          position: 'static',
-          zIndex: 0,
-          "background-color": ""
-        });
-      $('.overlay').remove();
-    }
-    var applicable = element.parent().hasClass('post_data');
-    //first half before the or simply checkes to see if the tags have changed.  If it has changed remove the highlight
-    //the second half says don't remove the highlight for these types of html elements
-    if ( applicable || (previouslySelected.length > 0 && element[0].tagName != previouslySelected[0].tagName) || (element[0].tagName != "A" && element[0].tagName != "P" && element[0].tagName != "IMG") ){
-      $('.highlighted').css({
-          position: 'static',
-          zIndex: 0,
-          "background-color": ""
-        });
-      $('.overlay').remove();
-      previouslySelected.removeClass("highlighted");
-    }
-    if (!highlighted) {
-      element.css({
-        position: 'relative',
-        zIndex  : 20,
-        "background-color": "#fff"
-      });
+  function toggleOverlay(selector) {
 
-      var w = $('.article_content').width();
-      var h = $('.article_content').height();
-      var t = $('.article_content').position().top;
-      var l = $('.article_content').position().left;
-      var $overlay = $('<div/>', {
-        'class': 'overlay',
-        css: {
-          position   : 'absolute',
-          height     : h + 25 +'px',
-          width      : w + 25 +'px',
-          left       : l + 'px',
-          top        : t + 'px',
-          background : '#000',
-          opacity    : 0.5,
-          zIndex     : 10
-        }
-      }).appendTo('.article_content');
-      element.addClass("highlighted");
-    } else {
-      $('.highlighted').css({
-        position: 'static',
-        zIndex: 0,
-        "background-color": ""
-      });
-      $('.overlay').remove();
-      element.css('background-color', 'transparent');
-      element.removeClass("highlighted");
+    var $toHighlight = $(selector);
+    // 1. If the passed-in selector is already highlighted, that means
+    //    the user clicked the same one twice, so let's just uni=highlight.
+    var justTurnOff = $toHighlight.hasClass('highlighted');
+
+    // 2. Find any elements that are already highlighted, and unhighlight them.
+    $('.highlighted').removeClass('highlighted');
+
+    // 3. Remove any existing overlays.
+    $('.overlay').remove();
+
+    if (!justTurnOff) {
+      // 4. Highlight the passed-in element.
+      $toHighlight.addClass('highlighted');
+
+      // 5. Add the overlay on top of the article.
+      getOverlay().appendTo('.article_content');
     }
   }
 
-  $('.title-tag').on('click', function(){toggleOverlay($("#title"));});
-  $('.url-tag').on('click', function(){toggleOverlay($("#url"));});
-  $('.word-tag').on('click', function(){toggleOverlay($("#word"));});
-  $('.header-tag').on('click',function(){
-    $.each($('.original-article h1'), function(){
-      toggleOverlay($(this).addClass('hi'));
+  function getOverlay() {
+    var w = $('.article_content').width();
+    var h = $('.article_content').height();
+    var t = $('.article_content').position().top;
+    var l = $('.article_content').position().left;
+    var $overlay = $('<div/>', {
+      'class': 'overlay',
+      css: {
+        width  : w+30 + 'px',
+      }
     });
-  });
+    return $overlay;
+  }
 
-  $('.image-tag').on('click',function(){
-    $.each($('.original-article img'), function(){
-      toggleOverlay($(this));
-    });
-  });
+  // We want to highlight the header tag when keywords is clicked.
+  $('.original-article h1').addClass('keywords');
 
-  $('.link-tag').on('click',function(){
-    $.each($('.original-article a'), function(){
-      toggleOverlay($(this));
-    });
-  });
+  $('.title-tag').on('click', function() { toggleOverlay(".title"); });
+  $('.url-tag').on('click', function() { toggleOverlay(".url"); });
+  $('.word-tag').on('click', function() { toggleOverlay(".word"); });
+  $('.header-keyword-tag').on('click', function() { toggleOverlay(".keywords"); });
 
-  $('.content-tag').on('click',function(){
-    $.each($('.original-article p'), function(){
-      toggleOverlay($(this));
-    });
-  });
-
-
-
+  $('.header-tag').on('click',function() { toggleOverlay('.original-article h1'); });
+  $('.image-tag').on('click',function() { toggleOverlay('.original-article img'); });
+  $('.link-tag').on('click',function() { toggleOverlay('.original-article a'); });
+  $('.content-tag').on('click',function() { toggleOverlay('.original-article section'); });
 });
