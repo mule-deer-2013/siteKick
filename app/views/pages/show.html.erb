@@ -1,58 +1,69 @@
 <%= render 'layouts/navbar' %>
 
-  <div id = "image-clipboard">
-    <%= image_tag "vector-clipboard.png" %>
+<div id = 'page_show_container'>
+
+  <div class = 'row'>
+    <div class = 'overview col-md-12'>
+      <h2>Overview</h2>
+      <p><strong>Score:</strong> Your post passed <%= @test.number_of_tests_passed %> out of <%= @test.number_of_tests_evaluated %> SEO-optimization tests.</p>
+      <p>Click any of the headers in the left-hand box for detailed feedback.</p>
+    </div>
   </div>
 
-  <div class='feedback'>
-    <div class='feedback_text'>
+  <div class = 'row'>
+    <div class='feedback col-md-6'>
       <div id ='accordion'>
 
-        <h3> Title <%= image_tag "check1.png", :class => 'title_check' %></h3>
+        <p> Title Tag <%= image_tag "check1.png", :class => 'title_check check' %></p>
         <div>
           <p class='main_messages'><%= title_keywords_messages.html_safe %>
           </p>
         </div>
-        <h3> URL <%= image_tag "check1.png",:class => 'title_check' %></h3>
+        <p> URL <%= image_tag "check1.png",:class => 'url_check check' %></p>
         <div>
           <p class='url_messages'><%= url_keywords_messages.html_safe %>
           </p>
         </div>
-        <h3> Word Count <%= image_tag "check1.png", :class => 'title_check' %></h3>
+        <p> Word Count <%= image_tag "check1.png", :class => 'word_count_check check' %></p>
         <div>
           <p class='word_count_messages'><%= word_count_messages.html_safe %>
           </p>
         </div>
-        <h3> Header Tags  <%= image_tag "check1.png", :class => 'title_check' %></h3>
+        <p> Header Tags  <%= image_tag "check1.png", :class => 'header_check check' %></p>
         <div>
           <span class='h1_messages'><%= h1_messages.html_safe %>
           </span>
         </div>
-        <h3> Images <%= image_tag "check1.png", :class => 'title_check' %></h3>
+        <p> Images <%= image_tag "check1.png", :class => 'image_check check' %></p>
         <div>
           <p class='image_messages'><%= image_messages %>
           </p>
         </div>
-        <h3> Links <%= image_tag "check1.png", :class => 'title_check' %></h3>
+        <p> Links <%= image_tag "check1.png", :class => 'link_check check' %></p>
         <div>
           <p class='link_messages'><%= link_messages %>
           </p>
         </div>
-        <h3> Content Body <%= image_tag "check1.png", :class => 'title_check'  %></h3>
+        <p> Content Body <%= image_tag "check1.png", :class => 'content_check check'  %></p>
         <div>
           <span class='content_body_messages'><%= content_body_messages.html_safe %>
           </span>
         </div>
       </div>
     </div>
-  </div><br>
 
-  <div class='article_content'>
-    <h2>ORIGINAL ARTICLE</h2>
-    <%= @page.content.html_safe %>
+    <div class='article_content .col-md-6'>
+      <div class='post_data'>
+        <p><strong>Keywords:</strong> <%= keyword_observations %></p>
+        <p><strong>Title: </strong>&lt;title&gt;<%= @page.title %>&lt;/title&gt;</p>
+        <p><strong>URL: </strong><%= @page.original_url %>
+        <p><strong>Word Count:</strong> <%= @page.word_count %></p>
+      </div>
+      <%= @page.content.html_safe %>
+    </div>
   </div>
 
-
+</div>
 
 
 
