@@ -20,6 +20,18 @@ module Analyzer
     self.save
   end
 
+  def number_of_tests_passed
+    passed = []
+    self.test_results.each_value do |value|
+      passed << value if value == true
+    end
+    passed.length
+  end
+
+  def number_of_tests_evaluated
+    self.test_results.length
+  end
+
   ### "MAIN_MESSAGES" TESTS ###
 
   def title_includes_keywords_test
