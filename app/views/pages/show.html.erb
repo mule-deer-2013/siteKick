@@ -56,7 +56,7 @@
 </div>
 
   <div class = 'row'>
-    <div class='feedback col-md-6'>
+    <div class='feedback col-md-4'>
       <div id ='accordion'>
 
         <p class="title-tag"> Title Tag <%= image_tag "check1.png", :class => 'title_check check' %></p>
@@ -117,12 +117,12 @@
       </div>
     </div>
 
-    <div class='article_content .col-md-6'>
+    <div class='article_content col-md-7 col-md-offset-1'>
       <div class='post_data'>
-        <p><strong>Keywords:</strong> <%= keyword_observations %></p>
-        <p id="title"><strong>Title: </strong>&lt;title&gt;<%= @page.title %>&lt;/title&gt;</p>
-        <p id="url"><strong>URL: </strong><%= @page.original_url %>
-        <p id="word"><strong>Word Count:</strong> <%= @page.word_count %></p>
+        <p class="keywords"><strong>Keywords:</strong> <%= keyword_observations %></p>
+        <p class="title"><strong>Title: </strong>&lt;title&gt;<%= @page.title %>&lt;/title&gt;</p>
+        <p class="url"><strong>URL: </strong><%= @page.original_url %>
+        <p class="word"><strong>Word Count:</strong> <%= @page.word_count %></p>
       </div>
       <div class="original-article">
         <%= @page.content.html_safe %>
