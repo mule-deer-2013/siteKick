@@ -1,5 +1,3 @@
-require 'ruby-debug'
-
 module Analyzer
 
   def keywords
