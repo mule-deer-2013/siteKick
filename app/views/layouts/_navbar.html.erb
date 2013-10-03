@@ -1,9 +1,14 @@
 <div class="navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          
-          <a class="logo" href="/">siteKick</a>
-          
+          <% if current_user  %>
+          <%= link_to 'siteKick', root_url, class: "logo" %>
+          <% else %>
+          <%= link_to 'siteKick', root_url, class: "logo" %>
+          <div class="nav pull-right" style='padding-top:7px'>
+            <%= button_to "Log-In with Tumblr!", "/auth/tumblr", class: "btn-primary" %>
+          </div>
+          <% end %>
         </div>
       </div>
     </div>
