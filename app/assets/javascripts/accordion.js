@@ -4,7 +4,9 @@
          activeHeader: "iconOpen"
      };
      $("#accordion").accordion({
-         icons: icons
+         icons: icons,
+         collapsible: true,
+         active: false
      });
  });
 

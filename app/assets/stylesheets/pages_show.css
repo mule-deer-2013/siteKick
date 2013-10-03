@@ -1,35 +1,73 @@
+#page_show_container {
+  margin-top: 80px;
+}
+
+.overview {
+  margin-bottom: 20px;
+  background-color: white;
+  padding-bottom: 5px;
+  padding-top: 2px;
+}
+
+.feedback ul {
+  color: white;
+}
+
+.why {
+  display: block;
+  margin-left: 40px;
+}
+
+.post_data {
+  border: 1px solid;
+  padding: 5px;
+}
+
 .feedback {
-  padding: 0px;
+  height: 500px;
+  background-color: #073642;
+  color: white;
+  margin-right: 20px;
+  font-family: Monaco, Consolas, "Lucida Console", monospace; !important;
+  padding: 5px 0;
+
+/*  padding: 0px;
   color: #fff;
-  background-color: #252322;
+  background-color: #073642;
   border: 20px solid #6C1F06;
   border-radius: 20px;
   font-family: "Trebuchet MS";
   float: left;
   width: 40%;
-  height: 768px;
   position: absolute;
   margin-left: 1%;
-  margin-top: 0px;
-  overflow:scroll;
+  margin-top: 0px;*/
 }
 
 .article_content {
+  height: 500px;
+  overflow:scroll;
+  background-color: #F1E9E3;
+  padding: 20px;
+
+/*
   padding: 20px;
   color: #463D37;
-  margin-left: 10px;
-  background-color: #F1E9E3;
+  margin-right: 10px;
   border: 5px solid #ccc;
   box-shadow: 8px 8px 5px #888888;
   border-radius: 20px;
   font-family: "Trebuchet MS";
   float: right;
   width:45%;
-  height: 800px;
   margin-left: 47%;
   margin-top: -15px;
   position: absolute;
-  overflow:scroll;
+*/
+}
+
+h3 {
+  margin: 0;
 }
 
 .hidden {
@@ -45,12 +83,9 @@
 
 .ui-accordion-header{
   font-size:150%;
-  background-color:#252322;
+  background-color: #073642;
   width: 100%;
-  border-top: solid;
-  border-bottom: solid;
-  border-color: white;
-  border-width: 1px;
+  height: 32px;
 }
 
 .iconOpen {
@@ -79,7 +114,7 @@ img {
 
 }
 
-.title_check{
+.check{
   display: inline-block;
   float: left;
   width: 30px;
