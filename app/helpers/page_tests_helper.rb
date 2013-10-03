@@ -58,7 +58,6 @@ module PageTestsHelper
   def h1_messages
     messages = []
     messages << @test.h1_presence_test
-    (messages << @test.h1_keywords_test) if @test.h1_keywords_test
     join_messages(messages) + header_why_matters
   end
 
@@ -72,6 +71,12 @@ module PageTestsHelper
     @test.test_results[:h1_presence_result] && @test.test_results[:h1_keyword_result]
   end
 
+  def h1_keyword_messages
+    messages = []
+    messages << @test.h1_keywords_test
+    join_messages(messages) + header_why_matters
+  end
+
   def header_why_matters
     "<span class='why'><strong><u>Why these matter:</u></strong> Like the title tag, header tags (h1, h2, etc) provide an important cue for search engines about the content of your piece.</span>"
   end
@@ -79,8 +84,6 @@ module PageTestsHelper
   def image_messages
     messages = []
     messages << @test.number_of_images_test
-    (messages << @test.image_alt_tags_presence_test) if @test.image_alt_tags_presence_test
-    (messages << @test.image_alt_tags_keywords_test) if @test.image_alt_tags_keywords_test
     join_messages(messages) + image_why_matters
   end
 
@@ -99,6 +102,18 @@ module PageTestsHelper
 
   def image_why_matters
     "<span class='why'><strong><u>Why these matter:</u></strong> Images do more than make your page look cool. If you include 'alt' descriptions, they also give search engines further insight into your post.</span>"
+  end
+
+  def image_alt_messages
+    messages = []
+    messages << @test.image_alt_tags_keywords_test
+    join_messages(messages) + image_why_matters
+  end
+
+  def image_alt_keyword_messages
+    messages = []
+    messages << @test.image_alt_tags_keywords_test
+    join_messages(messages) + image_why_matters
   end
 
   def link_messages
