@@ -10,11 +10,12 @@ module Analyzer
     self.word_count_test
     self.h1_presence_test
     self.h1_keywords_test
-    self.keyword_saturation_test
-    self.keywords_in_the_first_150_words_test
     self.number_of_images_test
     self.image_alt_tags_presence_test
     self.image_alt_tags_keywords_test
+    self.broken_links_test
+    self.keyword_saturation_test
+    self.keywords_in_the_first_150_words_test
     self.save
   end
 
@@ -282,13 +283,18 @@ module Analyzer
   ### LINK TESTS ###
 
   def broken_links_test
-    page.link_status_messages.each do |status|
-      if (400..499).include?(status.to_i)
-        self.test_results[:broken_links_result] = false
-        return "Your page has broken links."
+    begin
+      page.link_status_messages.each do |status|
+        if (400..499).include?(status.to_i)
+          self.test_results[:broken_links_result] = false
+          return "Your page has broken links."
+        end
       end
+      self.test_results[:broken_links_result] = true
+      "Your page does not have any broken links."
+    rescue
+      self.test_results[:broken_links_result] = :not_evaluated
+      "Due to the unique structure of your blog, we were unable to evaluate your links. Sorry!"
     end
-    self.test_results[:broken_links_result] = true
-    "Your page does not have any broken links."
   end
 end
