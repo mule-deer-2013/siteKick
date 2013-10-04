@@ -6,15 +6,32 @@ require 'uri'
 module Scraper    
 
   def get_content
-    if !open_url.css('article').inner_html.empty?
-      self.content = open_url.css('article').inner_html  
-    else
-      post_id = "#" + open_url.inner_html.match(/post-\d+/).to_s
-      self.content = open_url.css(post_id).inner_html
-    end
+    begin
+      if !open_url.css('article').inner_html.empty?
+        self.content = open_url.css('article').inner_html
+        puts "article"  
+      elsif open_url.inner_html.match(/post-*\d+/)
+        post_id = "#" + open_url.inner_html.match(/post-?\d+/).to_s
+        self.content = open_url.css(post_id).inner_html
+        post "post-[number]"
+      elsif open_url.inner_html.match(/id\s?=\s?['"]post[s]?["']/)
+        post_id = "#" + open_url.inner_html.match(/id\s*=\s*['"]post[s]["']*/).to_s.match(/post[s]*/)
+        self.content = open_url.css(post_id).inner_html
+        puts "post/s"
+      elsif open_url.inner_html.match(/id\s?=\s?['"]container["']/)
+        post_id = "#container"
+        self.content = open_url.css(post_id).inner_html
+        puts "container"
+      elsif open_url.inner_html.match(/id\s?=\s?['"]blog['"]/)
+        post_id = "#blog"
+        self.content = open_url.css(post_id).inner_html
+        puts "blog"
+      end
 
-    self.title = open_url.css('title').text
-    self.meta = open_url.css('meta').text
+      self.title = open_url.css('title').text
+    rescue
+
+    end
   end
 
   def open_url
