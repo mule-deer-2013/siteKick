@@ -13,6 +13,7 @@ gem 'omniauth'
 gem 'omniauth-tumblr'
 gem 'tumblr_client'
 gem 'dotenv-rails', :groups => [:development, :test]
+gem 'simplecov', :require => false, :group => :test
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
