@@ -10,11 +10,12 @@ module Analyzer
     self.word_count_test
     self.h1_presence_test
     self.h1_keywords_test
-    self.keyword_saturation_test
-    self.keywords_in_the_first_150_words_test
     self.number_of_images_test
     self.image_alt_tags_presence_test
     self.image_alt_tags_keywords_test
+    self.broken_links_test
+    self.keyword_saturation_test
+    self.keywords_in_the_first_150_words_test
     self.save
   end
 
