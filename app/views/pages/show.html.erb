@@ -2,7 +2,7 @@
 
 <div id = 'page_show_container'>
 
-  <div class='well' style='border-radius:10px; background-color:rgba(255,255,255,0.4); box-shadow: 10px 10px 5px #888888;'>
+  <div class='well' style='border-radius:10px; background-color:rgba(255,255,255,0.4)'>
 
 <center>
 
@@ -62,9 +62,7 @@
           <p class='image_alt_keyword_messages'><%= image_alt_keyword_messages.html_safe %>
           </p>
         </div>
-
-        <p class = "broken-link-tag"> Broken Links <%= image_tag "check1.png", :class => 'broken_links_check check' %></p>
-
+        <p class = "link-tag"> Links <%= image_tag "check1.png", :class => 'broken_links_check check' %></p>
        
         <div>
           <p class='link_messages'><%= broken_links_messages.html_safe %>
@@ -74,6 +72,11 @@
 
         <div>
           <span class='content_body_messages'><%= content_body_messages.html_safe %>
+          </span>
+        </div>
+        <p class="content-tag"> First 150 Words <%= image_tag "check1.png", :class => 'first_150_check check'  %></p>
+        <div>
+          <span class='content_body_messages'><%= first_150_words_messages.html_safe %>
           </span>
         </div>
       </div>

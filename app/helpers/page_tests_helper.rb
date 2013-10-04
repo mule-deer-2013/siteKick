@@ -136,15 +136,24 @@ module PageTestsHelper
   def content_body_messages
     messages = []
     messages << @test.keyword_saturation_test
-    messages << @test.keywords_in_the_first_150_words_test
     join_messages(messages) + content_body_why_matters
   end
   
   def content_body_results
-    @test.test_results[:keyword_saturation_result] && @test.test_results[:keywords_in_the_first_150_words_result]
+    @test.test_results[:keyword_saturation_result]
   end
 
   def content_body_why_matters
     "<span class='why'><strong><u>Why this matters:</u></strong> The bulk of your content is (or should) be in your &lt;p&gt; tags. Search engines don't place as much emphasis on this area as other tags, but content rich with keywords (particularly toward the beginning of your piece) still influence your search rating.</span>"
+  end
+
+  def first_150_words_results
+    @test.test_results[:keywords_in_the_first_150_words_result]
+  end
+
+  def first_150_words_messages
+    messages = []
+    messages << @test.keywords_in_the_first_150_words_test
+    join_messages(messages) + content_body_why_matters
   end
 end
