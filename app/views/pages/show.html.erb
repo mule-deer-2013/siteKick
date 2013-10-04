@@ -11,12 +11,23 @@
 
 <h2>Your site rated<div style='color:red'> <%= @test.number_of_tests_passed %></div> out of a possible <%= @test.number_of_tests_evaluated %>.</h2>
 
-
 </center>
 </div>
 
+<center>
+<div class='row'>
+  <div class='col-md-4'>
+  </div>
+<div class='col-md-4'>
+<a class="btn btn-info btn-lg btn-block" style='margin-top:10px;' href="javascript:void(0);" onclick="javascript:introJs().start();">Take a Tour</a>
+</div>
+<div class='col-md-4'>
+  </div>
+</div>
+</center>
+
   <div class = 'row'>
-    <div class='feedback col-md-4'>
+    <div class='feedback col-md-4' data-step="1" data-intro="Here are your SEO test results. Click on each header to receive more detailed feedback about how your posts can be optimized for search results." data-position="right">
       <div id ='accordion'>
 
         <p class="title-tag"> Title Tag <%= image_tag "check1.png", :class => 'title_check check' %></p>
@@ -62,14 +73,16 @@
           <p class='image_alt_keyword_messages'><%= image_alt_keyword_messages.html_safe %>
           </p>
         </div>
-        <p class = "link-tag"> Links <%= image_tag "check1.png", :class => 'broken_links_check check' %></p>
-       
+        <p class = "link-tag"> Broken Links <%= image_tag "check1.png", :class => 'broken_links_check check' %></p>
+
         <div>
           <p class='link_messages'><%= broken_links_messages.html_safe %>
           </p>
         </div>
-        <p class="content-tag"> Keyword Saturation <%= image_tag "check1.png", :class => 'content_body_check check'  %></p>
 
+        <p class="content-tag"> Content Body <%= image_tag "check1.png", :class => 'content_body_check check'  %></p>
+
+        <p class="content-tag"> Keyword Saturation <%= image_tag "check1.png", :class => 'content_body_check check'  %></p>
         <div>
           <span class='content_body_messages'><%= content_body_messages.html_safe %>
           </span>
@@ -83,13 +96,13 @@
     </div>
 
     <div class='article_content col-md-7 col-md-offset-1'>
-      <div class='post_data'>
+      <div class='post_data'data-step="2" data-intro=" We've summarized key data points about your post that search engines care about. These points provide a handy reference as you optimize your content for search engine results." data-position="left">
         <p class="keywords"><strong>Keywords:</strong> <%= keyword_observations %></p>
         <p class="title"><strong>Title: </strong>&lt;title&gt;<%= @page.title %>&lt;/title&gt;</p>
         <p class="url"><strong>URL: </strong><%= @page.original_url %>
         <p class="word"><strong>Word Count:</strong> <%= @page.word_count %></p>
       </div>
-      <div class="original-article">
+      <div class="original-article introjs-tooltiptext" data-step="3" data-intro="This is your original post. As you click through the results of our test, relevant sections will be highlighted to make it easier to integrate our feedback into your content." data-position="left">
         <%= @page.content.html_safe %>
       </div>
     </div>
