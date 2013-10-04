@@ -4,6 +4,10 @@
           <% if current_user  %>
             <%= link_to 'siteKick', root_url, class: "logo" %>
           <div class="nav pull-right" style='padding-right:10px; padding-top:11px; margin-top: 3px; display:inline-block'>
+
+          <% if params[:id] %>
+            <a class="btn btn-large btn-info" href="javascript:void(0);" onclick="javascript:introJs().start();">Take a Tour</a>
+          <% end %>
             <%= link_to "exit!", "/signout", class: "btn-danger" %>
           </div>
           <div class="nav pull-right" style='padding-right:10px; padding-top:11px; margin-top: 3px; display:inline-block'>
