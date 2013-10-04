@@ -75,12 +75,11 @@
         </div>
         <p class = "link-tag"> Broken Links <%= image_tag "check1.png", :class => 'broken_links_check check' %></p>
 
-        <p class = "link-tag"> Links <%= image_tag "check1.png", :class => 'broken_links_check check' %></p>
-
         <div>
           <p class='link_messages'><%= broken_links_messages.html_safe %>
           </p>
         </div>
+
         <p class="content-tag"> Content Body <%= image_tag "check1.png", :class => 'content_body_check check'  %></p>
 
         <div>
@@ -97,7 +96,7 @@
         <p class="url"><strong>URL: </strong><%= @page.original_url %>
         <p class="word"><strong>Word Count:</strong> <%= @page.word_count %></p>
       </div>
-      <div class="original-article" data-step="3" data-intro="This is your original post. As you click through the results of our test, relevant sections will be highlighted to make it easier to integrate our feedback into your content." data-position="left">
+      <div class="original-article introjs-tooltiptext" data-step="3" data-intro="This is your original post. As you click through the results of our test, relevant sections will be highlighted to make it easier to integrate our feedback into your content." data-position="left">
         <%= @page.content.html_safe %>
       </div>
     </div>
