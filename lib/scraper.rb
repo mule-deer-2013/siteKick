@@ -21,13 +21,13 @@ module Scraper
     @content ||= Nokogiri::HTML( open("#{self.original_url}") )
   end
 
+  def remove_scripts(nokogiri_content)
+    article_nokogiri_content.xpath("//script").remove
+  end
+
   module Result
     def article_nokogiri
       @article_nokogiri ||= Nokogiri::HTML( self.content )
-    end
-
-    def remove_scripts(nokogiri_content)
-      article_nokogiri_content.xpath("//script").remove
     end
 
     def h1_text

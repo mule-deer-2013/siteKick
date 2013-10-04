@@ -37,7 +37,7 @@ var replace_failing_image_icons = function(){
   else if ($('.header_keyword_field').text() == "not_evaluated") {
     $('.header_keyword_check').remove()
     $('.header-keyword-tag').css('margin-left', '30px')
-    $('.image-alt-tag').text('[Header Keywords]')
+    $('.header-keyword-tag').text('[Header Keywords]')
   }
   if ($('.image_field').text() == "false") {
     $('.image_check').attr('src', '/assets/fail1.png')
@@ -65,8 +65,16 @@ var replace_failing_image_icons = function(){
   if ($('.broken_links_field').text() == "false") {
     $('.broken_links_check').attr('src', '/assets/fail1.png')
   }
+  else if ($('.broken_links_field').text() == "not_evaluated") {
+    $('.broken_links_check').remove()
+    $('.link-tag').css('margin-left', '30px')
+    $('.link-tag').text('[Links]')
+  }
   if ($('.content_body_field').text() == "false") {
     $('.content_body_check').attr('src', '/assets/fail1.png')
+  }
+  if ($('.first_150_field').text() == "false") {
+    $('.first_150_check').attr('src', '/assets/fail1.png')
   }
 }
 
