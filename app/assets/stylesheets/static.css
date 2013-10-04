@@ -11,6 +11,7 @@
  *= require ../../../vendor/assets/stylesheets/bootstrap.min
  *= require ../../../vendor/assets/stylesheets/introjs
  *= require bootstrap_overwriting
+ *= require introjs-overwrite
  */
 
 

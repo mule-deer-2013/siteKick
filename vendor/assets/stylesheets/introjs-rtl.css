@@ -4,9 +4,10 @@
 .introjs-skipbutton {
   margin-left: 5px;
 }
-.introjs-tooltip {
-  direction: rtl;
-}
+
+/*.introjs-tooltip {
+  direction: ltr;
+}*/
 .introjs-prevbutton {
   border: 1px solid #d4d4d4;
   border-left: none;
