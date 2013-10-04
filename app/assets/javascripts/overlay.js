@@ -4,7 +4,7 @@ $(function() {
 
     var $toHighlight = $(selector);
     // 1. If the passed-in selector is already highlighted, that means
-    //    the user clicked the same one twice, so let's just uni=highlight.
+    //    the user clicked the same one twice, so let's just unihighlight.
     var justTurnOff = $toHighlight.hasClass('highlighted');
 
     // 2. Find any elements that are already highlighted, and unhighlight them.
@@ -48,9 +48,10 @@ $(function() {
   $('.header-tag').on('click',function() { toggleOverlay('.original-article h1'); });
   $('.image-tag').on('click',function() { toggleOverlay('.original-article img'); });
   $('.link-tag').on('click',function() { toggleOverlay('.original-article a'); });
-  $('.content-tag').on('click',function() { toggleOverlay('.original-article section'); });
+  $('.content-saturation-tag').on('click',function() { toggleOverlay('.original-article section'); });
   $('.image-alt-tag').on('click',function() { toggleOverlay('.original-article img'); });
   $('.image-alt-keyword-tag').on('click',function() { toggleOverlay('.original-article img'); });
   $('.broken-link-tag').on('click',function() { toggleOverlay('.original-article a'); });
+  $('.content-tag').on('click',function() { toggleOverlay('.original-article section'); });
 
 });
