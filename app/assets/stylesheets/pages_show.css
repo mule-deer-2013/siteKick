@@ -93,9 +93,9 @@ img {
   background-color: #000;
   opacity: 0.5;
   z-index: 10;
-  height: 150%;
+  height: 400%;
   top: 0px;
   left: 0px;
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
 }
