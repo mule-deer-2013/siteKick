@@ -41,8 +41,6 @@ h3 {
 }
 
 
-
-
 img {
   display: block;
 
@@ -95,7 +93,7 @@ img {
   background-color: #000;
   opacity: 0.5;
   z-index: 10;
-  height: 700px;
+  height: 150%;
   top: 0px;
   left: 0px;
   padding: 20px;
