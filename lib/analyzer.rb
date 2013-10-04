@@ -80,7 +80,7 @@ module Analyzer
       output = "Your piece is so short that search engines may not consider it very important."
       result = false
     when 301..600
-      output = "In terms of length, this piece falls into what search engines consider to be the optimal length."
+      output = "This piece falls into a word count range that search engines generally consider to be the optimal length."
       result = true
     when 601..1000
       output = "Your piece is a bit longer than what is considered optimal for search, although you're still within a reasonable length."
@@ -259,7 +259,7 @@ module Analyzer
           output = "Your keywords occur so commonly in your 'alt' descriptions that search engines might think that you're attempting to cheat the system."
         elsif keywords_in_alt_tags.count == 0
           result = false
-          output = "You are not currently using any of keywords in your 'alt' descriptions."
+          output = "You are not currently using any of your keywords in your 'alt' descriptions."
         elsif keywords_in_alt_tags.count < (1 * page.number_of_images)
           result = false
           output = "You are not using many of your keywords in your 'alt' descriptions."
