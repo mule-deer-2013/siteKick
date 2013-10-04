@@ -50,7 +50,7 @@ describe Scraper::Result do
 
   context "#word_count" do
     it "returns the word count of the article body" do
-      expect(page.word_count).to be 563
+      expect(page.word_count).to be 560
     end
   end
 
@@ -134,20 +134,20 @@ describe Scraper::Result do
 
   context "#avg_para_length" do
     it "should return the average length of all text paragraphs" do
-      expect(page.avg_para_length).to be 241
+      expect(page.avg_para_length).to be 240
     end
   end
 
   context "#text_to_html_ratio" do
     it "should return the ratio of text characters to html characters" do
-      expect((page.text_to_html_ratio * 100000).to_i). to be 71627
+      expect((page.text_to_html_ratio * 100000).to_i). to be 78879
     end
   end
 
   context "list_of_links" do
     it "should return a list of all links found on the page" do
       expect((page.list_of_links).length) == 6
-      expect((page.list_of_links).first).to eq "http://editorreverse.tumblr.com/post/58401824401/the-power-of-equality#notes"
+      expect((page.list_of_links).first).to eq "#"
     end
   end
 end
