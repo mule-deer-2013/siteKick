@@ -4,7 +4,7 @@ $(function() {
 
     var $toHighlight = $(selector);
     // 1. If the passed-in selector is already highlighted, that means
-    //    the user clicked the same one twice, so let's just uni=highlight.
+    //    the user clicked the same one twice, so let's just unihighlight.
     var justTurnOff = $toHighlight.hasClass('highlighted');
 
     // 2. Find any elements that are already highlighted, and unhighlight them.
