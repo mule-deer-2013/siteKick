@@ -31,6 +31,7 @@ $(function() {
       'class': 'overlay',
       css: {
         width  : w+30 + 'px',
+
       }
     });
     return $overlay;
@@ -48,4 +49,8 @@ $(function() {
   $('.image-tag').on('click',function() { toggleOverlay('.original-article img'); });
   $('.link-tag').on('click',function() { toggleOverlay('.original-article a'); });
   $('.content-tag').on('click',function() { toggleOverlay('.original-article section'); });
+  $('.image-alt-tag').on('click',function() { toggleOverlay('.original-article img'); });
+  $('.image-alt-keyword-tag').on('click',function() { toggleOverlay('.original-article img'); });
+  $('.broken-link-tag').on('click',function() { toggleOverlay('.original-article a'); });
+
 });

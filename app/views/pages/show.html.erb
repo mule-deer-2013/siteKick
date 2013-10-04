@@ -2,7 +2,7 @@
 
 <div id = 'page_show_container'>
 
-  <div class='well' style='border-radius:10px; background-color:rgba(255,255,255,0.4); box-shadow: 10px 10px 5px #888888;'>
+  <div class='well' style='border-radius:10px; background-color:rgba(255,255,255,0.4)'>
 
 <center>
 
@@ -82,8 +82,14 @@
 
         <p class="content-tag"> Content Body <%= image_tag "check1.png", :class => 'content_body_check check'  %></p>
 
+        <p class="content-tag"> Keyword Saturation <%= image_tag "check1.png", :class => 'content_body_check check'  %></p>
         <div>
           <span class='content_body_messages'><%= content_body_messages.html_safe %>
+          </span>
+        </div>
+        <p class="content-tag"> First 150 Words <%= image_tag "check1.png", :class => 'first_150_check check'  %></p>
+        <div>
+          <span class='content_body_messages'><%= first_150_words_messages.html_safe %>
           </span>
         </div>
       </div>
