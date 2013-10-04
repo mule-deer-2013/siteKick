@@ -1,5 +1,9 @@
 <%= render 'layouts/navbar' %>
 
+<%= javascript_include_tag :application %>
+  <%= stylesheet_link_tag :bootstrap_overwriting %>
+  <%= csrf_meta_tag %>
+
 <div class="container-links">
   <div class='well'>
     <% if current_user %> 
@@ -15,7 +19,7 @@
       </div>
 
       <div class='col-xs-6 col-sm-4 col-md-2'><center>
-        <div class="big-text" style='font-size:32px'>
+        <div class="big-text">
          <em>Hey, <%= current_user.tumblr_client.blog_info("#{current_user.uid}.tumblr.com")['blog']['name'] %>!</em>
        </div></center>
      </div>
@@ -24,12 +28,12 @@
      </div>
 
      <div class='col-xs-6 col-sm-4 col-md-2'>
-        <div class='big-text' style='font-size:20px; text-align:right'><div class='label label-success'><%= followers = current_user.tumblr_client.followers("#{current_user.uid}.tumblr.com")['total_users'] %></div><br>
+        <div class='small-text' style='text-align:right'><div class='label label-success'><%= followers = current_user.tumblr_client.followers("#{current_user.uid}.tumblr.com")['total_users'] %></div><br>
         <div class='label label-warning'><%= likes = current_user.tumblr_client.likes['liked_count'] %></div> </div>
      </div>
 
     <div class='col-xs-6 col-sm-4 col-md-2'>
-     <div class='big-text' style='font-size:20px'>Followers<br>Likes</div>
+     <div class='big-text'>Followers<br>Likes</div>
     </div>
    </div>
 
