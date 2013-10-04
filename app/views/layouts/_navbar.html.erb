@@ -6,9 +6,9 @@
           <div class="nav pull-right" style='padding-right:10px; padding-top:11px; margin-top: 3px; display:inline-block'>
 
           <% if params[:id] %>
-            <a class="btn-info" style='margin-top: 3px' href="javascript:void(0);" onclick="javascript:introJs().start();">Take a Tour</a>
+            <a class="btn-info" style='margin-top: 3px; margin-right: 4px' href="javascript:void(0);" onclick="javascript:introJs().start();">tour the site</a>
           <% end %>
-            <%= link_to "exit!", "/signout", class: "btn-danger" %>
+            <%= link_to "exit", "/signout", class: "btn-danger" %>
           </div>
           <div class="nav pull-right" style='padding-right:10px; padding-top:11px; margin-top: 3px; display:inline-block'>
             <%= link_to "posts", "/pages/new", class: "btn-info" %>
