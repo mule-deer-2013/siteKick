@@ -10,7 +10,7 @@ module Analyzer
     self.word_count_test
     self.h1_presence_test
     self.h1_keywords_test
-    self.number_of_images_test
+    self.number_of_body_images_test
     self.image_alt_tags_presence_test
     self.image_alt_tags_keywords_test
     self.broken_links_test
@@ -200,8 +200,8 @@ module Analyzer
 
   ### IMG TESTS ###
 
-  def number_of_images_test
-    case page.number_of_images
+  def number_of_body_images_test
+    case page.number_of_body_images
     when 0
       result = true
       output = "Your content body doesn't contain any images. This shouldn't affect what search engines think about your content."
@@ -210,18 +210,18 @@ module Analyzer
       output = "Your post contains one image. This shouldn't affect what search engines think about your content."
     when 2..4
       result = true
-      output = "Your post contains #{page.number_of_images} images. This shouldn't affect what search engines think about your content."
+      output = "Your post contains #{page.number_of_body_images} images. This shouldn't affect what search engines think about your content."
     else
       result = false
       output = "Your post has more than four images, which might lead some search engines to believe that your content is of low quality."
     end
 
-    self.test_results[:number_of_images_result] = result
+    self.test_results[:number_of_body_images_result] = result
     output
   end
 
   def image_alt_tags_presence_test
-    if page.number_of_images > 0
+    if page.number_of_body_images > 0
       if page.image_alt_tags.include?(nil)
         if page.image_alt_tags.reject { |tag| tag.nil? }.empty?
           result = false
@@ -243,7 +243,7 @@ module Analyzer
   end
 
   def image_alt_tags_keywords_test
-    if page.number_of_images > 0 
+    if page.number_of_body_images > 0 
       if self.test_results[:alt_tags_presence_result] == true
         keywords_in_alt_tags = []
 
@@ -255,13 +255,13 @@ module Analyzer
           end
         end
 
-        if keywords_in_alt_tags.count > (3 * page.number_of_images)
+        if keywords_in_alt_tags.count > (3 * page.number_of_body_images)
           result = false
           output = "Your keywords occur so commonly in your 'alt' descriptions that search engines might think that you're attempting to cheat the system."
         elsif keywords_in_alt_tags.count == 0
           result = false
           output = "You are not currently using any of your keywords in your 'alt' descriptions."
-        elsif keywords_in_alt_tags.count < (1 * page.number_of_images)
+        elsif keywords_in_alt_tags.count < (1 * page.number_of_body_images)
           result = false
           output = "You are not using many of your keywords in your 'alt' descriptions."
         else

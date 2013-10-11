@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   end
 
   def create
-    @page = Page.create(original_url: params[:original_url])
+    @page = Page.create(original_url: params[:original_url], user_id: current_user.id)
     PageTest.create(page_id: @page.id)
     redirect_to page_path(@page)
   end
@@ -15,5 +15,7 @@ class PagesController < ApplicationController
     @test = PageTest.where(page_id: @page.id).last
     @page.title
   end
+
+
 
 end

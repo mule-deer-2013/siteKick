@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
   end
 
   def failure
-    redirect_to root_url, :notice => "You denied authentication."
+    redirect_to root_url, :notice => "You were denied authentication."
   end
 
 end

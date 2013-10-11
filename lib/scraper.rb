@@ -6,53 +6,30 @@ require 'uri'
 module Scraper    
 
   def get_content
-    begin
-      if !open_url.css('article').inner_html.empty?
-        self.content = open_url.css('article').inner_html
-        puts "article"  
-      elsif open_url.inner_html.match(/post-*\d+/)
-        post_id = "#" + open_url.inner_html.match(/post-?\d+/).to_s
-        self.content = open_url.css(post_id).inner_html
-        post "post-[number]"
-      elsif open_url.inner_html.match(/id\s?=\s?['"]post[s]?["']/)
-        post_id = "#" + open_url.inner_html.match(/id\s*=\s*['"]post[s]["']*/).to_s.match(/post[s]*/)
-        self.content = open_url.css(post_id).inner_html
-        puts "post/s"
-      elsif open_url.inner_html.match(/id\s?=\s?['"]container["']/)
-        post_id = "#container"
-        self.content = open_url.css(post_id).inner_html
-        puts "container"
-      elsif open_url.inner_html.match(/id\s?=\s?['"]blog['"]/)
-        post_id = "#blog"
-        self.content = open_url.css(post_id).inner_html
-        puts "blog"
+    @user = User.find(self.user_id)
+    @posts = @user.tumblr_client.posts("#{@user.uid}.tumblr.com")['posts']
+    @posts.each do |post|
+      if post["post_url"] == self.original_url
+        self.content = post["body"]
       end
-
-      self.title = open_url.css('title').text
-    rescue
-
     end
   end
 
-  def open_url
-    @content ||= Nokogiri::HTML( open("#{self.original_url}") )
-  end
-
-  def remove_scripts(nokogiri_content)
-    article_nokogiri_content.xpath("//script").remove
+  def get_title
+    self.title = post.css('title')
   end
 
   module Result
-    def article_nokogiri
-      @article_nokogiri ||= Nokogiri::HTML( self.content )
+    def article
+      @article ||= Nokogiri::HTML( self.content )
+    end
+
+    def post
+      @post ||= Nokogiri::HTML(open(self.original_url))
     end
 
     def h1_text
-      if number_of_h1 < 2
-        article_nokogiri.css("h1").text
-      else
-        article_nokogiri.css("h1").first.text
-      end
+      post.css("h1").map { |h1| h1.text }
     end
 
     def domain
@@ -61,24 +38,16 @@ module Scraper
     end
 
     def word_count
-      words = article_nokogiri.text
+      words = article.text
       words.split.length
     end
 
     def number_of_h1
-      article_nokogiri.css("h1").count
-    end
-
-    def number_of_h2
-      article_nokogiri.css("h2").count
-    end
-
-    def number_of_h3
-      article_nokogiri.css("h3").count
+      post.css("h1").count
     end
 
     def paragraph_text
-      article_nokogiri.css("p").text.downcase
+      article.css("p").text.downcase
     end
 
     def remove_stop_words
@@ -101,33 +70,33 @@ module Scraper
       keyword_with_frequency.map { |kwf| kwf[0] }
     end
 
-    def number_of_images
-      article_nokogiri.css("img").count
+    def number_of_body_images
+      article.css("img").count
     end
 
     def start_with_text?
-      first_word = article_nokogiri.text.split.first
+      first_word = article.text.split.first
       !content.match(first_word).pre_match.include?("img")
     end
 
     def image_alt_tags
-      article_nokogiri.css('img').map{ |i| i['alt'] }
+      article.css('img').map{ |i| i['alt'] }
     end
 
     def avg_para_length
-      paragraphs = article_nokogiri.css("p").map { |para| para.text }
+      paragraphs = article.css("p").map { |para| para.text }
       para_lengths = paragraphs.map { |para| para.length }
       para_lengths.inject(:+)/paragraphs.length
     end
 
     def text_to_html_ratio
-      text_length = article_nokogiri.text.length
-      html_length = article_nokogiri.css('html').inner_html.length
+      text_length = article.text.length
+      html_length = article.css('html').inner_html.length
       text_length.to_f / html_length.to_f
     end
 
     def list_of_links
-      links = article_nokogiri.css('a').map {|link| link['href']}
+      links = article.css('a').map {|link| link['href']}
     end
 
     def keyword_saturation(keyword)
@@ -138,12 +107,12 @@ module Scraper
     # This method does not returning the intended metric. 
     # 'Self-referring links' refers to other pages within the blog—not the same page.
     def self_referring_links
-      links = article_nokogiri.css('a').map {|link| link['href']}
+      links = article.css('a').map {|link| link['href']}
       links.select { |link| link.include?(domain) }
     end
 
     def link_status_messages
-      links = article_nokogiri.css('a').map {|link| link['href']} # output => array of string urls
+      links = article.css('a').map {|link| link['href']} # output => array of string urls
       array_code = links.map do |link|
         url = URI.parse(link)
         res = Net::HTTP.get_response(url)
