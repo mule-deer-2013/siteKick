@@ -1,7 +1,7 @@
 SiteKick
 ========
 
-**View this app on Heroku at [http://complete-tweet.herokuapp.com/](http://sitekick.herokuapp.com/)**
+**View this app on Heroku at [http://sitekick.herokuapp.com/](http://sitekick.herokuapp.com/)**
 
 SiteKick is an application to help writers and editors who are not well-educated in SEO best-practices to take their 
 optimization into their own hands. 
