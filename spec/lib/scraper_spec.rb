@@ -2,31 +2,11 @@ require 'spec_helper'
 require 'ruby-debug'
 
 class MyPage
-  attr_accessor :content, :title, :meta
+  attr_accessor :content, :title, :meta, :user_id
   include Scraper
   include Scraper::Result
 end
 
-describe Scraper do
-  let(:page) { MyPage.new }
-  let(:nokogiri) {
-    mock(:nokogiri, :inner_html => '', :css => mock(:css, :inner_html => ',', :text => ''))
-  }
-  context "#get_content" do
-    it "scrapes the original url" do
-      page.stub(:open_url) { nokogiri }
-      page.get_content
-    end
-  end
-
-  context "#article_nokogiri" do
-    it "creates a nokogiri html object with the content" do
-      page.stub(:content) { 'page content' }
-      Nokogiri.should_receive(:HTML).with(page.content)
-      page.article_nokogiri
-    end
-  end
-end
 
 describe Scraper::Result do
 
@@ -59,7 +39,7 @@ describe Scraper::Result do
 
   context "#word_count" do
     it "returns the word count of the article body" do
-      expect(page.word_count).to be 531
+      expect(page.word_count).to be 533
     end
   end
 
@@ -131,19 +111,19 @@ describe Scraper::Result do
 
   context "#avg_para_length" do
     it "should return the average length of all text paragraphs" do
-      expect(page.avg_para_length).to be 240
+      expect(page.avg_para_length).to be 286
     end
   end
 
   context "#text_to_html_ratio" do
     it "should return the ratio of text characters to html characters" do
-      expect((page.text_to_html_ratio * 100000).to_i). to be 78879
+      expect((page.text_to_html_ratio * 100000).to_i).to be 80296
     end
   end
 
-  context "list_of_links" do
+  context "#list_of_links" do
     it "should return a list of all links found on the page" do
-      expect((page.list_of_links).length) == 6
+      expect((page.list_of_links).length).to eq 2
       expect((page.list_of_links).first).to eq "#"
     end
   end

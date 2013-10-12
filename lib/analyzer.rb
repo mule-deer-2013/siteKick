@@ -114,8 +114,8 @@ module Analyzer
   end
 
   def h1_keywords_test
-    if page.number_of_h1 > 0
-      keywords_in_h1 = keywords.select {|word| page.h1_text.downcase.match(word) }
+    if page.number_of_h1 == 1
+      keywords_in_h1 = keywords.select {|word| page.h1_text.first.downcase.match(word) }
       case keywords_in_h1.length
       when 0
         output = "None of your keywords are present in your post's &lt;h1&gt; tag."
@@ -127,6 +127,9 @@ module Analyzer
         output = "We found several keywords in your &lt;h1&gt; tag."
         result = true
       end
+    elsif page.number_of_h1 > 1
+      output = "You have more than one &lt;h1&gt; tag in your post, so this test did not evaluate. Many Tumblr themes place both the title of the blog and the title of the post in &lt;h1&gt; tags. If this is the case for you, consider editing your theme manually."
+      result = :not_evaluated
     else
       output = "You don't currently have any &lt;h1&gt; tags in your post, so this test did not evaluate. Consider adding an &lt;h1&gt; tag to help search engines and users quickly recognize what your content is about."
       result = :not_evaluated

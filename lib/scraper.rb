@@ -16,7 +16,7 @@ module Scraper
   end
 
   def get_title
-    self.title = post.css('title')
+    self.title = post.css('title').text
   end
 
   module Result
@@ -104,8 +104,6 @@ module Scraper
       (percent * 100).round
     end
 
-    # This method does not returning the intended metric. 
-    # 'Self-referring links' refers to other pages within the blog—not the same page.
     def self_referring_links
       links = article.css('a').map {|link| link['href']}
       links.select { |link| link.include?(domain) }
