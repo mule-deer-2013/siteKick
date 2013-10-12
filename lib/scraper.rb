@@ -32,6 +32,10 @@ module Scraper
       post.css("h1").map { |h1| h1.text }
     end
 
+    def h1_text_display
+      h1_text.join(", ")
+    end
+
     def domain
       uri = URI.parse(self.original_url)
       uri.host
