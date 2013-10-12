@@ -45,13 +45,13 @@ $(function() {
   $('.word-tag').on('click', function() { toggleOverlay(".word"); });
   $('.header-keyword-tag').on('click', function() { toggleOverlay(".keywords"); });
 
-  $('.header-tag').on('click',function() { toggleOverlay('.original-article h1'); });
+  $('.header-tag').on('click',function() { toggleOverlay('.h1_tags'); });
   $('.image-tag').on('click',function() { toggleOverlay('.original-article img'); });
   $('.link-tag').on('click',function() { toggleOverlay('.original-article a'); });
-  $('.content-saturation-tag').on('click',function() { toggleOverlay('.original-article section'); });
+  $('.content-saturation-tag').on('click',function() { toggleOverlay('.keywords'); });
   $('.image-alt-tag').on('click',function() { toggleOverlay('.original-article img'); });
   $('.image-alt-keyword-tag').on('click',function() { toggleOverlay('.original-article img'); });
   $('.broken-link-tag').on('click',function() { toggleOverlay('.original-article a'); });
-  $('.content-tag').on('click',function() { toggleOverlay('.original-article section'); });
+  $('.content-tag').on('click',function() { toggleOverlay('.original-article'); });
 
 });
