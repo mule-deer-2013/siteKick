@@ -87,12 +87,12 @@ module PageTestsHelper
 
   def image_messages
     messages = []
-    messages << @test.number_of_images_test
+    messages << @test.number_of_body_images_test
     join_messages(messages) + image_why_matters
   end
 
   def image_results
-    @test.test_results[:number_of_images_result]
+    @test.test_results[:number_of_body_images_result]
   end
 
   def image_alt_results
